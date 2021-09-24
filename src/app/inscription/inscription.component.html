@@ -1,1 +1,63 @@
-<p>inscription works!</p>
+
+<div class="signup">
+
+  
+
+    <div class="signup-connect">
+      <h1>Create your account</h1>
+      <a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i> Sign in with Facebook</a>
+      <a href="#" class="btn btn-social btn-twitter"><i class="fa fa-twitter"></i> Sign in with Twitter</a>
+      <a href="#" class="btn btn-social btn-google"><i class="fa fa-google"></i> Sign in with Google</a>
+      <a href="#" class="btn btn-social btn-linkedin"><i class="fa fa-linkedin"></i> Sign in with Linkedin</a>
+    </div>
+    
+    
+    <div class="signup-classic">
+     <form class="form" (ngSubmit)="userForm.valid && onsubmit()" [formGroup]="userForm">
+      
+
+        <fieldset class="username" for="username">
+          
+        <input type="text" placeholder="username"
+        formControlName="username" 
+        id="username" name="name" 
+        [ngClass]="{'is-invalid':userForm.get('username').touched && userForm.get('username').errors}" />
+        <div *ngIf="userForm.get('username').touched && userForm.get('username').errors" class="invalid-feedback">
+          </div>
+        </fieldset>
+        
+        <fieldset class="email" for="email">
+        <input type="email" formControlName="email" id="email" name="user_mail" 
+        [ngClass]="{'is-invalid':userForm.get('email').touched && userForm.get('email').errors}" />
+        <div *ngIf="userForm.get('email').touched && userForm.get('email').errors" class="invalid-feedback">
+        </div>
+        </fieldset>
+
+
+        <fieldset class="password" for="password">
+        
+        <input type="password" placeholder="password" formControlName="password" id="password" name="user_password" 
+        [ngClass]="{'is-invalid':userForm.get('password').touched && userForm.get('password').errors}"/>
+        <div *ngIf="userForm.get('password').touched && userForm.get('password').errors" class="invalid-feedback">
+          <span *ngIf="userForm.get('password').errors?.required">Le pass est requis</span>
+        <span *ngIf="userForm.get('password').errors?.minlength">Le nombre de caracterer doit etre de minimum 8 caractere</span>
+        </div>
+        </fieldset>
+
+        <fieldset class="password" for="password2">
+        <input type="password" placeholder="confirm password" formControlName="password2" id="password2" name="user_password2"
+        [ngClass]="{'is-invalid':userForm.get('password2').touched && userForm.get('password2').errors}" />
+        <div *ngIf="userForm.get('password2').touched && userForm.get('password2').errors" class="invalid-feedback">
+        </div>
+        </fieldset>
+            
+        <button type="submit" 
+        class="btn btn-primary btn-block" 
+        [disabled]="!userForm.valid">Sign up</button>
+
+
+ </form>
+  </div>  
+  <p>{{error}}</p>
+
+</div>
