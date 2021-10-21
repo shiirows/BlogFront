@@ -1,0 +1,17 @@
+<div class="contact-us">
+  <form (ngSubmit)="artcileForm.valid && onsubmit()" [formGroup]="artcileForm"class="col-sm-12 col-md-6">
+<div>
+    <label for="name">NAME <em>&#x2a;</em></label>
+    <input formControlName="name" id="name" name="name" required="" type="text" 
+    [ngClass]="{'is-invalid':artcileForm.get('name').touched && artcileForm.get('name').errors}"/>
+</div>
+
+<div>
+    <label for="content">YOUR MESSAGE </label>
+    <textarea formControlName="content"  id="content" name="content" required="" rows="4"></textarea>
+   <input  id="content" name="content" type="text" 
+   [ngClass]="{'is-invalid':artcileForm.get('content').touched && artcileForm.get('content').errors}"/>
+</div>
+   <button type="submit"  >SUBMIT</button>
+  </form>
+</div>

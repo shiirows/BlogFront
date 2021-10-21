@@ -1,6 +1,4 @@
 import { UtilisateurInscription } from './../model/UtilisateurInscription';
-
-
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
@@ -37,8 +35,8 @@ export class AuthentificationService {
     }
 
     //METHODE POUR LES CONNEXION
-    public connexion(utilisateur: UtilisateurInscription): Observable<any> {
-        return this.http.post(this.urlApi + "connexion", utilisateur, this.httpOptions);
+    public signin(username: string, password: string): Observable<any> {
+        return this.http.post(this.urlApi + "signin", { username, password }, this.httpOptions);
     }
 
     //METHODE POUR LES DECONNEXION
@@ -47,8 +45,9 @@ export class AuthentificationService {
     }
 
     //METHODE POUR LES MISE A JOUR
-    public update(utilisateur: UtilisateurInscription): Observable<any> {
-        return this.http.put(this.urlApiUpdate + "update", utilisateur, this.httpOptions);
+    public update(id: number , country: string, city : string, description : string, number_phone : Number ): Observable<any> {
+        return this.http.put(this.urlApiUpdate + "update?id=" + id +"$country=" + country + "$city=" + city + 
+        "$description=" + description + "$number_phone=" + number_phone   ,  this.httpOptions);
     }
 
 }

@@ -41,6 +41,7 @@
   nav .menuItems {
     list-style: none;
     display: flex;
+    justify-content: space-around;
   }
   nav .menuItems li {
     margin: 50px;

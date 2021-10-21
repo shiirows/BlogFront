@@ -10,14 +10,24 @@ Codepen: https://codepen.io/supah/
   
     <div class="signup-classic">
       <h2>Or use the classical way</h2>
-      <form class="form">
-        
-        <fieldset class="email">
-          <input type="email" placeholder="email" />
+      <form class="form" (ngSubmit)="userForm.valid && onsubmit()" [formGroup]="userForm">
+
+        <label for="userName">Username</label>
+        <fieldset class="userName" for="userName">
+          <input type="text" formControlName="userName" id="userName" name="userName" placeholder="username" />
+          <span class="error" *ngIf="userForm.controls.userName.errors?.required">Username is required</span>
+
+          
+          </fieldset>
+
+
+
+          
+        <fieldset class="password" for="password">
+        <input type="password" placeholder="password" formControlName="passwordUser" id="password" name="user_password" />
+        <span class="error" *ngIf="userForm.controls.passwordUser.errors?.required">Password is required</span>
         </fieldset>
-        <fieldset class="password">
-          <input type="password" placeholder="password" />
-        </fieldset>
+
         <button type="submit" class="btn">sign up</button>
       </form>
     </div>
