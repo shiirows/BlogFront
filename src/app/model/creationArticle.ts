@@ -1,12 +1,12 @@
 export class CreationArticle {
-    public name: string;
+    public titre: string;
     public content: string;
   
 
 
 
-    constructor(name: string, content: string, ) { 
-        this.name = name;
+    constructor(titre: string, content: string, ) { 
+        this.titre = titre;
         this.content = content;
     }
 

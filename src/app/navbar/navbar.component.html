@@ -1,50 +1,33 @@
-<div>
-<p >Le blog Globe</p></div>
 
-<section>
 
-  <nav>
-    <ul class="menuItems">
 
-      <li *ngIf="estConnecter == null" >
-        <a [routerLink]="['/home']" >home</a>
+
+
+
+<div class="page">
+  <nav class="page__menu menu">
+    <ul class="menu__list r-list">
+
+      <li  class="menu__group">
+        <a class="menu__link r-link text-underlined" [routerLink]="['/home']" >home</a>
       </li>
 
-      <li *ngIf="estConnecter == null" >
-        <a [routerLink]="['/inscription']" >inscription</a>
+      <li *ngIf="estConnecter != null" class="menu__group">
+        <a class="menu__link r-link text-underlined" [routerLink]="['/profil']" >profil</a>
+      </li>
+      
+      <li *ngIf="estConnecter == null" class="menu__group">
+        <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/inscription']" >inscription</a>
       </li>
 
-      <li *ngIf="estConnecter == null" >
-        <a [routerLink]="['/connexion']" >connexion</a>
+      <li *ngIf="estConnecter == null" class="menu__group">
+        <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/connexion']" >connexion</a>
       </li>
-
-      <li *ngIf="estConnecter != null" >
-        <a [routerLink]="['/profil']" >profil</a>
-      </li>
-
 
       <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-        <a *ngIf="estConnecter != null" class="nav-link" (click)="effacerStorage()"
+        <a *ngIf="estConnecter != null" class="menu__link r-link text-underlined" (click)="effacerStorage()"
             [routerLink]="['']" routerLinkActive="router-link-active">Deconnexion</a>
     </li>
-     
-      
     </ul>
   </nav>
-
-</section>
-
-<!-- Footer starts-->
-<footer>
-
-  <!-- Copyright -->
-  <!-- ❤️  -->
-  <div class="footer-copyright text-center">&copy; Developed with ❤️ by
-    <a href="" class="white-text" target="_blank">M Alexandre</a>. <a href="" target="_blank">Check my other pens </a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer ends-->
-
-<!-- Developed by http://grohit.com/ -->
+ 

@@ -4,6 +4,7 @@ import { Utilisateur } from './../model/Utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
+import {User} from '../model/UpdateUser';
 @Component({
   selector: 'app-gestion-profil',
   templateUrl: './gestion-profil.component.html',
@@ -21,8 +22,7 @@ export class GestionProfilComponent implements OnInit {
       this.route.navigate([''])
     }else{
     this.user = this.tokenService.getUser().user;
-    console.log(this.tokenService.getUser().user)
-    console.log(this.user)
+    
     }
     this.intiForm();
   }
@@ -32,28 +32,30 @@ export class GestionProfilComponent implements OnInit {
   public form: any;
   public intiForm() {
     this.form = this.formB.group({
-     
-      
-     
-      userNumber_phone: ["0"+this.user.number_phone, [Validators.required]],
-      userCountry: [this.user.country, [Validators.required]],
-      userCity: [this.user.city, [Validators.required]],
-      userDescription: [this.user.description, [Validators.required]],
+      number_phone: ['0662301864', [Validators.required]],
+      country: ['bulgarie', [Validators.required]],
+      city:['je sais pas',  [Validators.required]],
+      description: ['je sais encore moin', [Validators.required]],
       
       
     })
   }
   public onSubmit() {
 
-    let country: string = this.form.get('userCountry').value;
-    let city: string = this.form.get('userCity').value;
-    let description: string = this.form.get('userDescription').value;
-    let number_phone: number = this.form.get('userNumber_phone').value;
+    let country: string = this.form.get('country').value;
+    let city: string = this.form.get('city').value;
+    let description: string = this.form.get('description').value;
+    let number_phone: number = this.form.get('number_phone').value;
+  
+    
+    let userUpdate : User = new User(  country, number_phone,city,description, this.user.id);
 
-    this.service.update(this.user.id, country, city, description, number_phone)
+    this.service.update(this.res.user.id, userUpdate )
+   
       .subscribe((param: Utilisateur) => {
+       
         this.user = param;
-        console.log(param)
+        
         if (this.user != null) {
           try {
             localStorage.setItem('user', JSON.stringify(this.user));

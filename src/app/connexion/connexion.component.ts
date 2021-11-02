@@ -17,6 +17,16 @@ export class ConnexionComponent implements OnInit {
     private route: Router,
   ) {}
 
+ngOnInit(): void {
+    this.initForm();
+    console.log(this.tokenService.getUser().user)
+    if (this.tokenService.getUser().user != null) {
+      this.route.navigate(['/profil'])
+    }
+
+  }
+
+
   public initForm() {
     this.userForm = this.formB.group({
       userName: ['alexandre',[Validators.required, Validators.minLength(3)]],
@@ -24,14 +34,7 @@ export class ConnexionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.initForm();
-    
-    if (this.tokenService.getUser().user != null) {
-      this.route.navigate(['/profil'])
-    }
-
-  }
+  
 
   public messageError?: string;
   public erreur: boolean = false;
@@ -41,25 +44,25 @@ export class ConnexionComponent implements OnInit {
   public onsubmit() {
     let username: string = this.userForm.get('userName').value;
     let password: string = this.userForm.get('passwordUser').value;
-
+console.log("coucou")
    // APPEL AU SERVICE POUR FAIRE APPAEL AU BACK POUR VERIFIER L'UTILISATEUR
-    this.service.signin(username, password).subscribe(
-      (param: any) => {
-        console.log(param);
-        this.tokenService.saveUser(param);
+    this.service.signin(username, password).subscribe((param: any) => {
+      console.log(param)
+      this.tokenService.saveUser(param)
+      //ENREGISTREMENT DU TOKEN DANS LE STORAGE
 
-        ////ENREGISTREMENT DU TOKEN DANS LE STORAGE
-        this.tokenService.saveToken(param.accessToken);
+      this.tokenService.saveToken(param.accessToken);
 
-        this.roles = this.tokenService.getUser().roles;
+      this.roles = this.tokenService.getUser().roles;
 
-        window.location.reload();
-      },
-      (err) => {
-        console.log(err);
-        this.erreur = true;
-        this.messageError = err.message;
-      }
-    );
-  }
+      window.location.reload();
+    }, (err) => {
+      console.log(err)
+      this.erreur = true;
+      this.messageError = err.message
+    })
+
 }
+
+}
+

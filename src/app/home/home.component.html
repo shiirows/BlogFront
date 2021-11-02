@@ -1,17 +1,102 @@
-<div class="contact-us">
-  <form (ngSubmit)="artcileForm.valid && onsubmit()" [formGroup]="artcileForm"class="col-sm-12 col-md-6">
-<div>
-    <label for="name">NAME <em>&#x2a;</em></label>
-    <input formControlName="name" id="name" name="name" required="" type="text" 
-    [ngClass]="{'is-invalid':artcileForm.get('name').touched && artcileForm.get('name').errors}"/>
-</div>
+<div class="content">
+  <div class="containerForm">
+    <form
+      (ngSubmit)="artcileForm.valid && onsubmit()"
+      [formGroup]="artcileForm"
+      id="form"
+      class="topBefore"
+    >
+      <div>
+        <label for="name">Titre de votre publication </label>
+        <input
+          formControlName="titre"
+          name="titre"
+          id="name"
+          required=""
+          type="text"
+          [ngClass]="{
+            'is-invalid':
+              artcileForm.get('titre').touched &&
+              artcileForm.get('titre').errors
+          }"
+        />
+      </div>
 
-<div>
-    <label for="content">YOUR MESSAGE </label>
-    <textarea formControlName="content"  id="content" name="content" required="" rows="4"></textarea>
-   <input  id="content" name="content" type="text" 
-   [ngClass]="{'is-invalid':artcileForm.get('content').touched && artcileForm.get('content').errors}"/>
-</div>
-   <button type="submit"  >SUBMIT</button>
-  </form>
+      <div>
+        <label for="content">votre publication </label>
+        <textarea
+          formControlName="content"
+          id="content"
+          name="content"
+          required=""
+          rows="4"
+          name="content"
+          type="text"
+          [ngClass]="{
+            'is-invalid':
+              artcileForm.get('content').touched &&
+              artcileForm.get('content').errors
+          }"
+        ></textarea>
+      </div>
+      <button type="submit" id="submit">SUBMIT</button>
+    </form>
+  </div>
+
+
+  <div
+    *ngFor="let article of listArticles"
+    
+    class="containerArticle"
+    class="small"
+
+  >
+    <article class="recipe" 
+   >
+      
+      <div class="recipe-content">
+        <p class="recipe-tags">
+          
+
+
+
+
+<span class="cross-stand-alone"></span>
+
+<span class="cross-1px"></span>
+
+          <span class="recipe-tag">Alexandre Mazoyer</span>
+          <!-- button pour supprimer un article par l'id -->
+          
+        </p>
+
+        <button
+            (click)="deleteArticle(article.id)"
+            class="delete-button"
+            type="button"
+            
+
+          >
+          suprimer
+          </button>
+
+
+        <h1 class="recipe-title">{{ article.titre }}</h1>
+
+        <div class="pizza-box">
+          <img
+            class="imgArticle"
+            src="https://brotokoll.com/wp-content/uploads/2019/12/xPSX_20190928_134709.jpg.pagespeed.ic.qsjw5ilFw5.jpg"
+            alt=""
+          />
+        </div>
+
+        <p class="recipe-desc">{{ article.content }}</p>
+        <p>{{article.createdate }}  </p>
+      </div>
+    </article>
+  </div>
+
+
+  <div class="small"></div>
 </div>

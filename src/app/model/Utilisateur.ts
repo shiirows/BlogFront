@@ -1,15 +1,16 @@
 export class Utilisateur {
-    public id:number=0;
+    public id:number;
+     public number_phone : number;
     public city: string;
     public country: string;
     public description: string 
     public email: string;
-    public number_phone : number;
+   
     public password: string;
     public username: string;
 
     constructor(email: string, password: string, username: string, city: string,
-         country: string, description: string, number_phone: number)  { 
+         country: string, description: string)  { 
         
        
         this.email = email;
@@ -18,7 +19,7 @@ export class Utilisateur {
         this.city = city;
         this.country = country;
         this.description = description;
-        this.number_phone = number_phone;
+        
         
     }
     
