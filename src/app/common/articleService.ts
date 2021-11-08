@@ -45,8 +45,8 @@ export class ArticleService {
   }
 
   //Fonction qui permet de modifier un article
-  public updateArticle(article: CreationArticle): Observable<any> {
-    return this.http.put(this.urlApi + 'update', article, this.httpOptions);
+  public updateArticle(id ,article: CreationArticle): Observable<any> {
+    return this.http.put(this.urlApi + 'update/' + id , article, this.httpOptions);
   }
 
   //Fonction qui permet de supprimer un article

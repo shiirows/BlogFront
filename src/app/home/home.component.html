@@ -43,43 +43,43 @@
     </form>
   </div>
 
-
   <div
     *ngFor="let article of listArticles"
-    
     class="containerArticle"
     class="small"
-
   >
-    <article class="recipe" 
-   >
-      
+    <article class="recipe">
       <div class="recipe-content">
-        <p class="recipe-tags">
-          
+        <div id="btnPseudo">
+          <div class="pseudo">
+            <p class="recipe-tags">{{ article.user.username }}</p>
+            
+          </div>
 
+          <div id="btnSupr">
+            <!-- button pour supprimer un article par l'id -->
+            <button
+              (click)="deleteArticle(article.id)"
+              class="delete-button"
+              type="button"
+            >
+              suprimer
+            </button>
 
+            <!-- button pour modifier un article par l'id -->
+            <button
+              
+              (click)="openModal(article)"
+              class="delete-button"
+              type="button"
+            >
+              modifier
+            </button>
 
-
-<span class="cross-stand-alone"></span>
-
-<span class="cross-1px"></span>
-
-          <span class="recipe-tag">Alexandre Mazoyer</span>
-          <!-- button pour supprimer un article par l'id -->
-          
-        </p>
-
-        <button
-            (click)="deleteArticle(article.id)"
-            class="delete-button"
-            type="button"
             
 
-          >
-          suprimer
-          </button>
-
+          </div>
+        </div>
 
         <h1 class="recipe-title">{{ article.titre }}</h1>
 
@@ -92,11 +92,74 @@
         </div>
 
         <p class="recipe-desc">{{ article.content }}</p>
-        <p>{{article.createdate }}  </p>
+        <p>{{ article.createdate }}</p>
       </div>
     </article>
   </div>
 
-
   <div class="small"></div>
+
+  <!--fenêtre modal-->
+  <div
+  *ngIf="articleModal"
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    
+  >
+
+    <div  class="modal-dialog" role="document">
+      
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Modifier votre publication
+          </h5>
+          <button
+           (click)="closeModal()"
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          <form
+          [NewFormGroup]="articleModalForm"
+            (ngSubmit)="articleModalForm && onsubmitModal()"
+            
+            id="form"
+            class="topBefore"
+          >
+            <div>
+              <label for="titres">Titre de votre publication </label>
+              <input
+                formControlName="titres" name="titres" id="titres" required="" type="text"
+              
+              />
+            </div>
+
+          
+            <div>
+              <label for="contents">votre publication </label>
+              <textarea
+                formControlName="contents" id="contents" name="contents" rows="4"  name="contents" type="text"
+                [ngClass]="{'is-invalid': articleModalForm.get('contents').touched && articleModalForm.get('contents').errors}"
+              >{{articles.titre}}</textarea>
+            </div>
+            <button type="submit" id="submit">SUBMIT</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let item of articleUp" >
+      <p>{{item.titre}}</p>
+    </div>
+
 </div>
