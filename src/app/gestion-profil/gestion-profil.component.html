@@ -4,11 +4,62 @@
   
       <!-- /Breadcrumb -->
       <div class="row gutters-sm mt-5">
+
+        <!-- image rond -->
+
+        <div class="col-md-4 col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div  class="card-img-actions mx-auto">
+                <img class="card-img img-fluid" src="" alt="">
+
+              
+                <div class="form-group">
+                  <label for="file">Choose File</label>
+                  <input type="file"
+                         id="file"
+                         (change)="handleFileInput($event.target.files)">
+              </div>
+                  
+              </div>
+                  
+                <div class="card-img-actions-overlay card-img">
+                  <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round">
+                    <i class="icon-plus3"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline bg-white text-white border-white border-2 btn-icon rounded-round ml-2">
+                    <i class="icon-link"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
   
         <div class="col-md-12">
-          <form (ngSubmit)="form.valid && onSubmit()" [formGroup]="form">
+          <form (ngSubmit)="form.valid && onSubmit() " [formGroup]="form">
             <div class="card mb-3">
               <div class="card-body">
+
+
+                <div class="row justify-content-center">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Name</h6>
+                  </div>
+
+                  <input formControlName="name" class="col-sm-5 text-secondary" [value]="user.name"
+
+                  
+
+                  />
+                </div>
+
+
+                <div class="row justify-content-center">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">firstname</h6>
+                  </div>
+                  <input formControlName="firstname" class="col-sm-5 text-secondary" [value]="user.firstname" />
+                </div>
                 
                 
                 <div class="row justify-content-center">

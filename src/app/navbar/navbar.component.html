@@ -1,33 +1,58 @@
 
+  <nav class="menu" tabindex="0">
+    <div>
+    <div  class="smartphone-menu-trigger">
+    <header class="avatar">
+   
+      <!--- afficher le nom -->
+
+      
+
+  
 
 
-
-
-
-<div class="page">
-  <nav class="page__menu menu">
-    <ul class="menu__list r-list">
-
-      <li  class="menu__group">
+      <h2>  </h2>
+      
+    </header>
+    </div>
+    <ul>
+      <li tabindex="0" class="icon-dashboard">
         <a class="menu__link r-link text-underlined" [routerLink]="['/home']" >home</a>
       </li>
 
-      <li *ngIf="estConnecter != null" class="menu__group">
+      <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
         <a class="menu__link r-link text-underlined" [routerLink]="['/profil']" >profil</a>
       </li>
-      
-      <li *ngIf="estConnecter == null" class="menu__group">
+
+      <li *ngIf="estConnecter == null" tabindex="0" class="icon-users">
         <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/inscription']" >inscription</a>
       </li>
 
-      <li *ngIf="estConnecter == null" class="menu__group">
+      <li *ngIf="estConnecter == null" tabindex="0" class="icon-settings">
         <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/connexion']" >connexion</a>
       </li>
 
-      <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-        <a *ngIf="estConnecter != null" class="menu__link r-link text-underlined" (click)="effacerStorage()"
-            [routerLink]="['']" routerLinkActive="router-link-active">Deconnexion</a>
+      <li *ngIf="estConnecter != null" tabindex="0" class="icon-settings">
+        <a  class="menu__link r-link text-underlined" (click)="effacerStorage()"
+            [routerLink]="['/connexion']" routerLinkActive="router-link-active">Deconnexion</a>
     </li>
-    </ul>
+
+    <li tabindex="0" class="icon-dashboard">
+      <a class="menu__link r-link text-underlined" [routerLink]="['/upload']" >upload</a>
+    </li>
+</ul>
+</div> 
+
+
+
+
+
+
+
+    
   </nav>
- 
+  
+  
+
+
+  

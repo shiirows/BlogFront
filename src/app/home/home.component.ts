@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   public artcileForm: any;
   public idArticle: any;
   public articleUp: any = [];
-  public listArticles: any = [];
+  public listArticles: any = [] ;
 
 
 // -------------------------------------------------- Supression d'un l'articles --------------------------------------------------
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     });
   }
-// -------------------------------------------------- affichage des l'articles --------------------------------------------------
+// -------------------------------------------------- affichage des articles --------------------------------------------------
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;

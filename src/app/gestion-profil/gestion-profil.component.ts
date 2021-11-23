@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
 import {User} from '../model/UpdateUser';
+
+
+
 @Component({
   selector: 'app-gestion-profil',
   templateUrl: './gestion-profil.component.html',
@@ -16,7 +19,57 @@ export class GestionProfilComponent implements OnInit {
   public res: any = this.tokenService.getUser();
   public user!: Utilisateur;
 
+  public avatar: any [] = []; 
+
+  public form: any;
+
+  public  forms: any;
+
+  fileToUpload: File | null = null;
+
+
+
+  //envoie l'image a la BDD
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    console.log(this.fileToUpload);
+    this.service.updateUser( this.fileToUpload).subscribe(
+      (data) => {
+        this.user = data;
+        
+        this.route.navigate(['/profil']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+}
+
+// RECUPERE L'IMAGE DE LA BDD
+public getImages() {
+  this.service.getAvatar().subscribe(
+    (data) => {
+      console.log(data);
+      this.avatar.push(data);
+    },
+    (error) => {
+      console.log(error);
+
+
+    }
+  );
+}
+
+
+public onClick() {
+ 
+}
+
+
   ngOnInit(): void {
+    this.getImages()
+    console.log(this.avatar  );
     
     if(this.tokenService.getUser().user == null){
       this.route.navigate([''])
@@ -27,15 +80,19 @@ export class GestionProfilComponent implements OnInit {
     this.intiForm();
   }
 
+
+
   ngAfterViewInit() {
   }
-  public form: any;
+  
   public intiForm() {
     this.form = this.formB.group({
-      number_phone: ['0662301864', [Validators.required]],
-      country: ['bulgarie', [Validators.required]],
-      city:['je sais pas',  [Validators.required]],
-      description: ['je sais encore moin', [Validators.required]],
+      number_phone: [this.user.number_phone],
+      country: [this.user.country, [Validators.required]],
+      city:[this.user.city,  [Validators.required]],
+      description: [this.user.description, [Validators.required]],
+      name: [this.user.name  , [Validators.required]],
+      firstname: [this.user.firstname , [Validators.required]],
       
       
     })
@@ -46,25 +103,23 @@ export class GestionProfilComponent implements OnInit {
     let city: string = this.form.get('city').value;
     let description: string = this.form.get('description').value;
     let number_phone: number = this.form.get('number_phone').value;
+    let name: string = this.form.get('name').value;
+    let firstname: string = this.form.get('firstname').value;
   
     
-    let userUpdate : User = new User(  country, number_phone,city,description, this.user.id);
+    let userUpdate : User = new User( firstname,  city ,country,   description ,name, number_phone);
 
-    this.service.update(this.res.user.id, userUpdate )
-   
-      .subscribe((param: Utilisateur) => {
-       
-        this.user = param;
+    this.service.update( userUpdate).subscribe(
+
+      (data) => {
+console.log("ok");
+        this.user = data;
+        this.route.navigate(['/profil']);
+      }
+
         
-        if (this.user != null) {
-          try {
-            localStorage.setItem('user', JSON.stringify(this.user));
-            window.location.reload();
-          } catch (e) {
-            "l'ajoute au localStorage n'as pas fonctionner"
-          }
-        }
-      })
-  }
+    );
+    }
 
 }
+

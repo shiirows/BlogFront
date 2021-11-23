@@ -2,6 +2,7 @@ import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
+import { Utilisateur } from '../model/Utilisateur';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,15 @@ export class NavbarComponent implements OnInit {
   constructor(private route: Router,private serviceToken : TokenService) { }
   public estConnecter :any;
   public isAdmin :boolean = false;
+  
+
+
+
   ngOnInit(): void {
+
+
+
+   
     //VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
     if(this.serviceToken.getUser().user == null){
       this.estConnecter = null;    
@@ -24,7 +33,17 @@ export class NavbarComponent implements OnInit {
     if(this.serviceToken.getUser().roles == "ROLE_ADMIN"){
       this.isAdmin = true
     }
+
+
   }
+
+
+  // FONCTION POUR AFFICHER LE PSEUDO DE L'UTILISATEUR CONNECTER
+ 
+
+
+
+ 
 
   // FONCTION POUR EFFACE LE  STORAGE ET SE DECONNECTER 
   public effacerStorage() {

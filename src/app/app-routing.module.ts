@@ -13,6 +13,7 @@ export const ROUTES: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'article', component: ArticleUserComponent },
+  { path: 'upload',component: ArticleUserComponent },   
 
 ];
 

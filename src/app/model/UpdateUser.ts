@@ -1,27 +1,30 @@
 export class User {
 
-    public id: number;
-    
+   
+    public number_phone : number;
+
+
     public city: string;
     public country: string;
     public description: string 
-    public number_phone : number;
+    public name : string;
+    public firstname: string;
 
 
    
     
 
-    constructor(  city: string, number_phone : number, country: string, description: string
-     ,id: number   )  { 
+    constructor(  firstname: string, city: string,  country: string, description: string , name: string, number_phone : number,  )  { 
         
        
-        
-     
+    
         this.number_phone = number_phone;    
         this.city = city;
         this.country = country;
         this.description = description;
-        this.id = id;
+        this.name = name;
+        this.firstname = firstname;
+        
        
         
         

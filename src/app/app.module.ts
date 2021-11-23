@@ -12,6 +12,7 @@ import { ArticleUserComponent } from './article-user/article-user.component';
 import { HomeComponent } from './home/home.component';
 import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
 import { LogInterceptor } from './LogInterceptor';
+import { UploadComponent } from './upload/upload.component';
 
 
 
@@ -31,6 +32,7 @@ import { LogInterceptor } from './LogInterceptor';
     HomeComponent,
     ArticleUserComponent,
     GestionProfilComponent,
+    UploadComponent,
 
   ],
   imports: [

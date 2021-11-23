@@ -23,6 +23,8 @@ export class AuthentificationService {
 
     //LES DIFFERENTS URL DU BACK 
     public urlApi: string = "http://localhost:8080/api/auth/";
+
+    public urlApiUpload: string = "http://localhost:8080/api/file/";
     
     public urlApiActivation: string = "http://localhost:8080/active"
 
@@ -46,11 +48,30 @@ export class AuthentificationService {
         return this.http.get(this.urlApi + "deconnexion");
     }
 
-    //METHODE POUR LES MISE A JOUR
-    public update(id : number,userUpdate : User): Observable<any> {
-        return this.http.post(this.urlApi + "update/"  +id , userUpdate,  this.httpOptions);
+    //METHODE POUR LES MISE A JOUR DU PROFIL TOKEN
+
+    public update(userUpdate : User ): Observable<any> {
+        return this.http.post(this.urlApi + "update"  ,  userUpdate,  this.httpOptions);
          
     }
+
+    //METHODE POUR LES MISE A JOUR DE L'AVATAR
+    public updateUser(file : File): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        return this.http.post(this.urlApiUpload + "upload"   , formData);
+
+         
+    }
+
+
+// METHODE POUR AFFICHER L'AVATAR
+
+    public getAvatar(): Observable<any> {
+        return this.http.get(this.urlApiUpload + "files/");
+        
+    }
+    
 
    
 

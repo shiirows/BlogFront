@@ -5,12 +5,14 @@ export class Utilisateur {
     public country: string;
     public description: string 
     public email: string;
+    public name : string;
+    public firstname: string;
    
     public password: string;
     public username: string;
 
     constructor(email: string, password: string, username: string, city: string,
-         country: string, description: string)  { 
+         country: string, description: string , name : string , firstname: string )  { 
         
        
         this.email = email;
