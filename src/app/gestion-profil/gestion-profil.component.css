@@ -10,13 +10,13 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border-style: ridge;
+    
     border-radius: 0.25rem;
   }
   
   .card-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 1.25rem;
 
   }
@@ -57,8 +57,26 @@
   }
   
 
-  .card-img  {
-    width: 120px;
-    border-radius: 100px;
-    height: auto;
+  #card-img  {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    
+    
+  }
+
+  .file-change {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+
+  #file {
+    initial-value: 'Choisir une image';
+  }
+
+  #cont {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    
   }

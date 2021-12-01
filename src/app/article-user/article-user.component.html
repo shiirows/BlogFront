@@ -1,0 +1,74 @@
+
+
+<section>
+
+<div class="titre">
+<p>Bienvenue a toi Voyageur  </p>
+<h1>Pour commencer choisie un Continent</h1>
+</div>
+
+<div class="btn">
+
+<div class="case">
+  <input type="radio" id="control_01" name="select" value="1" (click)=valueContinents(1)  >
+  <label for="control_01">
+    <h2>Afrique</h2>
+  </label>
+</div>
+
+<div class="case">
+  <input type="radio" id="control_02" name="select" value="2" (click)=valueContinents(2)>
+  <label for="control_02">
+    <h2>Eurasie</h2>
+  </label>
+</div>
+
+<div class="case">
+  <input type="radio" id="control_03" name="select" value="3" (click)=valueContinents(3)>
+  <label for="control_03">
+    <h2>Océanie</h2>
+  </label>
+</div>
+
+<div class="case">
+  <input type="radio" id="control_04" name="select" value="4" (click)=valueContinents(4) >
+  <label for="control_04">
+    <h2>Amérique du Nord</h2>
+  </label>
+</div>
+
+<div class="case">
+  <input type="radio" id="control_05" name="select" value="5" (click)=valueContinents(5)>
+  <label for="control_05">
+    <h2>Amérique du Sud</h2>
+  </label>
+</div>
+
+<div class="case">
+    <input type="radio" id="control_06" name="select" value="6" (click)=valueContinents(6)>
+    <label for="control_06">
+      <h2>Antarctique</h2>
+     
+    </label>
+  </div>
+</div>
+
+</section>
+
+
+
+
+
+<div  class="content"  >
+    <div class="case-pays" *ngFor="let item of paysIdContinants ">
+        <input  type="radio" id="{{item.id}}" name="selects" value="{{item.id}}"  >
+        <label class="pays" for="{{item.id}}">
+          <h2>{{item.name}}</h2>
+         
+        </label>
+      </div>
+
+
+</div>
+
+

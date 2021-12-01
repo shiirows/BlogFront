@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Article } from '../model/Article';
 import { ArticleService } from './../common/articleService';
 import { NgModule } from '@angular/core';
 import { CreationArticle } from './../model/creationArticle';
 import { UserService } from '../common/UserService';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-home',
@@ -12,35 +15,54 @@ import { UserService } from '../common/UserService';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
+  
+
   constructor(
     private serviceArticle: ArticleService,
     private formB: FormBuilder,
     private formBModal: FormBuilder,
+    private route: Router
    
   ) {}
 
-  public articleModal: any = false;
-  public articleModalForm: any;
+ 
+ 
+
+
   public artcileForm: any;
-  public idArticle: any;
-  public articleUp: any = [];
   public listArticles: any = [] ;
 
+ 
+  
+
+//FONCTION QUI PERMET D'ENVOYER L'ID DE L'ARTICLE DANS ARTICLE.COMPONENT.TS
+  public sendId(id : number) {
+    localStorage.setItem('idArticle' , id.toString());
+    console.log(localStorage.getItem('idArticle'));
+    this.route.navigate(['article' , id]);
+    
+  }
+
+
+  
 
 // -------------------------------------------------- Supression d'un l'articles --------------------------------------------------
 
+
   public deleteArticle(id: number) {
     this.serviceArticle.deleteArticle(id).subscribe((data) => {
-      console.log(this.idArticle);
-      location.reload();
+      console.log(data + 'article supprimé');
 
     });
+    location.reload();
+    
   }
 // -------------------------------------------------- affichage des articles --------------------------------------------------
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
-console.log(this.listArticles);
+
       // afficher les articles du plus récent au plus ancien
       this.listArticles.sort((a, b) => {
         return b.id - a.id;
@@ -49,48 +71,9 @@ console.log(this.listArticles);
     });
   }
 
- // -------------------------------------------------- modification d'un article --------------------------------------------------
 
- 
- public openModal(article) {
-    this.articleModal = true;
-    this.articleUp.push(article)
-    console.log(this.articleUp);
-  }
-
- public closeModal() {
-    this.articleModal = false;
-    this.articleUp = [];
-    console.log(this.articleUp);
-  }
 
   
-  public initFormModal() {
-    this.articleModalForm = this.formBModal.group({
-      titres: ['', [ Validators.required, Validators.maxLength(45), Validators.minLength(3), ], ],
-      contents: ['', [Validators.required, Validators.minLength(3)]],
-    });
-  }
-
-  //fonction pour modifier un article avec la feneetre modal
-  public onsubmitModal(id: number) {
-    const titres: string = this.articleModalForm.get('titres').value;
-
-    const contents: string = this.articleModalForm.get('contents').value;
-
-    let articles: CreationArticle = new CreationArticle(titres, contents);
-
-    console.log(articles);
-
-    this.serviceArticle.updateArticle(id, articles).subscribe((data) => {
-      console.log(data);
-    });
-
-   
-  }
-
-
-
   // -------------------------------------------------- creation de l'article --------------------------------------------------
 
   public initForm() {

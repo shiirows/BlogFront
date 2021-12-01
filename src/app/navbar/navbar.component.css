@@ -61,30 +61,59 @@ main .helper span {
   background-size: auto 20px;
   transition: all 0.15s linear;
   cursor: pointer;
+  
 }
 .menu ul li.icon-dashboard {
   background-image: url("http://www.entypo.com/images//home.svg");
+  font-size: 19px ;
+  
   
 }
 .menu ul li.icon-customers {
   background-image: url("http://www.entypo.com/images//briefcase.svg");
+  font-size: 19px ;
 }
 .menu ul li.icon-users {
   background-image: url("http://www.entypo.com/images//users.svg");
+  font-size: 19px ;
 }
 .menu ul li.icon-settings {
   background-image: url("http://www.entypo.com/images//tools.svg");
+  font-size: 19px ;
 }
 .menu ul li:hover {
   background-color: rgba(0, 0, 0, 0.1);
+  font-size: 19px ;
+  
 }
 .menu ul li:focus {
+  
   outline: none;
 }
+
+.titre {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+#card-img  {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  
+  
+}
+
+.name{
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
 @media screen and (max-width: 900px) and (min-width: 400px) {
-  body {
-    padding-left: 90px;
-  }
+ 
   .menu {
     width: 90px;
   }
@@ -116,6 +145,7 @@ main .helper span {
     background-position: center center;
     background-size: 30px auto;
     position: relative;
+    
   }
   .menu ul li span {
     opacity: 0;
@@ -140,13 +170,13 @@ main .helper span {
     border-right: 5px solid rgba(0, 0, 0, 0.5);
     transform: translateY(-50%);
     
+    
   }
+  
  
 }
 @media screen and (max-width: 400px) {
-  body {
-    padding-left: 0;
-  }
+ 
   .menu {
     width: 230px;
     box-shadow: 0 0 0 100em rgba(0, 0, 0, 0);
@@ -179,6 +209,7 @@ main .helper span {
   .menu ul li {
     padding: 1em 1em 1em 3em;
     font-size: 1.2em;
+    
     
   }
   .menu:focus {

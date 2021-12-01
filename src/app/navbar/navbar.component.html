@@ -2,8 +2,13 @@
   <nav class="menu" tabindex="0">
     <div>
     <div  class="smartphone-menu-trigger">
-    <header class="avatar">
-   
+    <header  class="avatar">
+      <div *ngFor = "let image of avatarUser" >
+      <img   id="card-img"    [src]="image.url" alt="profil picture">
+    </div>
+    <div *ngFor="let item of estConnecter">
+      <h1 class="name" > {{item.name}} {{item.firstname}} </h1>
+      </div>
       <!--- afficher le nom -->
 
       
@@ -11,34 +16,43 @@
   
 
 
-      <h2>  </h2>
+      <h2> </h2>
+      
+    
       
     </header>
     </div>
     <ul>
+
+      <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
+        <a class="titre"  [routerLink]="['/articleuser']" >écrire un article</a>
+      </li>
+
       <li tabindex="0" class="icon-dashboard">
-        <a class="menu__link r-link text-underlined" [routerLink]="['/home']" >home</a>
+        <a class="titre"  [routerLink]="['/home']" >home</a>
       </li>
 
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
-        <a class="menu__link r-link text-underlined" [routerLink]="['/profil']" >profil</a>
+        <a class="titre"  [routerLink]="['/profil']" >profil</a>
       </li>
 
       <li *ngIf="estConnecter == null" tabindex="0" class="icon-users">
-        <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/inscription']" >inscription</a>
+        <a href="#0" class="titre"[routerLink]="['/inscription']" >inscription</a>
       </li>
 
       <li *ngIf="estConnecter == null" tabindex="0" class="icon-settings">
-        <a href="#0" class="menu__link r-link text-underlined"[routerLink]="['/connexion']" >connexion</a>
+        <a href="#0" class="titre"[routerLink]="['/connexion']" >connexion</a>
       </li>
 
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-settings">
-        <a  class="menu__link r-link text-underlined" (click)="effacerStorage()"
+        <a  class="titre" (click)="effacerStorage()"
             [routerLink]="['/connexion']" routerLinkActive="router-link-active">Deconnexion</a>
     </li>
 
+
+
     <li tabindex="0" class="icon-dashboard">
-      <a class="menu__link r-link text-underlined" [routerLink]="['/upload']" >upload</a>
+      <a class="titre" [routerLink]="['/contacte']" >contacte</a>
     </li>
 </ul>
 </div> 

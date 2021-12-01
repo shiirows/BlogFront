@@ -26,7 +26,7 @@ export class AuthentificationService {
 
     public urlApiUpload: string = "http://localhost:8080/api/file/";
     
-    public urlApiActivation: string = "http://localhost:8080/active"
+    public urlApiActivation: string = "http://localhost:8080/api/auth/active"
 
     //METHODE POUR LES INSCRIPTION
     public signup(utilisateur: UtilisateurInscription): Observable<any> {
@@ -34,8 +34,10 @@ export class AuthentificationService {
     }
 
     //METHODE POUR LES ACTIVATION
-    public activation(token: string): Observable<any> {
-        return this.http.get(this.urlApiActivation + "?token=" + token);
+    public activation(id: number, idActivation: string): Observable<any> {
+        return this.http.post<any>(this.urlApiActivation, {
+            id, idActivation
+        }, this.httpOptions)
     }
 
     //METHODE POUR LES CONNEXION
@@ -67,8 +69,10 @@ export class AuthentificationService {
 
 // METHODE POUR AFFICHER L'AVATAR
 
-    public getAvatar(): Observable<any> {
-        return this.http.get(this.urlApiUpload + "files/");
+    public getAvatar(filename : String): Observable<any> {
+        return this.http.get(this.urlApiUpload + "files/" + filename ,  { responseType: 'blob', observe: 'response' });
+
+        
         
     }
     

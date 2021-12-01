@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model/Utilisateur';
+import { AuthentificationService } from '../common/AuthentificationService';
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,34 +13,68 @@ import { Utilisateur } from '../model/Utilisateur';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private route: Router,private serviceToken : TokenService) { }
-  public estConnecter :any;
+  constructor(private route: Router,private serviceToken : TokenService,private service: AuthentificationService,) { }
+  public estConnecter :any [] = [];
   public isAdmin :boolean = false;
+  public avatarUser :any;
+  public user : any
+
   
 
+  
 
-
-  ngOnInit(): void {
-
-
-
-   
-    //VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
+//VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
+    public userAfiche() {
     if(this.serviceToken.getUser().user == null){
       this.estConnecter = null;    
     }else{
-      this.estConnecter = this.serviceToken.getUser();
+      this.estConnecter = [this.serviceToken.getUser().user];
+     
+     
     }
     //VERIFICATION DU ROLE DE L'UTILISATEUR EN COUR POUR LUI AFFICHER OU PAS LE BOUTON ADMIN
     if(this.serviceToken.getUser().roles == "ROLE_ADMIN"){
       this.isAdmin = true
     }
+  }
 
+  
+  ngOnInit(): void {
+    this.userAfiche();
+  this.afficheImage()
 
   }
 
 
-  // FONCTION POUR AFFICHER LE PSEUDO DE L'UTILISATEUR CONNECTER
+  // FONCTION POUR AFFICHER L'IMAGE DE L'UTILISATEUR CONNECTER
+  public afficheImage() {
+    if(this.serviceToken.getUser().user == null){
+      return null;
+    }else{
+
+      this.user = this.serviceToken.getUser().user;
+      this.service.getAvatar(this.user.avatar).subscribe(
+        (data ) => {
+  
+    
+           
+         this.avatarUser = [data];   
+         
+         
+        
+         
+    
+
+          console.log(this.avatarUser) 
+         
+        },
+        (error) => {
+  
+          
+        }
+      );  
+    }
+  }
  
 
 

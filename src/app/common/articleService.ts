@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
-import { map, observeOn } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class ArticleService {
     return this.http.post(this.urlApi + 'create', article, this.httpOptions);
   }
 
-  //Fonction qui permet de récupérer un article
+  //Fonction qui permet de récupérer les article
 
   public getArticles(): Observable<any> {
     const obs: Observable<any> = this.http.get(this.urlApi + 'views/');
@@ -37,7 +37,7 @@ export class ArticleService {
 
   //Fonction qui permet de récupérer un article par son id
   public getArticleById(id: number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'views/' + id);
+    const obs: Observable<any> = this.http.get(this.urlApi + 'view/' + id, this.httpOptions );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -50,8 +50,27 @@ export class ArticleService {
   }
 
   //Fonction qui permet de supprimer un article
-  public deleteArticle(id: number): Observable<any> {
-    return this.http.delete(this.urlApi + 'delete/' + id);
+  public deleteArticle(id: number): Observable<any> { 
+    return this.http.delete(this.urlApi + 'delete/' + id ,this.httpOptions);
+    
+  }
+
+  //Fonction pour afficher la liste des pays
+  public getPays(id : number): Observable<any> {
+    const obs: Observable<any> = this.http.get(this.urlApi + 'pays/' + id , this.httpOptions);
+    const traitement = (param: any) => {
+      return param as any;
+    };
+    return obs.pipe(map(traitement));
+  }
+
+  //Fonction pour afficher la liste des contients par id
+  public getContinent(id: number): Observable<any> {
+    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/' + id , this.httpOptions);
+    const traitement = (param: any) => {
+      return param as any;
+    };
+    return obs.pipe(map(traitement));
   }
 
 

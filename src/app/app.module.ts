@@ -12,7 +12,10 @@ import { ArticleUserComponent } from './article-user/article-user.component';
 import { HomeComponent } from './home/home.component';
 import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
 import { LogInterceptor } from './LogInterceptor';
-import { UploadComponent } from './upload/upload.component';
+import { ContacteComponent } from './contacte/contacte.component';
+import { ActivationComponent } from './activation/activation.component';
+import { ArticleComponent } from './article/article.component';
+
 
 
 
@@ -32,7 +35,10 @@ import { UploadComponent } from './upload/upload.component';
     HomeComponent,
     ArticleUserComponent,
     GestionProfilComponent,
-    UploadComponent,
+    ContacteComponent,
+    ActivationComponent,
+    ArticleComponent,
+  
 
   ],
   imports: [
@@ -41,6 +47,7 @@ import { UploadComponent } from './upload/upload.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    
     
     
   ],
