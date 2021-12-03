@@ -153,6 +153,7 @@ hr.sep-2 {
 
 
 .validation {
+  
   display: flex;
   justify-content: center;
  
@@ -160,9 +161,11 @@ hr.sep-2 {
 
 #validform{
   display: flex;
+  border: 3px solid #20df80;
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  cursor: pointer;
   font-size: 20px;
   width: 200px;
   height: 100px;

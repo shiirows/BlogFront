@@ -35,11 +35,11 @@ export class HomeComponent implements OnInit {
  
   
 
-//FONCTION QUI PERMET D'ENVOYER L'ID DE L'ARTICLE DANS ARTICLE.COMPONENT.TS
+//FONCTION QUI PERMET D'ENVOYER L'ID DE L'ARTICLE DANS ARTICLE.COMPONENT.TS PAR LE LOCALSTORAGE
   public sendId(id : number) {
     localStorage.setItem('idArticle' , id.toString());
     console.log(localStorage.getItem('idArticle'));
-    this.route.navigate(['article' , id]);
+    this.route.navigate(['article']);
     
   }
 

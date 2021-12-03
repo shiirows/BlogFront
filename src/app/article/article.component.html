@@ -1,33 +1,135 @@
+<div id="article" *ngFor="let item of afficheArticle">
+  <section>
+    <div class="container">
+      <hr id="one" />
+      <h1 class="tritre_prrincipal">{{ item.pays.name }}</h1>
+      <hr id="two" />
+      <div class="carousel">
+        <input type="radio" name="slides" checked="checked" id="slide-1" />
+        <input type="radio" name="slides" id="slide-2" />
+        <input type="radio" name="slides" id="slide-3" />
+        <input type="radio" name="slides" id="slide-4" />
+        <input type="radio" name="slides" id="slide-5" />
+        <input type="radio" name="slides" id="slide-6" />
+        <ul class="carousel__slides">
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1041/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </figcaption>
+            </figure>
+          </li>
 
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1043/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <span class="credit">Photo: Christian Joudrey</span>
+              </figcaption>
+            </figure>
+          </li>
 
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1044/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <span class="credit">Photo: Steve Carter</span>
+              </figcaption>
+            </figure>
+          </li>
 
-<div class="fond"> <span class="s1">blog</span><span class="s2">card</span></div>
-<div class="card" *ngFor="let item of afficheArticle" >
-  <div class="thumbnail"><img class="left" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg"/></div>
-  <div class="right">
-    
-   
-    <h1>{{item.titre}}</h1>
-    <p></p>
-    <div class="author"><img src="https://randomuser.me/api/portraits/men/95.jpg"/>
-      <h2>{{item.user.name}} {{item.user.firstname}}  </h2>
-      <ul>
-      
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1045/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <span class="credit">Photo: Aleksandra Boguslawska</span>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1049/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <span class="credit">Photo: Rosan Harmens</span>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li class="carousel__slide">
+            <figure>
+              <div>
+                <img src="https://picsum.photos/id/1052/800/450" alt="" />
+              </div>
+              <figcaption>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <span class="credit">Photo: Annie Spratt</span>
+              </figcaption>
+            </figure>
+          </li>
         </ul>
+        <ul class="carousel__thumbnails">
+          <li>
+            <label for="slide-1"
+              ><img src="https://picsum.photos/id/1041/150/150" alt=""
+            /></label>
+          </li>
+          <li>
+            <label for="slide-2"
+              ><img src="https://picsum.photos/id/1043/150/150" alt=""
+            /></label>
+          </li>
+          <li>
+            <label for="slide-3"
+              ><img src="https://picsum.photos/id/1044/150/150" alt=""
+            /></label>
+          </li>
+          <li>
+            <label for="slide-4"
+              ><img src="https://picsum.photos/id/1045/150/150" alt=""
+            /></label>
+          </li>
+          <li>
+            <label for="slide-5"
+              ><img src="https://picsum.photos/id/1049/150/150" alt=""
+            /></label>
+          </li>
+          <li>
+            <label for="slide-6"
+              ><img src="https://picsum.photos/id/1052/150/150" alt=""
+            /></label>
+          </li>
+        </ul>
+      </div>
     </div>
+  </section>
+
+  <div class="card">
+    <div id="titre_secondaire">
+      <h1>{{ item.titre }}</h1>
+    </div>
+
     <div class="separator"></div>
-    <p>{{item.content}}</p>
-    <p>{{item.pays.name}}
-      
-    </p>
+    <p>{{ item.content }}</p>
   </div>
-  <h5>12</h5>
-  <h6>JANUARY</h6>
-  <ul>
-    <li><i class="fa fa-eye fa-2x"></i></li>
-    <li><i class="fa fa-heart-o fa-2x"></i></li>
-    <li><i class="fa fa-envelope-o fa-2x"></i></li>
-    <li><i class="fa fa-share-alt fa-2x"></i></li>
-  </ul>
-  <div class="fab"><i class="fa fa-arrow-down fa-3x"></i></div>
-</div> 
+
+  <div class="author">
+    <img *ngFor="let image of avatar" [src]="image.url" />
+    <h2 class="name">{{ item.user.name }} {{ item.user.firstname }}</h2>
+  </div>
+</div>

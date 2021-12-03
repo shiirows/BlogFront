@@ -56,13 +56,9 @@
 </section>
  
 
-
-
 <div  *ngIf="continentsId != null" >
   <h1> Choisie  ton pays </h1 >
 </div>
-
-
 
 <div  class="content"  >
     <div class="case-pays" *ngFor="let item of paysIdContinants ">
@@ -75,13 +71,13 @@
 
 </div>
 
-</div>
 
-<div class="validation" *ngIf="paysIdtemp != null " >
+
+<div class="validation" *ngIf="paysId != null " >
   <button id="validform" (click)="onSubmit()" >Valider mon Choix</button>
   
 </div>
-
+</div>
 <!-- Formulaire pour le titre et le contenue de l'article  --> 
 <div *ngIf="choixAffiche == false">
 <form
@@ -96,7 +92,7 @@
         <h1>Partager votre aventure </h1>
     </div>
     <div class="row">
-        <h4 style="text-align:center">We'd love to hear from you!</h4>
+        <h4 style="text-align:center">toutes histoires commence par un titre !</h4>
     </div>
     <div class="row input-container">
 

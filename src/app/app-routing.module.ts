@@ -16,10 +16,10 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
-  { path: 'article', component: ArticleUserComponent },
+  
   { path: 'contacte', component: ContacteComponent },
   { path: 'activation', component: ActivationComponent },
-  { path: 'article/:id', component: ArticleComponent },
+  { path: 'article', component: ArticleComponent },
   { path: 'articleuser', component: ArticleUserComponent },
   
 

@@ -11,7 +11,7 @@ import { CreationArticle } from '../model/creationArticle';
 })
 export class ArticleUserComponent implements OnInit {
 
-  constructor(private serviceArticle : ArticleService, private formB: FormBuilder,) { }
+  constructor(private serviceArticle : ArticleService, private formB: FormBuilder, private route: Router,) { }
 
   public choixAffiche : Boolean = true;
  
@@ -20,10 +20,10 @@ export class ArticleUserComponent implements OnInit {
   public paysIdContinants : any [] = [] ; // on rentre la liste des pays par l'id des contient
   public continentsId : number ; // id des continents
   public paysId : number // on rentre l'id du pays selectionner
-  public paysIdtemp : number; // on place un id temporaire pour l'affichage du bouton "je valide"
+
   public continents : any [] = [] ;
 
-  private route: Router
+ 
 
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class ArticleUserComponent implements OnInit {
 
   public valuePays(id : number) {
     this.paysId = id;
-    this.paysIdtemp = id;
+    
   }
 
 //fonction qui permet d'appeler les continent par un id 
@@ -50,8 +50,9 @@ export class ArticleUserComponent implements OnInit {
   public getPaysId() : void {
     this.serviceArticle.getPays(this.continentsId).subscribe(
       (data) => {
-        this.paysIdContinants = data;
-        this.mySortingFunction()
+        this.paysIdContinants = data; // on ajoute la liste des pays dans la variable paysIdContinants
+        
+        this.mySortingFunction() // on fait appel a la fonction pour trier les pays par ordre alphabetique
       }
     );
   }
@@ -61,14 +62,14 @@ export class ArticleUserComponent implements OnInit {
   public getContinent() : void {
     this.serviceArticle.getContinent(this.continentsId).subscribe(
       (data) => {
-        this.continents = data;
+        this.continents = data; // on ajoute la liste des pays dans la variable paysIdContinants
       }
     );
   }
 
   public onSubmit() {
-    this.choixAffiche = false;
-    this.paysIdtemp = null;
+    this.choixAffiche = false; 
+   
     console.log(this.paysId);
     console.log(this.continentsId);
   }
@@ -118,6 +119,9 @@ export class ArticleUserComponent implements OnInit {
         // on fait une redirection au menu home 
         
         console.log(data);
+
+        
+        this.route.navigate(['home' ]);
         
         
         

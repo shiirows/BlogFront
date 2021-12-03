@@ -1,0 +1,299 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+
+#article {
+  font-family: 'Roboto', sans-serif;
+ padding-left: 10%;
+}
+
+.tritre_prrincipal {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #ffffffe1;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+#one{
+
+  margin-top: 60px;
+
+}
+
+#two { 
+    margin-bottom: 60px;
+}
+
+
+
+/* The card */
+.card {
+  position: relative;
+  height: auto;
+  width: 900px;
+  margin: 200px auto;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+}
+
+
+
+#titre_secondaire {
+    font-family: 'Roboto', sans-serif;
+    text-align-last: auto;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffffffe1;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  padding-top: 15px;
+  font-size: 1.3rem;
+  color: #fffbfb;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: right;
+  margin-bottom: 50px;
+  margin-right: 100px;
+  
+ 
+}
+
+.author > img {
+  padding-top: 5px;
+ margin-right: 40px;
+  float: left;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 8px;
+  margin-right: 6px;
+  text-align: right;
+  font-size: 1.8rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+
+}
+.separator {
+  margin-top: 10px;
+  border: 1px solid #C3C3C3;
+}
+
+p {
+  margin-left: 20px;
+  margin-right: 20px;
+ padding-bottom: 50px;
+  text-align: justify;
+  padding-top: 10px;
+  font-size: 1.50rem;
+  line-height: 150%;
+  color: #ffffff;
+  line-height: 200%;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+// Carousel -----------------------------------------------------------------------
+
+
+.container {
+  max-width: 1044px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+}
+
+.carousel {
+  display: block;
+  text-align: left;
+  position: relative;
+  margin-bottom: 22px;
+  
+}
+.carousel > input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  border-radius: 50%;
+  
+}
+.carousel > input:nth-of-type(6):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -500%;
+ 
+}
+.carousel > input:nth-of-type(5):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -400%;
+}
+.carousel > input:nth-of-type(4):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -300%;
+}
+.carousel > input:nth-of-type(3):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -200%;
+}
+.carousel > input:nth-of-type(2):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -100%;
+}
+.carousel > input:nth-of-type(1):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: 0%;
+}
+
+
+.carousel__slides {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+  background-color: #ffffff;
+  border-left: #006699 solid 10px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  
+  
+}
+
+.carousel__slide {
+  position: relative;
+  display: block;
+  flex: 1 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 300ms ease-out;
+  
+ 
+  box-sizing: border-box;
+  white-space: normal;
+}
+.carousel__slide figure {
+  display: flex;
+  margin: 0;
+  
+}
+.carousel__slide div {
+  position: relative;
+  width: 100%;
+  
+}
+.carousel__slide div:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 66.6666666667%;
+ 
+}
+.carousel__slide div > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  
+}
+.carousel__slide img {
+  display: block;
+  flex: 1 1 auto;
+  object-fit: cover;
+  
+}
+.carousel__slide figcaption {
+  align-self: flex-end;
+  padding: 20px 20px 0 20px;
+  flex: 0 0 auto;
+  width: 25%;
+  min-width: 150px;
+  
+}
+.carousel__slide .credit {
+  margin-top: 1rem;
+  color: rgb(214, 208, 208);
+  display: block;
+}
+.carousel__slide.scrollable {
+  overflow-y: scroll;
+  
+}
+
+.carousel__thumbnails {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin: 0 -10px;
+  
+}
+.carousel__slides + .carousel__thumbnails {
+  margin-top: 20px;
+  
+}
+.carousel__thumbnails li {
+  flex: 1 1 auto;
+  max-width: calc((100% / 6) - 20px);
+  margin: 0 10px;
+  transition: all 300ms ease-in-out;
+  
+}
+.carousel__thumbnails label {
+  display: block;
+  position: relative;
+  
+}
+.carousel__thumbnails label:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+.carousel__thumbnails label > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.carousel__thumbnails label:hover, .carousel__thumbnails label:focus {
+  cursor: pointer;
+ 
+}
+.carousel__thumbnails label:hover img, .carousel__thumbnails label:focus img {
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  transition: all 300ms ease-in-out;
+
+}
+.carousel__thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 40%;
+  margin-top: 30px;
+}

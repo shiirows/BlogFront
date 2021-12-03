@@ -6,12 +6,6 @@ import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
 import {User} from '../model/UpdateUser';
 
-import { ConvertPropertyBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
-import { Byte } from '@angular/compiler/src/util';
-
-
-
-
 
 
 @Component({
@@ -56,7 +50,7 @@ if(this.tokenService.getUser().user == null){
     this.service.updateUser( this.fileToUpload).subscribe(
       (data) => {
         
-        this.user = data;
+        
 
         this.route.navigate(['/profil']);
       },
