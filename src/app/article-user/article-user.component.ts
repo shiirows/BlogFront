@@ -1,32 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ArticleService } from '../common/articleService';
+import { CreationArticle } from '../model/creationArticle';
 
 @Component({
   selector: 'app-article-user',
   templateUrl: './article-user.component.html',
-  styleUrls: ['./article-user.component.scss']
+  styleUrls: ['./article-user.component.css']
 })
 export class ArticleUserComponent implements OnInit {
 
-  constructor(private serviceArticle : ArticleService) { }
+  constructor(private serviceArticle : ArticleService, private formB: FormBuilder,) { }
 
-  public paysIdContinants : any [] = [] ;
-  public continentsId : number ;
+  public choixAffiche : Boolean = true;
+ 
+  public artcileForm: any;
+
+  public paysIdContinants : any [] = [] ; // on rentre la liste des pays par l'id des contient
+  public continentsId : number ; // id des continents
+  public paysId : number // on rentre l'id du pays selectionner
+  public paysIdtemp : number; // on place un id temporaire pour l'affichage du bouton "je valide"
   public continents : any [] = [] ;
 
+  private route: Router
+
+
   ngOnInit(): void {
-    
-    
+    this.initForm();
+    console.log(this.artcileForm);
   }
 
+  public valuePays(id : number) {
+    this.paysId = id;
+    this.paysIdtemp = id;
+  }
 
+//fonction qui permet d'appeler les continent par un id 
+// l'id continents appel par la suite la list des pays lier a l'id
   public valueContinents(id: number) : void {
-    this.paysIdContinants = [];
-    this.continents = [];
-    this.continentsId = id;
-    console.log(this.continentsId);
-    this.getContinent()
-    this.getPaysId()
+    this.paysId = null;  // permet de remettre a zero si l'utilisateur choisi un autre continent 
+    this.continentsId = id; // on ajoute l'id du continent dans la variable 
+    this.getContinent() // on fait appel a la fonction pour récuperer les contient  ( a voir pour ameliorer )
+    this.getPaysId() // on fait appel a la fonction pour récuperer les pays par l'id des contient
    
   }
 
@@ -36,8 +52,6 @@ export class ArticleUserComponent implements OnInit {
       (data) => {
         this.paysIdContinants = data;
         this.mySortingFunction()
-        
-        console.log(this.paysIdContinants);
       }
     );
   }
@@ -48,16 +62,22 @@ export class ArticleUserComponent implements OnInit {
     this.serviceArticle.getContinent(this.continentsId).subscribe(
       (data) => {
         this.continents = data;
-        console.log(this.continents);
       }
     );
   }
 
+  public onSubmit() {
+    this.choixAffiche = false;
+    this.paysIdtemp = null;
+    console.log(this.paysId);
+    console.log(this.continentsId);
+  }
+
+  
+// fonction pour trier les pays par ordre alphabetique
   mySortingFunction()  {
     this.paysIdContinants.sort(function(a, b) {
 
-      
-      
       var nameA = a.name.toUpperCase(); // ignore upper and lowercase
       var nameB = b.name.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -68,12 +88,49 @@ export class ArticleUserComponent implements OnInit {
         return 1;
       }
 
-
-  
-      // names must be equal
       return 0;
     });
     
   }
+
+  // ------------------------------------------ Formulaire pour l'article --------------------------------------------------
+
+  public initForm() {
+    this.artcileForm = this.formB.group({
+      titre: ['', [ Validators.required, Validators.maxLength(45), Validators.minLength(3), ], ],
+      content: ['', [Validators.required, Validators.minLength(3)]],
+    });
+  }
+
+  public onValid() {
+
+    const titre: string = this.artcileForm.get('titre').value;
+
+    const content: string = this.artcileForm.get('content').value;
+    const pays : number = this.paysId;
+    const continent : number = this.continentsId;
+
+    let article: CreationArticle = new CreationArticle(titre, content , pays, continent);
+
+    this.serviceArticle.createArticle(article).subscribe(
+      (data) => {
+
+        // on fait une redirection au menu home 
+        
+        console.log(data);
+        
+        
+        
+      }
+
+
+    );
+    
+    
+
+  }
+
+
+  
 
 }

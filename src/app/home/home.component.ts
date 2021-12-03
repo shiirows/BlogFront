@@ -20,8 +20,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private serviceArticle: ArticleService,
-    private formB: FormBuilder,
-    private formBModal: FormBuilder,
+  
     private route: Router
    
   ) {}
@@ -76,32 +75,12 @@ export class HomeComponent implements OnInit {
   
   // -------------------------------------------------- creation de l'article --------------------------------------------------
 
-  public initForm() {
-    this.artcileForm = this.formB.group({
-      titre: ['', [ Validators.required, Validators.maxLength(45), Validators.minLength(3), ], ],
-      content: ['', [Validators.required, Validators.minLength(3)]],
-    });
-  }
+ 
 
   ngOnInit(): void {
-    this.initForm();
+ 
     this.afficheArticle();
   }
 
-  onsubmit() {
-    const titre: string = this.artcileForm.get('titre').value;
-
-    const content: string = this.artcileForm.get('content').value;
-
-    let article: CreationArticle = new CreationArticle(titre, content);
-
-    console.log(article);
-
-    this.serviceArticle.createArticle(article).subscribe((data) => {
-      console.log(data);
-    });
-
-    this.artcileForm.reset();
-    location.reload();
-  }
+ 
 }
