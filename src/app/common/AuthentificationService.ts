@@ -72,12 +72,9 @@ export class AuthentificationService {
     public getAvatar(filename : String): Observable<any> {
         return this.http.get(this.urlApiUpload + "files/" + filename ,  { responseType: 'blob', observe: 'response' });
 
-        
-        
     }
     
 
-   
 
 
 

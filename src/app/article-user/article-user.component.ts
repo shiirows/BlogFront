@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ArticleService } from '../common/articleService';
+import { TokenService } from '../common/TokenService';
 import { CreationArticle } from '../model/creationArticle';
+import { Utilisateur } from '../model/Utilisateur';
 
 @Component({
   selector: 'app-article-user',
@@ -11,11 +14,19 @@ import { CreationArticle } from '../model/creationArticle';
 })
 export class ArticleUserComponent implements OnInit {
 
-  constructor(private serviceArticle : ArticleService, private formB: FormBuilder, private route: Router,) { }
+  constructor(private serviceArticle : ArticleService, private formB: FormBuilder, private route: Router, private tokenService: TokenService ) { }
+  
+
+  public selectedFiles :  FileList;
+  
+ 
+  public currentFile: any ;
+
+  public urls = new  Array<String>() 
 
   public choixAffiche : Boolean = true;
  
-  public artcileForm: any;
+  public artcileForm: any; 
 
   public paysIdContinants : any [] = [] ; // on rentre la liste des pays par l'id des contient
   public continentsId : number ; // id des continents
@@ -23,16 +34,52 @@ export class ArticleUserComponent implements OnInit {
 
   public continents : any [] = [] ;
 
+  public idNewarticle : number;
+  
+  
+
  
+
+  //fonction pour appeler l'id Article le plus récent 
+
+  //fonction pour récuperer les image du formulaire
+ 
+  handleFileInput(event) {
+    this.urls = [];
+    this.selectedFiles = event.target.files;
+    let files = event.target.files;
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e : any) => {
+          this.urls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+  
+
+
+  }
+
+ 
+
+    
+  
 
 
   ngOnInit(): void {
-    this.initForm();
+    
+  
+    this.selectedFiles// on initialise la liste des image au démarage de la page  pour éviter qu'il se remette a zero
+    this.initForm(); // on initialise le formulaire 
     console.log(this.artcileForm);
   }
 
   public valuePays(id : number) {
     this.paysId = id;
+  
+
     
   }
 
@@ -111,30 +158,20 @@ export class ArticleUserComponent implements OnInit {
     const pays : number = this.paysId;
     const continent : number = this.continentsId;
 
-    let article: CreationArticle = new CreationArticle(titre, content , pays, continent);
 
-    this.serviceArticle.createArticle(article).subscribe(
-      (data) => {
-
-        // on fait une redirection au menu home 
-        
-        console.log(data);
-
-        
-        this.route.navigate(['home' ]);
-        
-        
-        
-      }
-
-
-    );
-    
+    let article: CreationArticle = new CreationArticle(titre, content , pays, continent );
+this.serviceArticle.fileArticle(this.selectedFiles, article).subscribe(
+        (data) => {
+  this.currentFile = data;
+     
+        }
+  
+      );
+ 
+console.log(this.currentFile);
+   
     
 
   }
-
-
-  
 
 }

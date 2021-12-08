@@ -1,4 +1,9 @@
+<div id="formulaire_total">
 <div *ngIf="choixAffiche == true" >
+
+
+
+   
  
 <section>
 
@@ -56,7 +61,7 @@
 </section>
  
 
-<div  *ngIf="continentsId != null" >
+<div class="titre_secondaire" *ngIf="continentsId != null" >
   <h1> Choisie  ton pays </h1 >
 </div>
 
@@ -86,7 +91,31 @@
       id="form"
       class="topBefore"
     >
+
+
+
+
+
 <div>
+
+  <div class="choix-image">
+  
+    <div>
+      
+      <input type="file" id="file1" name="file" multiple="multiple" (change)="handleFileInput($event)" >
+      
+    </div>
+    <div>
+      
+    </div>
+    <div>
+      <img  *ngFor = "let image of urls"  [src]="image" alt="" width="280">
+    </div>
+</div>
+
+
+
+
   <div class="container">
     <div class="row">
         <h1>Partager votre aventure </h1>
@@ -133,6 +162,9 @@
         </div>
 
 
+
+        
+
         <div class="col-xs-12">
           <button type="submit" id="submit">SUBMIT</button>
         </div>
@@ -146,3 +178,4 @@
 
 
 
+</div>

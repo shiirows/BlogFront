@@ -17,6 +17,8 @@ export class ArticleService {
 
   public urlApi: string = 'http://localhost:8080/api/post/';
 
+  public urlApiUpload: string = "http://localhost:8080/api/file/";
+
 
   
 
@@ -38,6 +40,15 @@ export class ArticleService {
   //Fonction qui permet de récupérer un article par son id
   public getArticleById(id: number): Observable<any> {
     const obs: Observable<any> = this.http.get(this.urlApi + 'view/' + id, this.httpOptions );
+    const traitement = (param: any) => {
+      return param as any;
+    };
+    return obs.pipe(map(traitement));
+  }
+
+   //Fonction qui permet de récupérer un article par son id
+   public getArticleByIdUser(id: number): Observable<any> {
+    const obs: Observable<any> = this.http.get(this.urlApi + 'articleuser/' + id, this.httpOptions );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -72,6 +83,17 @@ export class ArticleService {
     };
     return obs.pipe(map(traitement));
   }
+
+
+  //Fonction pour envoyer les image de l'article 
+  public fileArticle(file : FileList , article: CreationArticle): Observable<any> {
+    console.log(file, article);
+    const formData = new FormData();
+    formData.append('file', file[0]);
+    return this.http.post(this.urlApiUpload + "uploads", {article , formData} , this.httpOptions )
+
+
+}
 
 
 }
