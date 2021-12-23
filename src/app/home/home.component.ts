@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
+      console.log(this.listArticles);
 
       // afficher les articles du plus récent au plus ancien
       this.listArticles.sort((a, b) => {
@@ -72,8 +73,6 @@ export class HomeComponent implements OnInit {
 
 
 
-  
-  // -------------------------------------------------- creation de l'article --------------------------------------------------
 
  
 

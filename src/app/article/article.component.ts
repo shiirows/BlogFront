@@ -30,7 +30,7 @@ public getArticles() {
     this.afficheArticle = [data] ;
     this.afficheArticle.forEach(element => {
       
-      this.getAvatar = element.user.avatar.toString();
+      this.getAvatar = element.avatar.toString();
       
       })
       console.log(this.getAvatar);
