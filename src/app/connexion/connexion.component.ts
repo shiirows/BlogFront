@@ -21,7 +21,7 @@ ngOnInit(): void {
     this.initForm();
     console.log(this.tokenService.getUser().user)
     if (this.tokenService.getUser().user != null) {
-      this.route.navigate(['/profil'])
+      this.route.navigate(['/home'])
     }
 
   }

@@ -102,7 +102,7 @@
   
     <div>
       
-      <input type="file" id="file1" name="file" multiple="multiple" (change)="handleFileInput($event)" >
+      <input onchange="console.log(this.files)" accept=".jpg,.jpeg,.png" type="file" id="file1" name="file" multiple="multiple" (change)="handleFileInput($event)" >
       
     </div>
     <div>

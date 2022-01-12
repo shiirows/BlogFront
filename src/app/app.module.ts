@@ -15,6 +15,7 @@ import { LogInterceptor } from './LogInterceptor';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
+import { ProfilsComponent } from './profils/profils.component';
 
 
 
@@ -38,6 +39,7 @@ import { ArticleComponent } from './article/article.component';
     ContacteComponent,
     ActivationComponent,
     ArticleComponent,
+    ProfilsComponent,
   
 
   ],

@@ -9,10 +9,11 @@ import { GestionProfilComponent } from './gestion-profil/gestion-profil.componen
 import { ContacteComponent } from './contacte/contacte.component';
 import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
+import { ProfilsComponent } from './profils/profils.component';
 
 
 export const ROUTES: Routes = [
-  { path: 'profil', component: GestionProfilComponent },
+  { path: 'profilGestion', component: GestionProfilComponent },
   { path: 'home', component: HomeComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
@@ -21,6 +22,7 @@ export const ROUTES: Routes = [
   { path: 'activation', component: ActivationComponent },
   { path: 'article', component: ArticleComponent },
   { path: 'articleuser', component: ArticleUserComponent },
+  { path: 'profil', component: ProfilsComponent },
   
 
     

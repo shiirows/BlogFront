@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   public isAdmin :boolean = false;
   public avatarUser :any;
   public user : any
+  
 
   
 
@@ -42,6 +43,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.userAfiche();
   this.afficheImage()
+  if (this.serviceToken.getUser().user == null) {
+    this.route.navigate(['/home'])
+  }
+  
 
   }
 
@@ -55,18 +60,10 @@ export class NavbarComponent implements OnInit {
       this.user = this.serviceToken.getUser().user;
       this.service.getAvatar(this.user.avatar).subscribe(
         (data ) => {
-  
-    
-           
-         this.avatarUser = [data];   
-         
-         
         
-         
-    
-
-          console.log(this.avatarUser) 
-         
+         this.avatarUser = [data];  
+   
+         sessionStorage.setItem('url',(this.avatarUser[0].url));
         },
         (error) => {
   
@@ -85,7 +82,7 @@ export class NavbarComponent implements OnInit {
   public effacerStorage() {
     window.sessionStorage.clear()
     window.location.reload();
-    this.route.navigate([''])
+    this.route.navigate(['/home']);
 
   }
 }

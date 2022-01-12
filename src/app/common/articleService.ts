@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
-import { map } from 'rxjs/operators';
+import { map, multicast } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,25 @@ export class ArticleService {
       'Content-Type': 'application/json',
     }),
   };
+
+  httpOptionsData = {
+  headers: new HttpHeaders({
+    'Content-Type': 'multipart/form-data',
+
+  }),
+};
+
   constructor(private http: HttpClient) {}
 
   public urlApi: string = 'http://localhost:8080/api/post/';
 
   public urlApiUpload: string = "http://localhost:8080/api/file/";
+
+  public urlCreateArticle: string = "http://localhost:8080/api/post/";
+
+ 
+  
+ 
 
 
   
@@ -46,9 +60,9 @@ export class ArticleService {
     return obs.pipe(map(traitement));
   }
 
-   //Fonction qui permet de récupérer un article par son id
-   public getArticleByIdUser(id: number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'articleuser/' + id, this.httpOptions );
+   //Fonction qui permet de récupérer les article de l'utilisateur
+   public getArticleByIdUser(): Observable<any> {
+    const obs: Observable<any> = this.http.get(this.urlApi + 'articleuser' ,  this.httpOptions );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -86,14 +100,52 @@ export class ArticleService {
 
 
   //Fonction pour envoyer les image de l'article 
-  public fileArticle(file : FileList , article: CreationArticle): Observable<any> {
+  public fileArticle( article: CreationArticle, file : File  ): Observable<any> {
+    
+ const formData = new FormData();
+   formData.append('file', file[0]); 
+   
     console.log(file, article);
-    const formData = new FormData();
-    formData.append('file', file[0]);
-    return this.http.post(this.urlApiUpload + "uploads", {article , formData} , this.httpOptions )
+    return this.http.post(this.urlCreateArticle + 'create', {file, article  } , this.httpOptionsData );
 
 
 }
+
+
+/*
+//Fonction pour envoyer l'article en formdata
+ public fileArticle(file : FileList , article: CreationArticle): Observable<any> {
+  console.log(file, article);
+  const formData = new FormData();
+  const formData2 = new FormData();
+  formData.append('file', file[0]);
+  formData2.append('pays', article.pays.toString());
+  formData2.append('continents', article.continents.toString());
+  formData2.append('titre', article.titre);
+  formData2.append('content', article.content);
+
+
+  console.log(formData, formData2);
+  return this.http.post(this.urlCreateArticle + 'create' , {formData , formData2}  , this.httpOptionsData   )
+
+
+}*/
+
+
+
+/*
+pour les multiples fichiers 
+ accept=".jpg,.jpeg,.png"
+VEGA — 03/01/2022
+class Queue{
+inqueue
+in queue
+typescript 
+async
+await
+task
+timeout
+*/
 
 
 }

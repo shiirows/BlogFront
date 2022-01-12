@@ -5,7 +5,12 @@
     <header  class="avatar">
       <div *ngFor = "let image of avatarUser" >
       <img   id="card-img"    [src]="image.url" alt="profil picture">
+      
     </div>
+    <div>
+      <img *ngIf="estConnecter == null"  id="card-img"     src="assets/image/pictureprofil.png" alt="profil picture">
+    </div>
+
     <div *ngFor="let item of estConnecter">
       <h1 class="name" > {{item.name}} {{item.firstname}} </h1>
       </div>
@@ -19,36 +24,36 @@
     </div>
     <ul>
 
+      <li tabindex="0" class="icon-dashboard">
+        <a class="titre"  [routerLink]="['/home']" >Home</a>
+      </li>
+
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
         <a class="titre"  [routerLink]="['/articleuser']" >écrire un article</a>
       </li>
 
-      <li tabindex="0" class="icon-dashboard">
-        <a class="titre"  [routerLink]="['/home']" >home</a>
-      </li>
 
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
-        <a class="titre"  [routerLink]="['/profil']" >profil</a>
+        <a class="titre"  [routerLink]="['/profil']" >Profil</a>
       </li>
 
       <li *ngIf="estConnecter == null" tabindex="0" class="icon-users">
-        <a href="#0" class="titre"[routerLink]="['/inscription']" >inscription</a>
+        <a href="#0" class="titre"[routerLink]="['/inscription']" >Inscription</a>
       </li>
 
       <li *ngIf="estConnecter == null" tabindex="0" class="icon-settings">
-        <a href="#0" class="titre"[routerLink]="['/connexion']" >connexion</a>
+        <a href="#0" class="titre"[routerLink]="['/connexion']" >Connexion</a>
       </li>
 
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-settings">
         <a  class="titre" (click)="effacerStorage()"
-            [routerLink]="['/connexion']" routerLinkActive="router-link-active">Deconnexion</a>
+           >Deconnexion</a>
     </li>
-
-
 
     <li tabindex="0" class="icon-dashboard">
-      <a class="titre" [routerLink]="['/contacte']" >contacte</a>
+      <a class="titre" [routerLink]="['/contacte']" >Contact</a>
     </li>
+
 </ul>
 </div> 
 

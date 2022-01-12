@@ -17,7 +17,7 @@ export class ArticleUserComponent implements OnInit {
   constructor(private serviceArticle : ArticleService, private formB: FormBuilder, private route: Router, private tokenService: TokenService ) { }
   
 
-  public selectedFiles :  FileList;
+  public selectedFiles :  File;
   
  
   public currentFile: any ;
@@ -61,12 +61,6 @@ export class ArticleUserComponent implements OnInit {
 
 
   }
-
- 
-
-    
-  
-
 
   ngOnInit(): void {
     
@@ -160,7 +154,7 @@ export class ArticleUserComponent implements OnInit {
 
 
     let article: CreationArticle = new CreationArticle(titre, content , pays, continent );
-this.serviceArticle.fileArticle(this.selectedFiles, article).subscribe(
+this.serviceArticle.fileArticle( article ,this.selectedFiles).subscribe(
         (data) => {
   this.currentFile = data;
      

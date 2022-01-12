@@ -25,10 +25,6 @@ export class HomeComponent implements OnInit {
    
   ) {}
 
- 
- 
-
-
   public artcileForm: any;
   public listArticles: any = [] ;
 

@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  li{
+    list-style-type: none;
+  }
+
+ .bouton {
+    background-color: #868686;
+    
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  
+  
+  .Main-card
+  {
+    display: inline-block;
+    width: 1000px;
+    height: 580px;
+    position: absolute;
+    left: 50%;
+    margin-left: -500px;
+    top: 50%;
+    margin-top: -450px;
+    border-radius: 20px;
+    background-color: white;
+  
+  }
+  .Main-card .card-head{
+  
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    padding-top: 50px;
+    padding-left: 50px;
+    background-color: #949494;
+    height: 60%
+  }
+
+ #card-img{
+    border-radius: 100%;
+    background-color: transparent;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .Main-card .summery{
+  
+    padding-top: 50px;
+    padding-left: 50px;
+    height: 50%
+  }
+  
+  .summery .about  h2{
+    text-transform: capitalize;
+  }
+  .summery .about  h2 span
+  {
+    color:black;
+    text-transform: none;
+  }
+  .summery .about{
+    width: 50%;
+    float: left;
+    margin-right: 40px;
+  }
+  
+  .summery .about p{
+    margin: 15px 0 40px 0;
+    line-height: 25px;
+    text-transform: none;
+    color: #585858
+  }
+  .summery .about a{
+    margin-top: 40px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid #c7c2c2;
+    border-radius: 5px;
+    box-shadow: 4px 3px 7px 0px #abababb5;
+  }
+  
+  .summery .about a:hover{
+    box-shadow: 2px 2px 19px 1px white;
+  }
+  
+  .summery .table table{
+    text-transform: capitalize;
+  }
+  
+  .summery .table table tr td{
+  padding: 6px;
+  min-width: 135px;
+  text-transform: none;
+  }
+  
+  .summery .table tr td:first-child{
+    font-weight: bold;
+    color: #585858;
+  }
+  .summery .table tr td:last-child{
+    color: grey;
+  }
+
+  .titre{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+  
+    background-color: #abababb5;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+
+
+
+                                /*-------------------------------------Language: css Article ------------------------------------------- */
+  
+  
+  *, *:after, *:before {
+    box-sizing: border-box;
+  }
+  
+  h2, h4, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2, h4 {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    color: #333333;
+  }
+  
+  h2 {
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    margin-bottom: 10px;
+  }
+  
+  .contentCard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+
+  }
+  
+  
+  
+  
+  .cardContainer {
+    display: flex;
+    flex-direction: row;
+    width: 260px;
+    height: 380px;
+   
+    margin-left: 60px;
+    margin-top: 20px;
+    
+    perspective: 1000px;
+  }
+  
+
+  .card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+   
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .card:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 14px 50px -4px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1.4);
+  }
+  .card:hover {
+    transform: translateZ(0px);
+  }
+  .card:hover:after {
+    opacity: 1;
+  }
+  .card .side {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: white;
+  }
+  .card .front {
+    z-index: 2;
+  }
+  
+  .card .info {
+    padding: 16px;
+  }
+  
+  .front .img {
+    background-color: #dadce2;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 250px;
+  }
+  .front .img1 {
+    background-image: url(http://i.imgur.com/1aE1nMA.jpg);
+  }
+  
+  
