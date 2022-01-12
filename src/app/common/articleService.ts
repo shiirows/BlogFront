@@ -99,37 +99,38 @@ export class ArticleService {
   }
 
 
-  //Fonction pour envoyer les image de l'article 
+ /* //Fonction pour envoyer les image de l'article 
   public fileArticle( article: CreationArticle, file : File  ): Observable<any> {
     
  const formData = new FormData();
    formData.append('file', file[0]); 
    
-    console.log(file, article);
-    return this.http.post(this.urlCreateArticle + 'create', {file, article  } , this.httpOptionsData );
-
-
-}
-
-
-/*
-//Fonction pour envoyer l'article en formdata
- public fileArticle(file : FileList , article: CreationArticle): Observable<any> {
-  console.log(file, article);
-  const formData = new FormData();
-  const formData2 = new FormData();
-  formData.append('file', file[0]);
-  formData2.append('pays', article.pays.toString());
-  formData2.append('continents', article.continents.toString());
-  formData2.append('titre', article.titre);
-  formData2.append('content', article.content);
-
-
-  console.log(formData, formData2);
-  return this.http.post(this.urlCreateArticle + 'create' , {formData , formData2}  , this.httpOptionsData   )
+    console.log(formData, article);
+    return this.http.post(this.urlCreateArticle + 'create', { file, article  }, this.httpOptions );
 
 
 }*/
+
+
+
+//Fonction pour envoyer l'article en formdata
+ public fileArticle( article: CreationArticle , file : FileList): Observable<any> {
+  
+  const formData = new FormData();
+  for (let i = 0; i < file.length; i++) {
+    formData.append('file', file[i]);
+  }
+
+  formData.append('pays', article.pays.toString());
+  formData.append('continents', article.continents.toString());
+  formData.append('titre', article.titre);
+  formData.append('content', article.content);
+
+  console.log(formData);
+  return this.http.post(this.urlCreateArticle + 'create' , formData    )
+
+
+}
 
 
 

@@ -17,7 +17,7 @@ export class ArticleUserComponent implements OnInit {
   constructor(private serviceArticle : ArticleService, private formB: FormBuilder, private route: Router, private tokenService: TokenService ) { }
   
 
-  public selectedFiles :  File;
+  public selectedFiles :  FileList;
   
  
   public currentFile: any ;
