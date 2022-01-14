@@ -157,6 +157,7 @@ export class ArticleUserComponent implements OnInit {
 this.serviceArticle.fileArticle( article ,this.selectedFiles).subscribe(
         (data) => {
   this.currentFile = data;
+  this.route.navigate(['/home']);
      
         }
   

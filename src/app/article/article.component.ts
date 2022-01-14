@@ -19,22 +19,37 @@ public idArticle : string [] = [localStorage.getItem('idArticle')];
 public listArticles: number = +this.idArticle;
 public afficheArticle : any [] ;
 public getAvatar : string  ;
+public nameimageArtcile : string [] // nom de l'image recuperer 
+public imagearticle : any [] = [] // url de l'image 
 
+public nomberImage : Number
 public avatar : any
 
+
+
+ngOnInit(){
+  this.getArticles();
+  
+   
+    console.log(this.idArticle);
+   console.log(this.listArticles);
+  
+  }
 
 // -------------------------------------------------- appel de l'articles par l'id --------------------------------------------------
 
 public getArticles() {
   return this.serviceArticle.getArticleById(this.listArticles).subscribe((data) => {
     this.afficheArticle = [data] ;
+
     this.afficheArticle.forEach(element => {
-      
-      this.getAvatar = element.avatar.toString();
-      
+      this.getAvatar = element.avatar.toString(); // on recupere le nom de l'avatar du user fichier
+
+     
       })
-      console.log(this.getAvatar);
+      this.getImage()
       this.avatarUser ()
+      
     console.log(this.afficheArticle);
   });
 
@@ -51,13 +66,31 @@ public avatarUser () {
 
 }
 
+// -------------------------------------------------- appel des image de l'article --------------------------------------------------
+
+public getImage() {
+
+this.afficheArticle.forEach(element => {
+   element.file.forEach(element => {
+    this.nameimageArtcile = element.name;
+    
+    this.serviceArticle.getIamgeArticle(this.nameimageArtcile).subscribe((data) => {
+    this.imagearticle.push(data);
+    });
+
+    console.log(this.imagearticle);
+   
+})
+})
+console.log(this.nameimageArtcile);
 
 
 
-  ngOnInit(){
-  this.getArticles();
-    console.log(this.idArticle);
-   console.log(this.listArticles);
-  }
+}
+
+
+
+
+
 
 }

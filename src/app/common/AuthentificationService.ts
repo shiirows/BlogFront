@@ -70,8 +70,7 @@ export class AuthentificationService {
 // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE 
 
     public getAvatar(filename : String): Observable<any> {
-        return this.http.get(this.urlApiUpload + "files/" + filename ,  { responseType: 'blob', observe: 'response' });
-
+        return this.http.get(this.urlApiUpload + "filename/" + filename ,  { responseType: 'blob', observe: 'response' });
     }
     
 

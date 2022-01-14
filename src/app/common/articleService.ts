@@ -14,12 +14,7 @@ export class ArticleService {
     }),
   };
 
-  httpOptionsData = {
-  headers: new HttpHeaders({
-    'Content-Type': 'multipart/form-data',
-
-  }),
-};
+  
 
   constructor(private http: HttpClient) {}
 
@@ -99,17 +94,6 @@ export class ArticleService {
   }
 
 
- /* //Fonction pour envoyer les image de l'article 
-  public fileArticle( article: CreationArticle, file : File  ): Observable<any> {
-    
- const formData = new FormData();
-   formData.append('file', file[0]); 
-   
-    console.log(formData, article);
-    return this.http.post(this.urlCreateArticle + 'create', { file, article  }, this.httpOptions );
-
-
-}*/
 
 
 
@@ -129,6 +113,16 @@ export class ArticleService {
   console.log(formData);
   return this.http.post(this.urlCreateArticle + 'create' , formData    )
 
+
+}
+
+
+// METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
+
+public getIamgeArticle(filename : String[]): Observable<any> {
+  console.log(filename)
+    
+return this.http.get(this.urlApiUpload + "filename/" + filename ,  { responseType: 'blob', observe: 'response' });
 
 }
 
