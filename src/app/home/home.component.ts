@@ -20,15 +20,87 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private serviceArticle: ArticleService,
-  
     private route: Router
    
   ) {}
 
+  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
   public artcileForm: any;
-  public listArticles: any = [] ;
+  public listArticles: any[] ;
+  public continents : any[] ;
+  public pays : any[] =[] ;
+ 
+
+  
+
+
+  // -------------------------------------------------- Appel des continents  --------------------------------------------------
+
 
  
+  public getContinent(): any {
+    
+    this.serviceArticle.getContinentList().subscribe(
+      (data) => {
+        this.continents = data;
+        console.log(this.continents);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  // -------------------------------------------------- affichage des pays par le select continents et des article lier au continents--------
+
+  public onChange(event ) {
+if (event == 0) {
+  this.afficheArticle();
+} 
+    //appel les article par contients
+    this.serviceArticle.getArticleByContinent(event).subscribe(
+      (data) => {
+        this.listArticles = data;
+        this.listArticles.forEach(element => {
+          element.file = this.urlfiles + element.file[0].name;
+        });
+
+      })
+
+
+    //appel les pays par continent
+    this.serviceArticle.getPays(event).subscribe(
+      (data) => {
+        this.pays = data;
+        console.log(this.pays);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
+  // -------------------------------------------------- affichage des articles par id pays--------------------------------------------------
+
+  public onChange2(event) {
+    console.log(event);
+    this.serviceArticle.getArticlePays(event).subscribe(
+      (data) => {
+        this.listArticles = data;
+        this.listArticles.forEach(element => {
+          element.file = this.urlfiles + element.file[0].name;
+        });
+        console.log(this.listArticles);
+      }
+    );
+
+  }
+
+
+
   
 
 //FONCTION QUI PERMET D'ENVOYER L'ID DE L'ARTICLE DANS ARTICLE.COMPONENT.TS PAR LE LOCALSTORAGE
@@ -40,7 +112,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  
 
 // -------------------------------------------------- Supression d'un l'articles --------------------------------------------------
 
@@ -57,7 +128,11 @@ export class HomeComponent implements OnInit {
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
-      console.log(this.listArticles);
+      this.listArticles.forEach(element => {
+        element.file = this.urlfiles + element.file[0].name;
+     
+      });
+
 
       // afficher les articles du plus récent au plus ancien
       this.listArticles.sort((a, b) => {
@@ -70,10 +145,8 @@ export class HomeComponent implements OnInit {
 
 
 
- 
-
   ngOnInit(): void {
- 
+    this.getContinent()
     this.afficheArticle();
   }
 

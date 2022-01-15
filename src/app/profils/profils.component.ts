@@ -13,7 +13,7 @@ export class ProfilsComponent implements OnInit {
 
   constructor(private serviceToken : TokenService, private serviceAuth: AuthentificationService, private service: ArticleService ) { }
 
-
+  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
   public userCouverture  = this.serviceToken.getUser().user  ;
   public user = [this.serviceToken.getUser().user]  ;
 
@@ -40,7 +40,7 @@ public afficheCouverture() {
   this.serviceAuth.getAvatar(this.userCouverture.couverture).subscribe(
     (data ) => {
      this.couvertureUser = [data];  
-     console.log(this.couvertureUser)
+    
      
     },
   )
@@ -50,6 +50,9 @@ public articleUser() {
   this.service.getArticleByIdUser().subscribe(
     (data) => {
       this.listArticles = data;
+      this.listArticles.forEach(element => {
+        element.file = this.urlfiles + element.file[0].name;
+      });
       console.log(this.listArticles)
     }
   )

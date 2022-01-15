@@ -19,11 +19,11 @@ export const ROUTES: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   
   { path: 'contacte', component: ContacteComponent },
-  { path: 'activation', component: ActivationComponent },
+  
   { path: 'article', component: ArticleComponent },
   { path: 'articleuser', component: ArticleUserComponent },
   { path: 'profil', component: ProfilsComponent },
-  
+  { path: 'activation', component: ActivationComponent },
 
     
 

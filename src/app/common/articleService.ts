@@ -46,6 +46,26 @@ export class ArticleService {
     return obs.pipe(map(traitement));
   }
 
+  //Fonction pour afficher une liste d'article par continent
+public getArticleByContinent(id : number): Observable<any> {
+  const obs: Observable<any> = this.http.get(this.urlApi + 'articlecontinents/' + id , this.httpOptions);
+  const traitement = (param: any) => {
+    return param as any;
+  };
+  return obs.pipe(map(traitement));
+}
+
+
+  //Fonction pour afficher la liste des article d'un pays
+public getArticlePays(id : number): Observable<any> {
+  const obs: Observable<any> = this.http.get(this.urlApi + 'articlepays/' + id , this.httpOptions);
+  const traitement = (param: any) => {
+    return param as any;
+  };
+  return obs.pipe(map(traitement));
+}
+
+
   //Fonction qui permet de récupérer un article par son id
   public getArticleById(id: number): Observable<any> {
     const obs: Observable<any> = this.http.get(this.urlApi + 'view/' + id, this.httpOptions );
@@ -75,7 +95,7 @@ export class ArticleService {
     
   }
 
-  //Fonction pour afficher la liste des pays
+  //Fonction pour afficher la liste des pays d'un continent
   public getPays(id : number): Observable<any> {
     const obs: Observable<any> = this.http.get(this.urlApi + 'pays/' + id , this.httpOptions);
     const traitement = (param: any) => {
@@ -84,9 +104,18 @@ export class ArticleService {
     return obs.pipe(map(traitement));
   }
 
-  //Fonction pour afficher la liste des contients par id
+  //Fonction pour afficher le continent souhaiter par son id
   public getContinent(id: number): Observable<any> {
     const obs: Observable<any> = this.http.get(this.urlApi + 'continents/' + id , this.httpOptions);
+    const traitement = (param: any) => {
+      return param as any;
+    };
+    return obs.pipe(map(traitement));
+  }
+
+  //Fonction pour afficher l'ensemble des continent 
+  public getContinentList(): Observable<any> {
+    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/', this.httpOptions);
     const traitement = (param: any) => {
       return param as any;
     };

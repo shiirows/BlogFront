@@ -1,14 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Welcome to Glob Trotteur!</h1>
+        </div>
+    </div>
+    <hr class="fade-2">
+
+  <div class="selecteur" >
+
+<div class="continents" >
+    <select class="selectitem" (change)="onChange($event.target.value)">
+      <option class="text" value="0">Select a continent</option>
+      <option *ngFor="let category of continents" class="text" [value]="category.id">{{category.name}}</option>
+    </select>
+</div>
+
+<div class="pays" > 
+  <select class="selectitem" (change)="onChange2($event.target.value)">
+    <option class="text" value="0">Select a pays</option>
+    <option  *ngFor="let subcategory of pays" class="text" [value]="subcategory.id">{{subcategory.name}}</option>
+  </select>
+</div>
 
 
-  
 
+  </div>
 
 <div class="contentCard"   >
   <div  class="cardContainer" *ngFor="let item of listArticles"  >
     <div  class="card">
       <div class="side front">
-        <p> {{item.firstname}} {{item.name}}</p>
-        <div class="img img1"></div>
+        <p class="name" > {{item.firstname}} {{item.name}}</p>
+        <div [style.background-image]="'url('+ item.file + ')'" class="img"></div>
         <div class="info">
           
           <h2>   {{item.pays.name}}</h2>
@@ -27,9 +50,6 @@
   </div>
 </div>
 
-
-
-
-
+</div>
 
   

@@ -43,9 +43,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.userAfiche();
   this.afficheImage()
-  if (this.serviceToken.getUser().user == null) {
-    this.route.navigate(['/home'])
-  }
+ 
   
 
   }
