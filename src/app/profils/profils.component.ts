@@ -51,7 +51,7 @@ public articleUser() {
     (data) => {
       this.listArticles = data;
       this.listArticles.forEach(element => {
-        element.file = this.urlfiles + element.file[0].name;
+        element.file = this.urlfiles + element.file[0];
       });
       console.log(this.listArticles)
     }

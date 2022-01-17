@@ -25,11 +25,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   public urlfiles: string = 'http://localhost:8080/api/file/filename/'
-  public artcileForm: any;
-  public listArticles: any[] ;
-  public continents : any[] ;
-  public pays : any[] =[] ;
- 
+  
+  public listArticles: any[] ; // contien tout les articles 
+  public continents : any[] ; // contien les article par continent 
+  public pays : any[] =[] ; //contien les données de l'article par pays 
+
+  public idpays : number; // on stock l'id du pays dans une variable pour la reutiliser
+  public idcontinents : number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
+                                // ou l'utilisateur selection tout les pays du continent  
+  
 
   
 
@@ -54,22 +58,23 @@ export class HomeComponent implements OnInit {
 
   // -------------------------------------------------- affichage des pays par le select continents et des article lier au continents--------
 
-  public onChange(event ) {
+  public onChange(event :number ) {
 if (event == 0) {
   this.afficheArticle();
 } 
+this.idcontinents = event;
     //appel les article par contients
     this.serviceArticle.getArticleByContinent(event).subscribe(
       (data) => {
         this.listArticles = data;
         this.listArticles.forEach(element => {
-          element.file = this.urlfiles + element.file[0].name;
+          element.file = this.urlfiles + element.file[0];
         });
 
       })
 
 
-    //appel les pays par continent
+    //appel les pays qui va les placer dans le selecteur pays (onChange2)
     this.serviceArticle.getPays(event).subscribe(
       (data) => {
         this.pays = data;
@@ -85,13 +90,16 @@ if (event == 0) {
 
   // -------------------------------------------------- affichage des articles par id pays--------------------------------------------------
 
-  public onChange2(event) {
+  public onChange2(event: number) {
+    if (event == 0) {
+      this.onChange(this.idcontinents);
+    }
     console.log(event);
     this.serviceArticle.getArticlePays(event).subscribe(
       (data) => {
         this.listArticles = data;
         this.listArticles.forEach(element => {
-          element.file = this.urlfiles + element.file[0].name;
+          element.file = this.urlfiles + element.file[0];
         });
         console.log(this.listArticles);
       }
@@ -124,12 +132,13 @@ if (event == 0) {
     location.reload();
     
   }
-// -------------------------------------------------- affichage des articles --------------------------------------------------
+// -------------------------------------------------- affichage de tout les articles --------------------------------------------------
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
+      console.log(this.listArticles);
       this.listArticles.forEach(element => {
-        element.file = this.urlfiles + element.file[0].name;
+        element.file = this.urlfiles + element.file[0];
      
       });
 

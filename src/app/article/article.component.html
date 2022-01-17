@@ -5,13 +5,13 @@
       <h1 class="tritre_prrincipal">{{ item.pays.name }}</h1>
       <hr id="two" />
       <div class="carousel">
-        <input *ngFor="let item of imagearticle" type="radio" name="slides" id="{{item.url}}" />
+        <input *ngFor="let item of imagearticle" type="radio" name="slides" id="{{item}}" />
       
         <ul class="carousel__slides">
           <li *ngFor="let item of imagearticle" class="carousel__slide">
             <figure>
               <div>
-                <img  class="carousel" [src]="item.url" alt="" />
+                <img  class="carousel" [src]="item" alt="" />
               </div>
              
             </figure>
@@ -20,8 +20,8 @@
 
         <ul class="carousel__thumbnails">
           <li *ngFor="let item of imagearticle" class="carousel" >
-            <label for="{{item.url}}"
-              ><img [src]="item.url" alt=""
+            <label for="{{item}}"
+              ><img [src]="item" alt=""
             /></label>
           </li>
           
@@ -40,7 +40,7 @@
   </div>
 
   <div class="author">
-    <img *ngFor="let image of avatar" [src]="image.url" />
+    <img *ngFor="let image of avatar" [src]="image.avatar" />
     <h2 class="name">{{ item.name }} {{ item.firstname }}</h2>
   </div>
 </div>

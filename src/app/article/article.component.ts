@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 
+
 import { ArticleService } from '../common/articleService';
 import { AuthentificationService } from '../common/AuthentificationService';
 
@@ -15,24 +16,24 @@ export class ArticleComponent implements OnInit {
 
   constructor(private serviceArticle: ArticleService, private serviceAuth : AuthentificationService) {}
 
+  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
+
 public idArticle : string [] = [localStorage.getItem('idArticle')];
 public listArticles: number = +this.idArticle;
-public afficheArticle : any [] ;
+public afficheArticle : any  ;
 public getAvatar : string  ;
-public nameimageArtcile : string [] // nom de l'image recuperer 
-public imagearticle : any [] = [] // url de l'image 
+
+public imagearticle : any[] = [] // url de l'image 
 
 public nomberImage : Number
-public avatar : any
+public avatar : any 
 
 
 
 ngOnInit(){
   this.getArticles();
   
-   
-    console.log(this.idArticle);
-   console.log(this.listArticles);
+  
   
   }
 
@@ -43,54 +44,38 @@ public getArticles() {
     this.afficheArticle = [data] ;
 
     this.afficheArticle.forEach(element => {
-      this.getAvatar = element.avatar.toString(); // on recupere le nom de l'avatar du user fichier
+      
+      element.avatar = this.urlfiles + element.avatar;
+      console.log(element) // on recupere le nom de l'avatar du user fichier
+      this.avatar = [element];
+      
 
      
       })
       this.getImage()
-      this.avatarUser ()
+    
       
-    console.log(this.afficheArticle);
+ 
   });
 
 }
 
 // -------------------------------------------------- appel de l'avatar de l'utilisateurs  --------------------------------------------------
 
-public avatarUser () {
-
-  return this.serviceAuth.getAvatar(this.getAvatar).subscribe((data) => {
-    this.avatar = [data] ;
-    console.log(this.getAvatar);
-  }); 
-
-}
 
 // -------------------------------------------------- appel des image de l'article --------------------------------------------------
 
 public getImage() {
 
 this.afficheArticle.forEach(element => {
-   element.file.forEach(element => {
-    this.nameimageArtcile = element.name;
-    
-    this.serviceArticle.getIamgeArticle(this.nameimageArtcile).subscribe((data) => {
-    this.imagearticle.push(data);
-    });
-
-    console.log(this.imagearticle);
-   
+element.file.forEach(element => { 
+  element = this.urlfiles + element;
+  this.imagearticle.push(element)
+  console.log(this.afficheArticle)
 })
+
 })
-console.log(this.nameimageArtcile);
-
-
 
 }
-
-
-
-
-
 
 }
