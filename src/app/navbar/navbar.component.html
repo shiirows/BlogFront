@@ -3,12 +3,12 @@
     <div>
     <div  class="smartphone-menu-trigger">
     <header  class="avatar">
-      <div *ngFor = "let image of avatarUser" >
-      <img   id="card-img"    [src]="image.url" alt="profil picture">
+      <div class="avt" >
+      <img *ngIf="estConnecter != null" id="card-img"    [src]="avatarUser" alt="profil picture">
       
     </div>
     <div>
-      <img *ngIf="estConnecter == null"  id="card-img"     src="assets/image/pictureprofil.png" alt="profil picture">
+      <img *ngIf="estConnecter == null"  id="card-img"  src="assets/image/pictureprofil.png" alt="profil picture">
     </div>
 
     <div *ngFor="let item of estConnecter">
@@ -25,7 +25,7 @@
     <ul>
 
       <li tabindex="0" class="icon-dashboard">
-        <a class="titre"  [routerLink]="['/home']" >Home</a>
+        <a class="titre"  [routerLink]="['']" >Home</a>
       </li>
 
       <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
@@ -52,6 +52,10 @@
 
     <li tabindex="0" class="icon-dashboard">
       <a class="titre" [routerLink]="['/contacte']" >Contact</a>
+    </li>
+
+    <li *ngIf="isAdmin == true" tabindex="0" class="icon-dashboard">
+      <a class="titre" [routerLink]="['/admin']" >Admin</a>
     </li>
 
 </ul>

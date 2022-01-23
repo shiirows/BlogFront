@@ -1,0 +1,131 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+    margin-left: 300px;
+    margin-right: 200px;
+    margin-top: 300px;
+  
+}
+
+.titre{
+    font-size: 2em;
+    font-weight: bold;
+    color: #008080;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.API{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    
+  
+}
+
+
+
+.admin {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+  margin-left: 70px;
+    margin-right: 70px;
+    border-radius: 10px;
+}
+
+/* Reset top and bottom margins from certain elements */
+.admin-header,
+.admin p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* The triangle form is achieved by a CSS hack */
+
+
+.admin-header {
+  background: #28d;
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+ 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  
+}
+
+.admin-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+/* Every row inside .login-container is defined with p tags */
+.admin p {
+  padding: 12px;
+}
+
+.admin input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95em;
+}
+
+
+
+
+
+
+.admin input[type="submit"] {
+  background: #28d;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin input[type="submit"]:hover {
+  background: #17c;
+}
+
+/* Buttons' focus effect */
+.admin input[type="submit"]:focus {
+  border-color: #05a;
+}
+
+.selecteur{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.selectitem{
+   width: 170px;
+    height: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+#select1{
+  margin-left: 12px;
+}
+
+
+#supr{
+  margin-top: 78px;
+}

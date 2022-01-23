@@ -18,7 +18,7 @@
 <div class="pays" > 
   <select class="selectitem" (change)="onChange2($event.target.value)">
     <option class="text" value="0">Select a pays</option>
-    <option  *ngFor="let subcategory of pays" class="text" [value]="subcategory.id">{{subcategory.name}}</option>
+    <option  *ngFor="let subcategory of pays" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
   </select>
 </div>
 

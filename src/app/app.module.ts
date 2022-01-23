@@ -16,6 +16,7 @@ import { ContacteComponent } from './contacte/contacte.component';
 import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
 import { ProfilsComponent } from './profils/profils.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -40,6 +41,7 @@ import { ProfilsComponent } from './profils/profils.component';
     ActivationComponent,
     ArticleComponent,
     ProfilsComponent,
+    AdminComponent,
   
 
   ],

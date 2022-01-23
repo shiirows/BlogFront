@@ -22,6 +22,7 @@ export class GestionProfilComponent implements OnInit {
 public avatarUser : String [] = [] ; 
 
   public form: any;
+  public test : any
 
   public  forms: any;
 
@@ -49,8 +50,8 @@ if(this.tokenService.getUser().user == null){
     console.log(this.fileToUpload);
     this.service.updateUser( this.fileToUpload).subscribe(
       (data) => {
-        
-        
+        this.test = data;
+        console.log(this.test);
 
         this.route.navigate(['/profil']);
       },

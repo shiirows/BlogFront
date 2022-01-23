@@ -1,0 +1,85 @@
+<div class="container" >
+
+<div class="titre">
+    <h1>Gestion de l'API</h1>
+</div>
+
+
+
+
+<div class="API">
+
+    
+ 
+<div class="admin">
+
+    <h2 class="admin-header">Ajouter un pays </h2>
+    <form class="admin-container"  (ngSubmit)="paysForm.valid && onSubmit()" [formGroup]="paysForm" >
+    
+        <select id="select1" class="selectitem" (change)="onChangeContinents($event.target.value)">
+            <option class="text" value="0">Select a continent</option>
+            <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
+        </select>
+
+        <p><input type="text" formControlName="pays"  placeholder="pays"></p>
+        <p><input type="submit"  value="Ajouter un pays"></p>
+    </form>
+  </div>
+
+
+
+
+
+  <div class="admin">
+
+    <h2 class="admin-header">Modifier un pays</h2>
+  
+    <form class="admin-container"  (ngSubmit)="paysForm.valid && onSubmit2()" [formGroup]="paysForm" >
+
+  <div class="selecteur">
+
+    <select  class="selectitem" (change)="onChange($event.target.value)">
+        <option class="text" value="0">Select a continent</option>
+        <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
+    </select>
+
+    <select class="selectitem" (change)="onChange2($event.target.value)">
+      <option class="text" value="0">Select a pays</option>
+      <option  *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
+    </select>
+
+  </div>
+
+        <p><input type="text" placeholder="pays" formControlName="pays"  ></p>
+    
+      <p><input type="submit" value="Modifier le pays"></p>
+    </form>
+  </div>
+
+
+
+
+<div   class="admin">
+
+    <h2 class="admin-header">Suprimer un pays</h2>
+    <form  class="admin-container">
+      <div class="selecteur">
+      <select  class="selectitem" (change)="onChange($event.target.value)">
+        <option class="text" value="0">Select a continent</option>
+        <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
+    </select>
+
+    <select  class="selectitem" (change)="onChange3($event.target.value)">
+      <option class="text" value="0">Select a pays</option>
+      <option *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
+    </select>
+          
+    </div>
+          
+        <p><input (click)="supr()" type="submit" id="supr" value="Suprimer le pays "></p>
+    </form>
+</div>
+
+</div>
+
+</div>

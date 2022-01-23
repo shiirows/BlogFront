@@ -21,7 +21,7 @@ export class InscriptionComponent implements OnInit {
  
    
     
-  public userForm: any;
+  public userForm: FormGroup;
   public error?: string;
   public erreur: boolean = false;
 
@@ -74,7 +74,7 @@ export class InscriptionComponent implements OnInit {
     const password: string = this.userForm.get('password').value;
 
     let userr:UtilisateurInscription  = new UtilisateurInscription(username,password,email)
-    console.log(userr)
+    
     this.service.signup(userr).subscribe(
       (data) => {
         console.log(data);

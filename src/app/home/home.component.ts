@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
   // -------------------------------------------------- Appel des continents  --------------------------------------------------
 
-
+//
  
   public getContinent(): any {
     

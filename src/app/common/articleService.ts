@@ -113,10 +113,11 @@ public getArticlePays(id : number): Observable<any> {
     return obs.pipe(map(traitement));
   }
 
-  //Fonction pour afficher l'ensemble des continent 
-  public getContinentList(): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/', this.httpOptions);
-    const traitement = (param: any) => {
+ 
+  // cette fonction permet de récupérer tout les continents
+  public getContinentList(): Observable<any> { 
+    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/', this.httpOptions); 
+    const traitement = (param: any) => { 
       return param as any;
     };
     return obs.pipe(map(traitement));
@@ -139,9 +140,7 @@ public getArticlePays(id : number): Observable<any> {
   formData.append('titre', article.titre);
   formData.append('content', article.content);
 
-  console.log(formData);
-  return this.http.post(this.urlCreateArticle + 'create' , formData    )
-
+  return this.http.post(this.urlCreateArticle + 'create' , formData  )
 
 }
 

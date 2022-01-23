@@ -14,15 +14,13 @@ import { AuthentificationService } from '../common/AuthentificationService';
 export class NavbarComponent implements OnInit {
 
   constructor(private route: Router,private serviceToken : TokenService,private service: AuthentificationService,) { }
+
+  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
   public estConnecter :any [] = [];
   public isAdmin :boolean = false;
   public avatarUser :any;
   public user : any
-  
 
-  
-
-  
 
 //VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
     public userAfiche() {
@@ -34,8 +32,9 @@ export class NavbarComponent implements OnInit {
      
     }
     //VERIFICATION DU ROLE DE L'UTILISATEUR EN COUR POUR LUI AFFICHER OU PAS LE BOUTON ADMIN
-    if(this.serviceToken.getUser().roles == "ROLE_ADMIN"){
+    if(this.serviceToken.getUser().roles != "ROLE_USER" && this.serviceToken.getUser().user != null )  {
       this.isAdmin = true
+  
     }
   }
 
@@ -54,33 +53,23 @@ export class NavbarComponent implements OnInit {
     if(this.serviceToken.getUser().user == null){
       return null;
     }else{
-
+      this.avatarUser = this.urlfiles + this.serviceToken.getUser().user.avatar
       this.user = this.serviceToken.getUser().user;
-      this.service.getAvatar(this.user.avatar).subscribe(
-        (data ) => {
-        
-         this.avatarUser = [data];  
+     
    
-         sessionStorage.setItem('url',(this.avatarUser[0].url));
-        },
-        (error) => {
-  
-          
-        }
-      );  
+         sessionStorage.setItem('url',(this.avatarUser));
+      
     }
   }
- 
 
-
-
- 
 
   // FONCTION POUR EFFACE LE  STORAGE ET SE DECONNECTER 
   public effacerStorage() {
+    
+    this.avatarUser = [];
     window.sessionStorage.clear()
-    window.location.reload();
-    this.route.navigate(['/home']);
-
+    this.estConnecter = null
+    this.route.navigate(['']);
+    
   }
 }

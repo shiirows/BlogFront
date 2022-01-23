@@ -63,7 +63,7 @@ public articleUser() {
 public deleteArticle(id: number) {
   this.service.deleteArticle(id).subscribe((data) => {
     console.log(data + 'article supprimé');
-
+ 
   });
   location.reload();
 }

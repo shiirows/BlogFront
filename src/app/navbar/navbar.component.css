@@ -92,9 +92,15 @@ main .helper span {
   font-family: 'Roboto', sans-serif;
 }
 
+
+
 #card-img  {
+  
   width: 150px;
   height: 150px;
+  image-resolution: revert;
+
+  
   border-radius: 100%;
   
   

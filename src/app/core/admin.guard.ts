@@ -6,7 +6,7 @@ import { TokenService } from '../common/TokenService';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   
   constructor
   (private tokenService: TokenService) { } 
@@ -16,12 +16,15 @@ export class AuthGuard implements CanActivate {
     
     route :ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.tokenService.getUser().user == null) {
-       return false
-      }
-      return true
-    }
 
-   // unquement quand l'utilisateur est connecter
-  
+
+      
+        if ( this.tokenService.getUser().roles == 'ROLE_USER' || this.tokenService.getUser().roles == null) {
+          
+            return false;
+          }            
+          return true
+          
+  }
+
 }

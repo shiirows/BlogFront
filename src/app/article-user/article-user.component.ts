@@ -45,6 +45,7 @@ export class ArticleUserComponent implements OnInit {
   //fonction pour récuperer les image du formulaire
  
   handleFileInput(event) {
+   
     this.urls = [];
     this.selectedFiles = event.target.files;
     let files = event.target.files;
@@ -53,13 +54,11 @@ export class ArticleUserComponent implements OnInit {
         let reader = new FileReader();
         reader.onload = (e : any) => {
           this.urls.push(e.target.result);
+          
         }
         reader.readAsDataURL(file);
       }
     }
-  
-
-
   }
 
   ngOnInit(): void {

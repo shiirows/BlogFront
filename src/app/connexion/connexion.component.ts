@@ -19,9 +19,9 @@ export class ConnexionComponent implements OnInit {
 
 ngOnInit(): void {
     this.initForm();
-    console.log(this.tokenService.getUser().user)
+   
     if (this.tokenService.getUser().user != null) {
-      this.route.navigate(['/home'])
+      this.route.navigate([''])
     }
 
   }
@@ -44,10 +44,10 @@ ngOnInit(): void {
   public onsubmit() {
     let username: string = this.userForm.get('userName').value;
     let password: string = this.userForm.get('passwordUser').value;
-console.log("coucou")
+
    // APPEL AU SERVICE POUR FAIRE APPAEL AU BACK POUR VERIFIER L'UTILISATEUR
     this.service.signin(username, password).subscribe((param: any) => {
-      console.log(param)
+      
       this.tokenService.saveUser(param)
       //ENREGISTREMENT DU TOKEN DANS LE STORAGE
 
