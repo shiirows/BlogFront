@@ -1,117 +1,65 @@
-<div id="formulaire_total">
-  <div *ngIf="choixAffiche == true">
-    <section>
-      <div class="titre">
-        <h1>Bienvenue a toi Voyageur</h1>
-        <h2>Pour commencer choisie un Continent</h2>
-      </div>
+<div id="formulaireArticle">
 
-      <div class="btn">
-        <div class="case">
-          <input
-            type="radio"
-            id="control_01"
-            name="select"
-            value="1"
-            (click)="valueContinents(1)"
-          />
-          <label for="control_01">
-            <h2 class="btntext">Afrique</h2>
-          </label>
-        </div>
+  <div class="contenair_haut">
 
-        <div class="case">
-          <input
-            type="radio"
-            id="control_02"
-            name="select"
-            value="2"
-            (click)="valueContinents(2)"
-          />
-          <label for="control_02">
-            <h2 class="btntext">Eurasie</h2>
-          </label>
-        </div>
-
-        <div class="case">
-          <input
-            type="radio"
-            id="control_03"
-            name="select"
-            value="3"
-            (click)="valueContinents(3)"
-          />
-          <label for="control_03">
-            <h2 class="btntext">Océanie</h2>
-          </label>
-        </div>
-
-        <div class="case">
-          <input
-            type="radio"
-            id="control_04"
-            name="select"
-            value="4"
-            (click)="valueContinents(4)"
-          />
-          <label for="control_04">
-            <h2 class="btntext">Amérique du Nord</h2>
-          </label>
-        </div>
-
-        <div class="case">
-          <input
-            type="radio"
-            id="control_05"
-            name="select"
-            value="5"
-            (click)="valueContinents(5)"
-          />
-          <label for="control_05">
-            <h2 class="btntext">Amérique du Sud</h2>
-          </label>
-        </div>
-
-        <div class="case">
-          <input
-            type="radio"
-            id="control_06"
-            name="select"
-            value="6"
-            (click)="valueContinents(6)"
-          />
-          <label for="control_06">
-            <h2 class="btntext">Antarctique</h2>
-          </label>
-        </div>
-      </div>
-    </section>
-
-    <div class="titre_secondaire" *ngIf="continentsId != null">
-      <h1>Choisie ton pays</h1>
+    <div class="titreForm" >
+      <h1>Pour commencez votre artcile <hr> Selectionner un continents puis un pays </h1>
     </div>
 
-    <div class="content">
-      <div class="case-pays" *ngFor="let item of paysIdContinants">
-        <input
-          type="radio"
-          id="{{ item.id }}"
-          name="selects"
-          value="{{ item.id }}"
-          (click)="valuePays(item.id)"
-        />
-        <label class="pays" for="{{ item.id }}">
-          <h2>{{ item.name }}</h2>
-        </label>
-      </div>
-    </div>
+    <div class="select_destination">
 
-    <div class="validation" *ngIf="paysId != null">
-      <button id="validform" (click)="onSubmit()">Valider mon Choix</button>
-    </div>
+      
+
+    <div class="continents" >
+
+      <select class="selectitem" (change)="onChange($event.target.value)">
+        <option class="text" value="0">Quelle continent ?</option>
+        <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
+      </select>
   </div>
+  
+  <div class="pays" > 
+    
+    <select class="selectitem" (change)="onChange2($event.target.value)">
+      
+      <option class="text" value="0">Quelle pays</option>
+      <option  *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
+    </select>
+  </div>
+
+     </div>
+
+
+   
+      <h1 class="titre_picture" >Selectionner vos plus beau clicher ! <br> 10 photo maximum</h1>
+      
+        <div>
+          <input
+            class="input-file"
+            accept=".jpg,.png,.PNG,.webp,.svg"
+            type="file"
+            id="file1"
+            name="file"
+            multiple="multiple"
+           
+            (change)="handleFileInput($event)"
+          />
+        </div>
+        
+        <div class="image-select" > 
+          <img class="image"*ngFor="let image of urls" [src]="image" alt="" width="110" />
+        </div>
+  
+
+
+</div>
+
+    
+ 
   <!-- Formulaire pour le titre et le contenue de l'article  -->
-  <div *ngIf="choixAffiche == false">
+  <div class="container">
+
+   
     <form
       (ngSubmit)="artcileForm.valid && onValid()"
       [formGroup]="artcileForm"
@@ -119,31 +67,14 @@
       class="topBefore"
     >
       <div>
-        <div class="choix-image">
-          <div>
-            <input
-              onchange="console.log(this.files)"
-              accept=".jpg,.png,.PNG,.webp,.svg"
-              type="file"
-              id="file1"
-              name="file"
-              multiple="multiple"
-              (change)="handleFileInput($event)"
-            />
-          </div>
-          <div></div>
-          <div>
-            <img *ngFor="let image of urls" [src]="image" alt="" width="280" />
-          </div>
-        </div>
-
-        <div class="container">
+       
+        <div >
           <div class="row">
-            <h1>Partager votre aventure</h1>
+            
           </div>
           <div class="row">
             <h4 style="text-align: center">
-              toutes histoires commence par un titre !
+              Choisiser un titre pour votre article !
             </h4>
           </div>
           <div class="row input-container">

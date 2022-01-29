@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
 import { map, multicast } from 'rxjs/operators';
+import { Article } from '../model/Article';
 
 @Injectable({
   providedIn: 'root',
@@ -22,14 +23,7 @@ export class ArticleService {
 
   public urlApiUpload: string = "http://localhost:8080/api/file/";
 
-  public urlCreateArticle: string = "http://localhost:8080/api/post/";
 
- 
-  
- 
-
-
-  
 
   //Fonction qui permet de créer un article
   public createArticle(article: CreationArticle): Observable<any> {
@@ -68,11 +62,8 @@ public getArticlePays(id : number): Observable<any> {
 
   //Fonction qui permet de récupérer un article par son id
   public getArticleById(id: number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'view/' + id, this.httpOptions );
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
+   return this.http.get<Article>(this.urlApi + 'view/' + id, this.httpOptions );
+  
   }
 
    //Fonction qui permet de récupérer les article de l'utilisateur
@@ -140,7 +131,7 @@ public getArticlePays(id : number): Observable<any> {
   formData.append('titre', article.titre);
   formData.append('content', article.content);
 
-  return this.http.post(this.urlCreateArticle + 'create' , formData  )
+  return this.http.post(this.urlApi + 'create' , formData  )
 
 }
 

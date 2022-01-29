@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent }, 
   { path: 'contacte', component: ContacteComponent },
-  { path: 'article', component: ArticleComponent },
+  { path: 'article/:id', component: ArticleComponent },
   { path: 'articleuser', component: ArticleUserComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilsComponent , canActivate: [AuthGuard]},
   { path: 'activation', component: ActivationComponent },

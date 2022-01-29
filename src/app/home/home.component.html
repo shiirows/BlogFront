@@ -10,14 +10,14 @@
 
 <div class="continents" >
     <select class="selectitem" (change)="onChange($event.target.value)">
-      <option class="text" value="0">Select a continent</option>
+      <option class="text" value="0">select a continent</option>
       <option *ngFor="let category of continents" class="text" [value]="category.id">{{category.name}}</option>
     </select>
 </div>
 
 <div class="pays" > 
   <select class="selectitem" (change)="onChange2($event.target.value)">
-    <option class="text" value="0">Select a pays</option>
+    <option class="text" value="0">select a country</option>
     <option  *ngFor="let subcategory of pays" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
   </select>
 </div>
@@ -31,7 +31,7 @@
     <div  class="card">
       <div class="side front">
         <p class="name"> {{item.firstname}} {{item.name}}</p>
-        <div [style.background-image]="'url('+ item.file + ')'" class="img"></div>
+        <div [style.background-image]="'url('+ item.files + ')'" class="img"></div>
         <div class="info">
           
           <h2>   {{item.pays.name}}</h2>
@@ -41,8 +41,9 @@
 
 
         </div>
-      <button (click)="sendId(item.id)" class="btn btn-primary">Voir plus</button>
-        
+
+      <button (click)="sendId(item.id)" class="btn btn-primary">See more</button>
+      
 
       </div>
     </div>

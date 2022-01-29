@@ -17,9 +17,30 @@
         <div *ngIf="userForm.get('username').touched && userForm.get('username').errors" class="invalid-feedback">
           </div>
         </fieldset>
+
+        <fieldset class="name" for="name">
+          <h1></h1>
+        <input  type="text" placeholder="name"
+        formControlName="name" 
+        id="name" name="name" 
+        [ngClass]="{'is-invalid':userForm.get('name').touched && userForm.get('username').errors}" />
+        <div *ngIf="userForm.get('name').touched && userForm.get('name').errors" class="invalid-feedback">
+          </div>
+        </fieldset>
+
+        <fieldset class="firstname" for="firstname">
+          <h1></h1>
+        <input  type="text" placeholder="firstname"
+        formControlName="firstname" 
+        id="firstname" name="firstname" 
+        [ngClass]="{'is-invalid':userForm.get('firstname').touched && userForm.get('firstname').errors}" />
+        <div *ngIf="userForm.get('firstname').touched && userForm.get('firstname').errors" class="invalid-feedback">
+          </div>
+        </fieldset>
+        
         
         <fieldset class="email" for="email">
-        <input type="email" formControlName="email" id="email" name="user_mail" 
+        <input type="email" formControlName="email" id="email" name="user_mail" placeholder="email"
         [ngClass]="{'is-invalid':userForm.get('email').touched && userForm.get('email').errors}" />
         <div *ngIf="userForm.get('email').touched && userForm.get('email').errors" class="invalid-feedback">
         </div>

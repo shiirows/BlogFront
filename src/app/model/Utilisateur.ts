@@ -27,12 +27,6 @@ export class Utilisateur {
         
     }
     
-    public setUsername(username: string): string {
-       return  this.username = username;
-    }
-
-    public setEmail(email: string): string {
-        return this.email = email
-    }
+   
 
 }

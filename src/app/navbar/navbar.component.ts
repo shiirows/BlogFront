@@ -5,71 +5,70 @@ import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model/Utilisateur';
 import { AuthentificationService } from '../common/AuthentificationService';
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(
+    private route: Router,
+    private serviceToken: TokenService,
+    private service: AuthentificationService
+  ) {}
 
-  constructor(private route: Router,private serviceToken : TokenService,private service: AuthentificationService,) { }
+  public urlfiles: string = 'http://localhost:8080/api/file/filename/';
+  public estConnecter: any[] = [];
+  public isAdmin: boolean = false;
+  public avatarUser: any;
+  public user: any;
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
-  public estConnecter :any [] = [];
-  public isAdmin :boolean = false;
-  public avatarUser :any;
-  public user : any
-
-
-//VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
-    public userAfiche() {
-    if(this.serviceToken.getUser().user == null){
-      this.estConnecter = null;    
-    }else{
+  //VERIFICATION DE L'EXISTANCE D'UN UTILISATEUR CONNECTER POUR LUI AFFICHER LA BONNE BARRE DE NAVIGATION
+  public userAfiche() {
+    if (this.serviceToken.getUser().user == null) {
+      this.estConnecter = null;
+    } else {
       this.estConnecter = [this.serviceToken.getUser().user];
-     
-     
     }
     //VERIFICATION DU ROLE DE L'UTILISATEUR EN COUR POUR LUI AFFICHER OU PAS LE BOUTON ADMIN
-    if(this.serviceToken.getUser().roles != "ROLE_USER" && this.serviceToken.getUser().user != null )  {
-      this.isAdmin = true
-  
+    if (
+      this.serviceToken.getUser().roles != 'ROLE_USER' &&
+      this.serviceToken.getUser().user != null
+    ) {
+      this.isAdmin = true;
     }
   }
 
-  
   ngOnInit(): void {
     this.userAfiche();
-  this.afficheImage()
- 
-  
-
+    this.afficheImage();
   }
-
 
   // FONCTION POUR AFFICHER L'IMAGE DE L'UTILISATEUR CONNECTER
   public afficheImage() {
-    if(this.serviceToken.getUser().user == null){
+    if (this.serviceToken.getUser().user == null) {
       return null;
-    }else{
-      this.avatarUser = this.urlfiles + this.serviceToken.getUser().user.avatar
+    } else {
       this.user = this.serviceToken.getUser().user;
-     
-   
-         sessionStorage.setItem('url',(this.avatarUser));
-      
     }
+
+    if (sessionStorage.getItem('url') == null) {
+      sessionStorage.setItem(
+        'url',
+        this.urlfiles + this.serviceToken.getUser().user.avatar
+      );
+     
+    }
+
+    this.avatarUser = sessionStorage.getItem('url');
   }
 
-
-  // FONCTION POUR EFFACE LE  STORAGE ET SE DECONNECTER 
+  // FONCTION POUR EFFACE LE  STORAGE ET SE DECONNECTER
   public effacerStorage() {
-    
     this.avatarUser = [];
-    window.sessionStorage.clear()
-    this.estConnecter = null
+    window.sessionStorage.clear();
+    this.estConnecter = null;
     this.route.navigate(['']);
-    
+    this.isAdmin = false;
   }
 }

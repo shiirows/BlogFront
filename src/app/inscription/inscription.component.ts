@@ -29,6 +29,8 @@ export class InscriptionComponent implements OnInit {
     this.userForm = this.formB.group({
       
       username: ['', [ Validators.maxLength(45), Validators.minLength(3)]],
+      name : ['', [ Validators.maxLength(45), Validators.minLength(2)]],
+      firstname : ['', [ Validators.maxLength(45), Validators.minLength(2)]],
       email: ['', [ Validators.email]],
       password: ['', [ Validators.minLength(8),Validators.maxLength(45)]],
       password2: ['', [Validators.minLength(8),Validators.maxLength(45)]], 
@@ -69,11 +71,15 @@ export class InscriptionComponent implements OnInit {
     
     const username: string = this.userForm.get('username').value;
 
+    const name: string = this.userForm.get('name').value;
+
+    const firstname: string = this.userForm.get('firstname').value;
+
     const email: string = this.userForm.get('email').value;
 
     const password: string = this.userForm.get('password').value;
 
-    let userr:UtilisateurInscription  = new UtilisateurInscription(username,password,email)
+    let userr:UtilisateurInscription  = new UtilisateurInscription(name,firstname,username,password,email)
     
     this.service.signup(userr).subscribe(
       (data) => {

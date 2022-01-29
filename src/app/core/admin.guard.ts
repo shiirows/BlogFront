@@ -19,12 +19,11 @@ export class AdminGuard implements CanActivate {
 
 
       
-        if ( this.tokenService.getUser().roles == 'ROLE_USER' || this.tokenService.getUser().roles == null) {
+        if ( this.tokenService.getUser().roles.toString() != ['ROLE_USER','ROLE_ADMIN'] || this.tokenService.getUser() == null) {
           
             return false;
           }            
           return true
-          
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Article } from '../model/Article';
+
 import { ArticleService } from './../common/articleService';
 import { NgModule } from '@angular/core';
 import { CreationArticle } from './../model/creationArticle';
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.serviceArticle.getContinentList().subscribe(
       (data) => {
         this.continents = data;
-        console.log(this.continents);
+       
       },
       (error) => {
         console.log(error);
@@ -67,9 +67,7 @@ this.idcontinents = event;
     this.serviceArticle.getArticleByContinent(event).subscribe(
       (data) => {
         this.listArticles = data;
-        this.listArticles.forEach(element => {
-          element.file = this.urlfiles + element.file[0];
-        });
+        this.ulrFiles()
 
       })
 
@@ -78,7 +76,7 @@ this.idcontinents = event;
     this.serviceArticle.getPays(event).subscribe(
       (data) => {
         this.pays = data;
-        console.log(this.pays);
+        this. mySortingFunction();
       },
       (error) => {
         console.log(error);
@@ -94,14 +92,11 @@ this.idcontinents = event;
     if (event == 0) {
       this.onChange(this.idcontinents);
     }
-    console.log(event);
+  
     this.serviceArticle.getArticlePays(event).subscribe(
       (data) => {
         this.listArticles = data;
-        this.listArticles.forEach(element => {
-          element.file = this.urlfiles + element.file[0];
-        });
-        console.log(this.listArticles);
+       this.ulrFiles()
       }
     );
 
@@ -111,43 +106,58 @@ this.idcontinents = event;
 
   
 
-//FONCTION QUI PERMET D'ENVOYER L'ID DE L'ARTICLE DANS ARTICLE.COMPONENT.TS PAR LE LOCALSTORAGE
+//FONCTION QUI PERMET D'ENVOYER L'ID DANS LA ROUTE ARTICLE
+
   public sendId(id : number) {
-    localStorage.setItem('idArticle' , id.toString());
-    console.log(localStorage.getItem('idArticle'));
-    this.route.navigate(['article']);
-    
+
+    this.route.navigate(['/article', id]);
+
   }
 
 
-
-// -------------------------------------------------- Supression d'un l'articles --------------------------------------------------
-
-
-  public deleteArticle(id: number) {
-    this.serviceArticle.deleteArticle(id).subscribe((data) => {
-      console.log(data + 'article supprimé');
-
-    });
-    location.reload();
-    
-  }
 // -------------------------------------------------- affichage de tout les articles --------------------------------------------------
   public afficheArticle(): any {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
-      console.log(this.listArticles);
-      this.listArticles.forEach(element => {
-        element.file = this.urlfiles + element.file[0];
-     
-      });
-
-
+      this.ulrFiles()
+      this.sortByDate() 
       // afficher les articles du plus récent au plus ancien
-      this.listArticles.sort((a, b) => {
-        return b.id - a.id;
-        
-      });
+      
+    });
+  }
+
+
+  //fonction pour trier les articles par ordre de creation
+public sortByDate() {
+  this.listArticles.sort((a, b) => {
+    return b.id - a.id;
+    
+  });
+}
+
+    
+// fonction pour trier les pays par ordre alphabetique
+  public  mySortingFunction()  {
+    this.pays.sort(function(a, b) {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }    
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    
+  }
+
+
+  //fonction pour ajouter l'url au image
+
+  public ulrFiles(){
+    this.listArticles.forEach(element => {
+      element.files = this.urlfiles + element.files[0];
     });
   }
 
@@ -155,6 +165,8 @@ this.idcontinents = event;
 
 
   ngOnInit(): void {
+   
+    
     this.getContinent()
     this.afficheArticle();
   }

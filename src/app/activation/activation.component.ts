@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthentificationService } from '../common/AuthentificationService';
 
 @Component({
@@ -9,7 +9,10 @@ import { AuthentificationService } from '../common/AuthentificationService';
 })
 export class ActivationComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,private authService:AuthentificationService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private authService:AuthentificationService,
+    private routeNav: Router) { }
 
  
   public id : number= 0;
@@ -32,8 +35,10 @@ export class ActivationComponent implements OnInit {
   public onSubmit(){
     this.authService.activation(this.id ,this.idActivation)
     .subscribe((param) => {
-      console.log(param)
+     
     });
+
+    this.routeNav.navigate(['/connexion']);
   }
 
 }

@@ -50,7 +50,7 @@ export class AuthentificationService {
         return this.http.get(this.urlApi + "deconnexion");
     }
 
-    //METHODE POUR LES MISE A JOUR DU PROFIL TOKEN
+    //METHODE POUR LES MISE A JOUR DU PROFIL
 
     public update(userUpdate : User ): Observable<any> {
         return this.http.post(this.urlApi + "update"  ,  userUpdate,  this.httpOptions);
@@ -61,7 +61,7 @@ export class AuthentificationService {
     public updateUser(file : File): Observable<any> {
         const formData: FormData = new FormData();
         formData.append('file', file);
-        return this.http.post(this.urlApiUpload + "upload"   , formData);
+        return this.http.post(this.urlApi + "avatar"   , formData );
 
          
     }

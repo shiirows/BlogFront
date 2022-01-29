@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ArticleService } from '../common/articleService';
 import { AuthentificationService } from '../common/AuthentificationService';
+import { Article } from '../model/Article';
 
 @Component({
   selector: 'app-article',
@@ -9,17 +13,17 @@ import { AuthentificationService } from '../common/AuthentificationService';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
+
   constructor(
     private serviceArticle: ArticleService,
-    private serviceAuth: AuthentificationService
+    private route: ActivatedRoute,
   ) {}
 
   public urlfiles: string = 'http://localhost:8080/api/file/filename/';
 
-  public idArticle: string[] = [localStorage.getItem('idArticle')];
-  public listArticles: number = +this.idArticle;
+  public articleId: number;
   public afficheArticle: any;
-  public getAvatar: string;
+
 
   public imagearticle: any[] = []; // url de l'image
 
@@ -27,35 +31,42 @@ export class ArticleComponent implements OnInit {
   public avatar: any;
 
   ngOnInit() {
+    this.route.params.subscribe((params : ParamMap) => {
+      this.articleId = params['id'];
+    });
     this.getArticles();
+      
   }
 
   // -------------------------------------------------- appel de l'articles par l'id --------------------------------------------------
 
-  public getArticles() {
-    return this.serviceArticle
-      .getArticleById(this.listArticles)
-      .subscribe((data) => {
-        this.afficheArticle = [data];
-
-        this.afficheArticle.forEach((element) => {
-          element.avatar = this.urlfiles + element.avatar;
-          console.log(element); // on recupere le nom de l'avatar du user fichier
-          this.avatar = [element];
-        });
+ public getArticles() {
+    this.serviceArticle.getArticleById(this.articleId ).subscribe((param: Article) => {
+        this.afficheArticle = [param];
+       console.log(this.afficheArticle);
+        this.getAvatar()
         this.getImage();
       });
   }
 
   // -------------------------------------------------- appel de l'avatar de l'utilisateurs  --------------------------------------------------
+public getAvatar(){
+  this.afficheArticle.forEach((element) => {
+    element.avatar = this.urlfiles + element.avatar;
+
+  });
+}
+
 
   // -------------------------------------------------- appel des image de l'article --------------------------------------------------
 
   public getImage() {
     this.afficheArticle.forEach((element) => {
-      element.file.forEach((element) => {
+      element.files.forEach((element) => {
         element = this.urlfiles + element;
+        
         this.imagearticle.push(element);
+        
       });
     });
   }

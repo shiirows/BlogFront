@@ -12,8 +12,8 @@
             <div class="card-body">
               <div  class="card-img-actions mx-auto" id="cont" >
                 <div class="card-img-top img-fluid" >                
-                  <img *ngFor = "let image of avatarUser"  id="card-img"    [src]="image.url" alt="profil picture" style="cursor: pointer" onclick="document.getElementById('file').click();" >
-                  <p *ngFor="let item of res" > {{item.name}} {{item.firstname}} </p>
+                  <img   id="card-img"    [src]="avatarUser" alt="profil picture" style="cursor: pointer" onclick="document.getElementById('file').click();" >
+                  
                 </div>
               
                 <div class="file-change">
