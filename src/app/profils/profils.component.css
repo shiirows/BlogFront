@@ -12,7 +12,7 @@
   }
 
  .bouton {
-    background-color: #868686;
+    background-color: #000000;
     
     border: none;
     color: white;
@@ -32,16 +32,14 @@
   .Main-card
   {
     display: inline-block;
-    width: 1000px;
+    width: 1200px;
     height: 580px;
     position: absolute;
-    left: 50%;
-    margin-left: -500px;
-    top: 50%;
-    margin-top: -450px;
+    left: 30%;
+    margin-top: 50px;
+
     border-radius: 20px;
     background-color: white;
-  
   }
   .Main-card .card-head{
   
@@ -60,6 +58,7 @@
     width: 200px;
     height: 200px;
   }
+  
   
   .Main-card .summery{
   
@@ -101,6 +100,13 @@
   .summery .about a:hover{
     box-shadow: 2px 2px 19px 1px white;
   }
+
+  .table{
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    margin-top: -80px;
+  }
   
   .summery .table table{
     text-transform: capitalize;
@@ -114,10 +120,10 @@
   
   .summery .table tr td:first-child{
     font-weight: bold;
-    color: #585858;
+    color: #000000;
   }
   .summery .table tr td:last-child{
-    color: grey;
+    color: rgb(0, 0, 0);
   }
 
   .titre{
@@ -165,6 +171,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     
+    
 
   }
   
@@ -174,13 +181,14 @@
   .cardContainer {
     display: flex;
     flex-direction: row;
-    width: 260px;
-    height: 380px;
-   
+    width: 300px;
+    height: 420px;
+    min-width: 300px;
+    min-height: 400px;
     margin-left: 60px;
     margin-top: 20px;
-    
     perspective: 1000px;
+    
   }
   
 
@@ -238,6 +246,31 @@
   }
   .front .img1 {
     background-image: url(http://i.imgur.com/1aE1nMA.jpg);
+  }
+
+
+
+  button {
+    background-color: #000000;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+  }
+  
+  button:hover,
+  button:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
   }
   
   

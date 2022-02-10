@@ -19,9 +19,10 @@ export class ArticleService {
 
   constructor(private http: HttpClient) {}
 
-  public urlApi: string = 'http://localhost:8080/api/post/';
+  public urlApi: string = 'http://localhost:8080/api/article/';
 
   public urlApiUpload: string = "http://localhost:8080/api/file/";
+
 
 
 
@@ -61,8 +62,9 @@ public getArticlePays(id : number): Observable<any> {
 
 
   //Fonction qui permet de récupérer un article par son id
+  
   public getArticleById(id: number): Observable<any> {
-   return this.http.get<Article>(this.urlApi + 'view/' + id, this.httpOptions );
+   return this.http.get<Article>(this.urlApi + 'view/' + id );
   
   }
 
@@ -106,12 +108,9 @@ public getArticlePays(id : number): Observable<any> {
 
  
   // cette fonction permet de récupérer tout les continents
+
   public getContinentList(): Observable<any> { 
-    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/', this.httpOptions); 
-    const traitement = (param: any) => { 
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
+    return this.http.get(this.urlApi + 'continents/' , this.httpOptions);
   }
 
 
@@ -143,6 +142,12 @@ public getIamgeArticle(filename : String[]): Observable<any> {
     
 return this.http.get(this.urlApiUpload + "filename/" + filename ,  { responseType: 'blob', observe: 'response' });
 
+}
+
+// METHODE POUR ENVOYER UN COMMMENTAIRE
+
+public addCommentaire( id : number, commentaire : string) : Observable<any> {
+  return this.http.post(this.urlApi + 'commentaire' , commentaire , this.httpOptions);
 }
 
 

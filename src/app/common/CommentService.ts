@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
 import { map, observeOn } from 'rxjs/operators';
+import { commentaire } from '../model/Comment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,22 +17,20 @@ export class CommentService {
   constructor(private http: HttpClient) {}
 
   
-  public urlApiComment: string = 'http://localhost:8080/api/comment/';
+  public urlApiComment: string = 'http://localhost:8080/api/comments/';
+  
  
  
  
  
  //Fonction qui permet de creer un commentaire
-  public createComment(comment: any): Observable<any> {
-    return this.http.post(this.urlApiComment + 'create', comment, this.httpOptions);
-  }
+ public createComment( id : number, comment : string) : Observable<any> {
+  return this.http.post(this.urlApiComment + 'create/' + id , {comment} , this.httpOptions);
+}
 
   //Fonction qui permet de récupérer les commentaires d'un article
   public getComments(id: number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApiComment + 'view/' + id
-    );
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
+    return this.http.get<commentaire>(this.urlApiComment + 'view/' + id);
   }
+
+}

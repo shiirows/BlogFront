@@ -1,5 +1,5 @@
 
-  <nav class="menu" tabindex="0">
+  <nav class="menu" tabindex="0" style=" opacity: 0.9;" >
     <div>
     <div  class="smartphone-menu-trigger">
     <header  class="avatar">
@@ -24,37 +24,38 @@
     </div>
     <ul>
 
-      <li tabindex="0" class="icon-dashboard">
+      <li tabindex="0" >
         <a class="titre"  [routerLink]="['']" >Home</a>
       </li>
 
-      <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
-        <a class="titre"  [routerLink]="['/articleuser']" >écrire un article</a>
+      <li *ngIf="estConnecter != null" tabindex="0" >
+        <a class="titre"  [routerLink]="['/articleuser']" >Share a trip</a>
       </li>
 
 
-      <li *ngIf="estConnecter != null" tabindex="0" class="icon-customers">
+      <li *ngIf="estConnecter != null" tabindex="0">
         <a class="titre"  [routerLink]="['/profil']" >Profil</a>
       </li>
 
-      <li *ngIf="estConnecter == null" tabindex="0" class="icon-users">
-        <a href="#0" class="titre"[routerLink]="['/inscription']" >Inscription</a>
+      <li *ngIf="estConnecter == null" tabindex="0" >
+        <a href="#0" class="titre"[routerLink]="['/connexion']" >Sign-in</a>
+        
       </li>
 
-      <li *ngIf="estConnecter == null" tabindex="0" class="icon-settings">
-        <a href="#0" class="titre"[routerLink]="['/connexion']" >Connexion</a>
+      <li *ngIf="estConnecter == null" tabindex="0" >
+        <a href="#0" class="titre"[routerLink]="['/inscription']" >Sign-up</a>
       </li>
 
-      <li *ngIf="estConnecter != null" tabindex="0" class="icon-settings">
+      <li *ngIf="estConnecter != null" tabindex="0" >
         <a  class="titre" (click)="effacerStorage()"
-           >Deconnexion</a>
+           >Logout</a>
     </li>
 
-    <li tabindex="0" class="icon-dashboard">
+    <li tabindex="0" >
       <a class="titre" [routerLink]="['/contacte']" >Contact</a>
     </li>
 
-    <li *ngIf="isAdmin == true" tabindex="0" class="icon-dashboard">
+    <li *ngIf="isAdmin == true" tabindex="0">
       <a class="titre" [routerLink]="['/admin']" >Admin</a>
     </li>
 

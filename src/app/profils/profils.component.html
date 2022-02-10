@@ -7,7 +7,7 @@
       <div *ngFor="let item of couvertureUser" class="card-head" [style.background-image]="'url(' + item.url + ')'" >
         <img   id="card-img"    [src]="avatarUser" alt="profil picture">
         
-        <h1 *ngFor="let item of user" >{{item.name}} {{item.firstname}}</h1>
+        <h1 *ngFor="let item of user" class="name" > </h1>
 
       </div>
 
@@ -24,11 +24,12 @@
         <div *ngFor="let item of user" class="table">
          
           <table>
-           
+
             <tr>
-              <td>Pays</td>
-              <td>{{item.country}}</td>
+              <td>{{item.name}} {{item.firstname}}</td>
             </tr>
+           
+            
             <tr>
               <td>Ville</td>
               <td>{{item.city}}</td>
@@ -64,11 +65,11 @@
       
               </div>
             <button (click)="sendId(item.id)" class="btn btn-primary">Voir plus</button>
-              
+              <button (click)="deleteArticle(item.id)" class="btn btn-primary">suprimer</button>
       
             </div>
           </div>
-          <p (click)="deleteArticle(item.id)" type="button" style="cursor: pointer;" >🗑️</p>
+          
         </div>
       </div>
 

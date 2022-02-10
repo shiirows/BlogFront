@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: rgb(26, 26, 26);
+
+    background: url("/assets/image/italy.jpg") no-repeat center center fixed;
+   
+  /*  background-color: rgb(26, 26, 26);*/
 }

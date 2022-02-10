@@ -63,7 +63,7 @@ public articleUser() {
     (data) => {
       this.listArticles = data;
       this.listArticles.forEach(element => {
-        element.file = this.urlfiles + element.files[0];
+        element.file = this.urlfiles + element.file;
       });
       console.log(this.listArticles)
     }

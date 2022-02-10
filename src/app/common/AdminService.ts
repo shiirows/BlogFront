@@ -23,7 +23,7 @@ export class AdminService {
  //Fonction pour créer un pays
 
     public createPays(name : String, id: number): Observable<any> {
-        return this.http.post(this.urlApi + 'createPays/'+ id  ,{name}  , this.httpOptions);
+        return this.http.post(this.urlApi + 'createpays/'+ id  ,{name}  , this.httpOptions);
         }
 
 

@@ -57,24 +57,7 @@ main .helper span {
   cursor: pointer;
   
 }
-.menu ul li.icon-dashboard {
-  background-image: url("http://www.entypo.com/images//home.svg");
-  font-size: 19px ;
-  
-  
-}
-.menu ul li.icon-customers {
-  background-image: url("http://www.entypo.com/images//briefcase.svg");
-  font-size: 19px ;
-}
-.menu ul li.icon-users {
-  background-image: url("http://www.entypo.com/images//users.svg");
-  font-size: 19px ;
-}
-.menu ul li.icon-settings {
-  background-image: url("http://www.entypo.com/images//tools.svg");
-  font-size: 19px ;
-}
+
 .menu ul li:hover {
   background-color: rgba(0, 0, 0, 0.1);
   font-size: 19px ;
