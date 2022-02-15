@@ -1,7 +1,25 @@
-
-
 /* Formulaire recherche */
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  margin-left: 200px;
+  
+
+
+}
+
+.container_selecteur {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  
+}
 
 
 .row {
@@ -9,57 +27,52 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 25px;
+
   
-  margin-left: 300px;
-  margin-right: 100px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 20px;
   color: #ffffff;
-
 }
 
 hr {
   border: 0;
- margin-left: 300px;
+  margin-left: 300px;
   max-width: 80%;
   background-position: 50%;
   box-sizing: border-box;
 }
 
 .fade-2 {
-  border-width: 0 0 2px;
+  border-width: 0 0 3px;
   color: skyblue;
-  border-image: linear-gradient(90deg, rgba(135, 206, 235, 0), skyblue 50%, rgba(135, 206, 235, 0) 100%) 0 0 100%;
+  border-image: linear-gradient(
+      90deg,
+      rgba(135, 206, 235, 0),
+      skyblue 50%,
+      rgba(135, 206, 235, 0) 100%
+    )
+    0 0 100%;
   border-style: solid;
 }
 
-
-.selecteur{
+.selecteur {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 30px;
-  margin-left: 300px;
-  margin-right: 100px;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  margin-bottom: 80px;
+  height: 220px;
+  width: 50%;
   border-radius: 15px;
   border: 2px solid rgb(255, 255, 255);
-  background-image: url("../../assets/image/terre4.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
- 
+  background-color: rgb(54, 52, 52);
+  opacity: 0.95;
 }
-
-
 
 .continents {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
- 
 }
 
 .pays {
@@ -68,38 +81,32 @@ hr {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  
 }
 
 .selectitem {
-
   padding: 5%;
   border-radius: 15px;
   border: 2px solid rgb(255, 255, 255);
   font-size: 25px;
   width: 300px;
-
 }
 
-.text{
+.text {
   font-size: 17px;
-
 }
-
-
-
-
-
-
 
 /* Language: css Article */
 
-
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
-h2, p, ul, li {
+h2,
+p,
+ul,
+li {
   margin: 0;
   padding: 0;
 }
@@ -121,9 +128,7 @@ h2 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 300px;
-  
-  
+
 }
 
 .cardContainer {
@@ -135,9 +140,8 @@ h2 {
   min-height: 400px;
   margin-left: 60px;
   margin-top: 20px;
- 
+
   perspective: 1000px;
-  
 }
 
 .card {
@@ -145,7 +149,7 @@ h2 {
   width: 100%;
   height: 100%;
   cursor: pointer;
- 
+
   transform-style: preserve-3d;
   transform: translateZ(-100px);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -177,20 +181,19 @@ h2 {
   background-color: white;
   text-align: center;
   padding-top: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .card .front {
   z-index: 2;
-  
 }
 
-.name{
+.name {
   font-size: 20px;
   font-weight: bold;
   color: #333333;
 }
 
-.titre{
+.titre {
   font-size: 20px;
   font-weight: bold;
   color: #333333;
@@ -198,7 +201,6 @@ h2 {
 }
 
 .card .info {
-  
   padding: 1px;
 }
 
@@ -224,7 +226,7 @@ button {
   border-width: 2px;
   cursor: pointer;
   border-radius: 50px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin-top: 10px;
 }
 
@@ -233,4 +235,3 @@ button:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
   transform: translateY(-0.25em);
 }
-

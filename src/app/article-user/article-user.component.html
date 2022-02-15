@@ -3,7 +3,7 @@
   <div class="contenair_haut">
 
     <div class="titreForm" >
-      <h1>Pour commencez votre artcile <hr> Selectionner un continents puis un pays </h1>
+      <h1>To start your article <hr> Select a continent then a country</h1>
     </div>
 
     <div class="select_destination">
@@ -13,7 +13,7 @@
     <div class="continents" >
 
       <select class="selectitem" (change)="onChange($event.target.value)">
-        <option class="text" value="0">Quelle continent ?</option>
+        <option class="text" value="0">continent</option>
         <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
       </select>
   </div>
@@ -22,7 +22,7 @@
     
     <select class="selectitem" (change)="onChange2($event.target.value)">
       
-      <option class="text" value="0">Quelle pays</option>
+      <option class="text" value="0">country</option>
       <option  *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
     </select>
   </div>
@@ -31,7 +31,7 @@
 
 
    
-      <h1 class="titre_picture" >Selectionner vos plus beau clicher ! <br> 10 photo maximum</h1>
+      <h1 class="titre_picture" >add your best photos,  maximum of pictures 10 </h1>
       
         <div>
           <input
@@ -66,14 +66,12 @@
       id="form"
       class="topBefore"
     >
-      <div>
+      
        
-        <div >
+        <div class="input_text">
+          
           <div class="row">
-            
-          </div>
-          <div class="row">
-            <h4 style="text-align: center">
+            <h4>
               Choisiser un titre pour votre article !
             </h4>
           </div>
@@ -114,11 +112,11 @@
             </div>
 
             <div class="col-xs-12">
-              <button type="submit" id="submit">SUBMIT</button>
+              <button class="btn_valid" type="submit" id="submit">SUBMIT</button>
             </div>
           </div>
         </div>
-      </div>
+     
     </form>
   </div>
 </div>

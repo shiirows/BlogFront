@@ -52,14 +52,12 @@ export class NavbarComponent implements OnInit {
       this.user = this.serviceToken.getUser().user;
     }
 
-    if (sessionStorage.getItem('url') == null) {
-      sessionStorage.setItem(
-        'url',
-        this.urlfiles + this.serviceToken.getUser().user.avatar
-      );
+    if (sessionStorage.getItem('url') == null ) {
+      sessionStorage.setItem('url', this.urlfiles + this.serviceToken.getUser().user.avatar);
+ sessionStorage.setItem('urlCouverture', this.urlfiles + this.serviceToken.getUser().user.couverture);
      
     }
-
+    
     this.avatarUser = sessionStorage.getItem('url');
   }
 

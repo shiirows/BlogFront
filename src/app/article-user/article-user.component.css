@@ -28,6 +28,7 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
+  
  border: rgb(255, 255, 255) solid 2px;
  border-radius: 2%;
  padding-left: 50px;
@@ -126,30 +127,63 @@
 
 
 h4 {
-  font-size: 35px;
+  font-size: 30px;
     font-weight: 600;
 
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
-  margin-top: 200px;
+ 
 }
 
 /* ///// inputs /////*/
 
-input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
-    font-size: 0.75em;
-    color: #999;
-    top: -5px;
-    -webkit-transition: all 0.225s ease;
-    transition: all 0.225s ease;
+.input_text {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  
+  flex-direction: column;
+  background-color: #2d2d2d;
+  opacity:  0.95;
+  border-radius: 15px;
+  border: 2px solid rgb(255, 255, 255);
+  margin-top: 160px;
+  width: 900px;
+  height: 700px;
+
+
 }
 
+
+
 .styled-input {
-    float: left;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    
     width: 293px;
     margin: 1rem 0;
-    position: relative;
+    
     border-radius: 4px;
+}
+
+.btn_valid{
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 10px;
+
 }
 
 @media only screen and (max-width: 768px){
@@ -180,8 +214,8 @@ textarea {
     border: 0;
     width: 100%;
     font-size: 1rem;
-    background-color: #2d2d2d;
-    color: white;
+    background-color: #8b8b8b;
+    color: rgb(0, 0, 0);
     border-radius: 4px;
 }
 

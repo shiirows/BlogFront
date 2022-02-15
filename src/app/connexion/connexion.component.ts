@@ -64,7 +64,12 @@ ngOnInit(): void {
       this.messageError = err.message
     })
 
+
 }
 
+public navigateInscription() {
+  this.route.navigate(['/inscription'])
+
+}
 }
 

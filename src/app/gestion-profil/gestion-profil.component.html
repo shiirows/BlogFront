@@ -1,27 +1,36 @@
 <div  class="container ">
-    <div class="main-body ">
-  
-  
-      <!-- /Breadcrumb -->
-      <div class="row gutters-sm mt-5">
 
-        <!-- image rond -->
-
-        <div class="col-md-4 col-sm-12">
+   
           <div class="card">
-            <div class="card-body">
-              <div  class="card-img-actions mx-auto" id="cont" >
-                <div class="card-img-top img-fluid" >                
-                  <img   id="card-img"    [src]="avatarUser" alt="profil picture" style="cursor: pointer" onclick="document.getElementById('file').click();" >
-                  
+
+            <div class="img_user" >
+         
+                <div  >                
+                  <img   id="card-avatar"    [src]="avatarUser" alt="profil picture" style="cursor: pointer" onclick="document.getElementById('fileAvatar').click();" >
                 </div>
-              
+
+                <div  >                
+                  <img   id="card-couv"    [src]="couverture" alt="profil picture" style="cursor: pointer" onclick="document.getElementById('fileCouverture').click();" >
+                </div>
+
+            </div>
+
+
+            
                 <div class="file-change">
                   <input type="file" 
-                  value="coucou"
+                  
                   style="display: none;"
-                  id="file"
+                  id="fileAvatar"
                   (change)="handleFileInput($event.target.files)">
+                </div>
+
+                <div class="file-change">
+                  <input type="file" 
+                  
+                  style="display: none;"
+                  id="fileCouverture"
+                  (change)="handleFileInputCouverture($event.target.files)">
                 </div>
 
                 <div class="col-md-12">
@@ -74,26 +83,20 @@
                           <input formControlName="numberPhone" class="col-sm-5 text-secondary" [value]="user.numberPhone">
                         </div>
                               
-                          <div class="col-sm-12">
+                         
                             <button class="btn btn-info pull-right" type="submit">Modifier</button>
-                          </div>
+                     
           
                       </div>
                     </div>
                   </form>
-                </div>
-
+             
 
               </div>
-            </div>
+           
           </div>
-  
-        
-    
 
-      </div>
-    </div>
-    </div>
+    
   </div>
 
       

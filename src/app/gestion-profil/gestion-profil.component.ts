@@ -23,13 +23,22 @@ export class GestionProfilComponent implements OnInit {
   public user: any = [];
 
   public avatarUser: String;
-
+  public couverture: String;
   public form: any;
-  public test: any;
-
-  public forms: any;
+  public response: any;
+ 
 
   fileToUpload: File | null = null;
+
+
+  ngOnInit(): void {
+    this.onnected();
+    this.getImage();
+    this.intiForm();
+    this. getCouverture();
+
+  }
+
 
   //FONCTION POUR VOIR SI L'UTILISATEUR EST CONNECTE OU NON
 
@@ -41,18 +50,32 @@ export class GestionProfilComponent implements OnInit {
     }
   }
 
-  //envoie l'image a la BDD
+  //envoie l'image de profil a la BDD
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    console.log(this.fileToUpload);
-    this.service.updateUser(this.fileToUpload).subscribe(
+    this.service.updateAvatarUser(this.fileToUpload).subscribe(
       (data) => {},
       (response) => {
-        this.test = response.error.text;
-        console.log(this.test);
-        sessionStorage.setItem('url', this.urlfiles + this.test);
+        this.response = response.error.text;
+        console.log(this.response);
+        sessionStorage.setItem('url', this.urlfiles + this.response);
       
-        this.route.navigate(['/profil']);
+     
+      }
+    );
+  }
+
+  //envoie l'image de profil a la BDD
+  handleFileInputCouverture(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.service.updateCouvertureUser(this.fileToUpload).subscribe(
+      (data) => {},
+      (response) => {
+        this.response = response.error.text;
+        console.log(this.response);
+        sessionStorage.setItem('urlCouverture', this.urlfiles + this.response);
+      
+     
       }
     );
   }
@@ -64,13 +87,13 @@ export class GestionProfilComponent implements OnInit {
     console.log(this.avatarUser);
   }
 
-  ngOnInit(): void {
-    this.onnected();
-    this.getImage();
-    this.intiForm();
-
-    console.log(this.user, 'res');
+  // AFFICHE L'IMAGE DE COUVERTURE
+  public getCouverture() {
+    this.couverture = sessionStorage.getItem('urlCouverture');
+    console.log(this.couverture);
   }
+
+ 
 
   public intiForm() {
     this.form = this.formB.group({

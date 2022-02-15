@@ -1,10 +1,6 @@
 *{
-    margin: 0;
-    padding: 0;
-    text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    box-sizing: border-box;
   }
 
   li{
@@ -39,7 +35,7 @@
     margin-top: 50px;
 
     border-radius: 20px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
   }
   .Main-card .card-head{
   
@@ -48,7 +44,7 @@
     background-position: center;
     padding-top: 50px;
     padding-left: 50px;
-    background-color: #949494;
+   
     height: 60%
   }
 
@@ -64,78 +60,42 @@
   
     padding-top: 50px;
     padding-left: 50px;
-    height: 50%
+    height: 50%;
+    
   }
   
-  .summery .about  h2{
-    text-transform: capitalize;
-  }
-  .summery .about  h2 span
-  {
-    color:black;
-    text-transform: none;
-  }
-  .summery .about{
-    width: 50%;
-    float: left;
-    margin-right: 40px;
-  }
-  
-  .summery .about p{
-    margin: 15px 0 40px 0;
-    line-height: 25px;
-    text-transform: none;
-    color: #585858
-  }
-  .summery .about a{
-    margin-top: 40px;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    border: 1px solid #c7c2c2;
-    border-radius: 5px;
-    box-shadow: 4px 3px 7px 0px #abababb5;
-  }
-  
-  .summery .about a:hover{
-    box-shadow: 2px 2px 19px 1px white;
+ 
+
+  .about {
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin-top: -90px;
   }
 
-  .table{
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
-    margin-top: -80px;
-  }
-  
-  .summery .table table{
-    text-transform: capitalize;
-  }
-  
-  .summery .table table tr td{
-  padding: 6px;
-  min-width: 135px;
-  text-transform: none;
-  }
-  
-  .summery .table tr td:first-child{
-    font-weight: bold;
-    color: #000000;
-  }
-  .summery .table tr td:last-child{
-    color: rgb(0, 0, 0);
-  }
+
+
+
 
   .titre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     text-transform: uppercase;
-    font-size: 20px;
+
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 20px;
   
-    background-color: #abababb5;
+    background-color: #ababab;
+    opacity: 0.9 ;
+    height: 60px;
+    
     border-radius: 10px;
     text-align: center;
+    
   }
   
 

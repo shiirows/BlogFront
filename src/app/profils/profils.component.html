@@ -1,43 +1,23 @@
 
- 
-
-    
     <div class="Main-card"   >
 
-      <div *ngFor="let item of couvertureUser" class="card-head" [style.background-image]="'url(' + item.url + ')'" >
-        <img   id="card-img"    [src]="avatarUser" alt="profil picture">
-        
-        <h1 *ngFor="let item of user" class="name" > </h1>
-
+      <div  class="card-head" [style.background-image]="'url(' + couvertureUser + ')'" >
+        <img   id="card-img"    [src]="avatarUser" alt="profil picture">    
+        <h1 *ngFor="let item of user" class="name" >{{item.name}} {{item.firstname}} </h1>
       </div>
 
-      <li  class="icon-customers">
+      <li class="icon-customers">
             <a class="bouton"  [routerLink]="['/profilGestion']" >Mettre a jour mon profil</a>
           </li>
+
       <div class="summery">
         
         <div *ngFor="let item of user" class="about">
-            <h2>à propos <span>de moi même</span></h2>
+            <h2>à propos de moi même</h2>
             <p>{{item.description}}</p>
-            
           </div>
-        <div *ngFor="let item of user" class="table">
-         
-          <table>
 
-            <tr>
-              <td>{{item.name}} {{item.firstname}}</td>
-            </tr>
-           
-            
-            <tr>
-              <td>Ville</td>
-              <td>{{item.city}}</td>
-            </tr>
-            
-
-          </table>
-        </div>
+       
       </div>
 
 <!-- Article de l'utilisateur-->
@@ -74,7 +54,3 @@
       </div>
 
       </div>
-
-  
-
- 

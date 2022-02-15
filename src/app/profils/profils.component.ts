@@ -23,8 +23,8 @@ export class ProfilsComponent implements OnInit {
   public userCouverture  = this.serviceToken.getUser().user  ;
   public user = [this.serviceToken.getUser().user]  ;
 
-public avatarUser: any  ;
-public couvertureUser : any;
+public avatarUser: String  ;
+public couvertureUser : String;
 
 public listArticles: any = [];
 
@@ -34,7 +34,7 @@ ngOnInit(): void {
   this.afficheCouverture()
   this.afficheImage()
   this.articleUser()
-  console.log(this.user)
+  
   
 }
 
@@ -47,13 +47,7 @@ public afficheImage() {
 
 
 public afficheCouverture() {
-  this.serviceAuth.getAvatar(this.userCouverture.couverture).subscribe(
-    (data ) => {
-     this.couvertureUser = [data];  
-    
-     
-    },
-  )
+  this.couvertureUser = sessionStorage.getItem('urlCouverture');
 }
 
 //----------------------------------fonction pour appeler tout les l'articles du l'utiliateur
