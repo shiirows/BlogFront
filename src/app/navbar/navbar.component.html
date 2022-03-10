@@ -1,27 +1,29 @@
 
   <nav class="menu" tabindex="0" style=" opacity: 0.9;" >
-    <div>
+    
     <div  class="smartphone-menu-trigger">
-    <header  class="avatar">
+   
+    </div>
+
+    <div class="avatar">
       <div class="avt" >
-      <img *ngIf="estConnecter != null" id="card-img"    [src]="avatarUser" alt="profil picture">
+      <img *ngIf="estConnecter != null" class="card-img"    [src]="avatarUser" alt="profil picture">
       
     </div>
     <div>
-      <img *ngIf="estConnecter == null"  id="card-img"  src="assets/image/pictureprofil.png" alt="profil picture">
+      <img *ngIf="estConnecter == null"  class="card-img"  src="assets/image/pictureprofil.png" alt="profil picture">
     </div>
 
     <div *ngFor="let item of estConnecter">
-      <h1 class="name" > {{item.name}} {{item.firstname}} </h1>
+      <p class="name" > {{item.name}} {{item.firstname}} </p>
       </div>
       <!--- afficher le nom -->
 
-      <h2> </h2>
       
-    
-      
-    </header>
+
     </div>
+
+
     <ul>
 
       <li tabindex="0" >
@@ -60,15 +62,7 @@
     </li>
 
 </ul>
-</div> 
 
-
-
-
-
-
-
-    
   </nav>
   
   

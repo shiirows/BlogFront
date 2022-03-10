@@ -41,6 +41,8 @@ export class ArticleComponent implements OnInit {
   public estConnecter: boolean = false;
  
 
+
+
   ngOnInit() {
     
     this.getIdArticle() // recupere l'id de l'article de la route
@@ -49,7 +51,7 @@ export class ArticleComponent implements OnInit {
     this.getArticles();// recupere l'article
     this.initForm()
    
-    
+    console.log(this.imagearticle);
     
   }
 
