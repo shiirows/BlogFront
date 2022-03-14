@@ -38,6 +38,7 @@
       <li *ngIf="estConnecter != null" tabindex="0">
         <a class="titre"  [routerLink]="['/profil']" >Profil</a>
       </li>
+      
 
       <li *ngIf="estConnecter == null" tabindex="0" >
         <a href="#0" class="titre"[routerLink]="['/connexion']" >Sign-in</a>
@@ -59,6 +60,10 @@
 
     <li *ngIf="isAdmin == true" tabindex="0">
       <a class="titre" [routerLink]="['/admin']" >Admin</a>
+    </li>
+
+    <li tabindex="0" >
+      <a class="titre" [routerLink]="['/carousel']" >carousel</a>
     </li>
 
 </ul>

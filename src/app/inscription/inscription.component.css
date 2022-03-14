@@ -1,5 +1,3 @@
-
-
 *,
 *:before,
 *:after {
@@ -7,7 +5,6 @@
   margin: 0;
   padding: 0;
 }
-
 
 input,
 button {
@@ -17,16 +14,14 @@ button {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-
-
 .cont {
   overflow: hidden;
   position: relative;
   width: 900px;
-  height: 600px;
+  height: 650px;
   margin-left: auto;
   margin-right: auto;
-  
+
   margin-top: 250px;
   background: rgb(255, 255, 255);
   border-radius: 40px;
@@ -41,7 +36,6 @@ button {
   height: 100%;
 
   padding: 10px 30px 0px;
-
 }
 
 .sub-cont {
@@ -87,11 +81,10 @@ button {
   top: 0;
   width: 900px;
   height: 100%;
-  
+
   background-size: cover;
   transition: transform 1.2s ease-in-out;
 }
-
 
 .img__text {
   z-index: 2;
@@ -127,7 +120,7 @@ button {
   position: relative;
   width: 100px;
   height: 36px;
-  margin: 100px auto ;
+  margin: 100px auto;
   background: transparent;
   color: #fff;
   text-transform: uppercase;
@@ -226,24 +219,59 @@ input {
   transform: translate3d(640px, 0, 0);
 }
 
-.sign-up {
-  transform: translate3d(-900px, 0, 0);
-}
-.cont.s--signup .sign-up {
-  transform: translate3d(0, 0, 0);
+.signin-btn {
+  border: 2px solid #d3dae9;
+  color: #8fa1c7;
 }
 
-.icon-link {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  width: 32px;
+@media screen and (max-width: 1200px) and (min-width: 750px) {
+  .cont {
+    width: 70%;
+    height: 750px;
+    margin-top: 170px;
+    padding-top: 50px;
+  }
+
+  .form {
+    width: auto;
+    height: 650px;
+    padding: 0;
+  }
+
+  .signup-btn {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
+
+  .sub-cont {
+    display: none;
+  }
 }
-.icon-link img {
-  width: 100%;
-  vertical-align: top;
-}
-.icon-link--twitter {
-  left: auto;
-  right: 5px;
+
+@media screen and (max-width: 750px) and (min-width: 200px) {
+  .cont {
+    width: 100%;
+    height: 750px;
+    margin-top: 50px;
+    padding-top: 50px;
+  }
+
+  .form {
+    width: auto;
+    height: 650px;
+    padding: 0;
+  }
+
+  .signup-btn {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
+
+  .sub-cont {
+    display: none;
+  }
 }

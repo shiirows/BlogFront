@@ -208,42 +208,69 @@ input {
   text-transform: uppercase;
 }
 
-.fb-btn {
+.signup-btn {
+  display: none;
+  
+}
+
+
+
+@media screen and (max-width: 1200px) and (min-width: 750px) {
+  
+  .cont {
+    width: 70%;
+    height: 450px;
+    margin-top: 170px;
+    padding-top: 50px;
+    
+  }
+  
+  .form {
+    width: auto;
+    height: 400px;
+    padding: 0;
+  }
+  
+  .signup-btn {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
+  
+  .sub-cont {
+    display: none;
+  }
+  
+  }
+
+
+
+
+@media screen and (max-width: 750px) and (min-width: 200px) {
+  
+.cont {
+  width: 100%;
+  height: 450px;
+  margin-top: 170px;
+  padding-top: 50px;
+}
+
+.form {
+  width: auto;
+  height: 400px;
+  padding: 0;
+}
+
+.signup-btn {
+  display: flex;
+  justify-content: center;
   border: 2px solid #d3dae9;
   color: #8fa1c7;
 }
-.fb-btn span {
-  font-weight: bold;
-  color: #455a81;
+
+.sub-cont {
+  display: none;
 }
 
-.sign-in {
-  transition-timing-function: ease-out;
-}
-.cont.s--signup .sign-in {
-  transition-timing-function: ease-in-out;
-  transition-duration: 1.2s;
-  transform: translate3d(640px, 0, 0);
-}
-
-.sign-up {
-  transform: translate3d(-900px, 0, 0);
-}
-.cont.s--signup .sign-up {
-  transform: translate3d(0, 0, 0);
-}
-
-.icon-link {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  width: 32px;
-}
-.icon-link img {
-  width: 100%;
-  vertical-align: top;
-}
-.icon-link--twitter {
-  left: auto;
-  right: 5px;
 }

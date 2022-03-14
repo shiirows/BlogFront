@@ -1,14 +1,9 @@
 <div id="formulaireArticle">
-
   <div class="contenair_haut">
-
     <div class="titreForm" >
       <h1>To start your article <hr> Select a continent then a country</h1>
     </div>
-
     <div class="select_destination">
-
-      
 
     <div class="continents" >
 
@@ -29,9 +24,7 @@
 
      </div>
 
-
-   
-      <h1 class="titre_picture" >add your best photos,  maximum of pictures 10 </h1>
+      <h2 class="titre_picture" >add your best photos,  maximum of pictures 10 </h2>
       
         <div>
           <input
@@ -49,15 +42,10 @@
         <div class="image-select" > 
           <img class="image"*ngFor="let image of urls" [src]="image" alt="" width="110" />
         </div>
-  
-
-
 </div>
 
-    
- 
   <!-- Formulaire pour le titre et le contenue de l'article  -->
-  <div class="container">
+  <div class="text_content">
 
    
     <form
@@ -68,13 +56,13 @@
     >
       
        
-        <div class="input_text">
+        <div class="formulaire_content">
           
-          <div class="row">
+          
             <h4>
               Choisiser un titre pour votre article !
             </h4>
-          </div>
+          
           <div class="row input-container">
             <div class="col-xs-12">
               <div class="styled-input wide">
@@ -97,10 +85,10 @@
               <div class="styled-input wide">
                 <textarea
                   formControlName="content"
-                  id="content"
+                 class="content_article"
                   name="content"
                   required=""
-                  rows="4"
+                  rows="10"
                   type="text"
                   [ngClass]="{
                     'is-invalid':

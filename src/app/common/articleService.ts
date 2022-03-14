@@ -137,9 +137,7 @@ public getArticlePays(id : number): Observable<any> {
 
 // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
 
-public getIamgeArticle(filename : String[]): Observable<any> {
-  console.log(filename)
-    
+public getIamgeArticle(filename : String[]): Observable<any> {  
 return this.http.get(this.urlApiUpload + "filename/" + filename ,  { responseType: 'blob', observe: 'response' });
 
 }
