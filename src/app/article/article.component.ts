@@ -1,11 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component,  OnInit  } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { environment } from 'src/environments/environment';
 import { ArticleService } from '../common/articleService';
-import { AuthentificationService } from '../common/AuthentificationService';
 import { CommentService } from '../common/CommentService';
 import { TokenService } from '../common/TokenService';
 import { Article } from '../model/Article';
@@ -27,14 +24,14 @@ export class ArticleComponent implements OnInit {
     private serviceToken: TokenService,
   ) {}
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/';
+  public urlfiles: string = environment.apiUrlFile
 
   public articleId: number;
-  public afficheArticle: any;
+  public afficheArticle: Article;
 
-  public imagearticle: any[] = []; // url de l'image
 
-  public nomberImage: Number;
+
+  
   public avatar: any;
   public commentaire : any
   public commentForm: FormGroup;
@@ -44,40 +41,40 @@ export class ArticleComponent implements OnInit {
 
 
   ngOnInit() {
-    
-    this.getIdArticle() // recupere l'id de l'article de la route
+ 
+    // recupere l'id de l'article de la route
+    this.getArticle();// recupere l'article
     this.getConnecter();
     this.getCommentaireById()  //  recupere les commentaires de l'article
-    this.getArticles();// recupere l'article
-    this.initForm()
    
-    console.log(this.imagearticle);
+    this.initForm()
+  
     
   }
 
   public getConnecter() {
-    if (this.serviceToken.getUser().user == null) {
-      this.estConnecter
-    } else {
+    if (this.serviceToken.getUser().user != null) {
       this.estConnecter = true;
-    }
+      
+    } 
   }
 
-  public getIdArticle() {
+ 
+  // -------------------------------------------------- appel de l'articles par l'id --------------------------------------------------
+
+  public getArticle() {
+
     this.route.params.subscribe((params: ParamMap) => {
       this.articleId = params['id'];
     });
-  }
 
-  // -------------------------------------------------- appel de l'articles par l'id --------------------------------------------------
-
-  public getArticles() {
     this.serviceArticle.getArticleById(this.articleId).subscribe(
-      (param: Article) => {
-        this.afficheArticle = [param];
+      (article: Article) => {
+        
+        this.afficheArticle = article;
         console.log(this.afficheArticle);
-        this.getAvatar();
-        this.getImage();
+        
+        
       },
       (error) => {
         console.log(error);
@@ -87,29 +84,7 @@ export class ArticleComponent implements OnInit {
     );
   }
 
-  // -------------------------------------------------- appel de l'avatar de l'utilisateurs  --------------------------------------------------
-  public getAvatar() {
-    this.afficheArticle.forEach((element) => {
-      element.avatar = this.urlfiles + element.avatar;
-    });
-  }
 
-  // -------------------------------------------------- appel des image de l'article --------------------------------------------------
-
-  public getImage() {
-    this.afficheArticle.forEach((element) => {
-      element.files.forEach((element) => {
-        element = this.urlfiles + element;
-
-        this.imagearticle.push(element);
-      });
-    });
-  }
-
-  //------------------------------------------------------ appel des commentaire ------------------------------------------------------
-
-  public getCommentaire() {
-  }
 
   //------------------------------------------------------ ajout des commentaire ------------------------------------------------------
 
@@ -128,7 +103,7 @@ public onValid() {
   this.serviceComment.createComment(this.articleId, commentaire).subscribe(
     (data) => {
       
-      this.getCommentaire();
+  
       window.location.reload();
     },
     (error) => {
@@ -142,15 +117,10 @@ public onValid() {
 
 public getCommentaireById() {
   this.serviceComment.getComments(this.articleId).subscribe(
-    (param: commentaire) => {
-      this.commentaire =(param);
+    (commentaire: commentaire) => {
+      this.commentaire =(commentaire);
       console.log(this.commentaire);
-      this.commentaire.forEach((element) => {
-        element.avatar = this.urlfiles + element.avatar;
-      }
-      );
-
-     
+    
     },
     (error) => {
       error;

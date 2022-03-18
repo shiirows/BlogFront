@@ -35,11 +35,11 @@ export class AuthentificationService {
   }
 
   //METHODE POUR LES ACTIVATION
-  public activation(id: number, idActivation: string): Observable<any> {
+  public activation( idActivation: string): Observable<any> {
     return this.http.post<any>(
       this.urlApiActivation,
       {
-        id,
+       
         idActivation,
       },
       this.httpOptions

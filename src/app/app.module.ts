@@ -17,7 +17,7 @@ import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
 import { ProfilsComponent } from './profils/profils.component';
 import { AdminComponent } from './admin/admin.component';
-import { CarouselComponent } from './carousel/carousel.component';
+
 
 
 
@@ -43,7 +43,6 @@ import { CarouselComponent } from './carousel/carousel.component';
     ArticleComponent,
     ProfilsComponent,
     AdminComponent,
-    CarouselComponent,
   
 
   ],

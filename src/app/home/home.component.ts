@@ -1,31 +1,30 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
 import { ArticleService } from './../common/articleService';
-
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  
 })
 export class HomeComponent implements OnInit {
   constructor(private serviceArticle: ArticleService, private route: Router) {}
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/';
-
+  public urlfiles: string = environment.apiUrlFile;
   public listArticles: any[]; // contien tout les articles
   public continents: any[]; // contien les article par continent
   public pays: any[] = []; //contien les données de l'article par pays
-
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
   public idcontinents: number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
   // ou l'utilisateur selection tout les pays du continent
 
-  // -------------------------------------------------- Appel des continents  --------------------------------------------------
+  ngOnInit(): void {
+    this.getContinent();
+    this.afficheArticle();
+  }
 
-  //
+  // -------------------------------------------------- Appel des continents  --------------------------------------------------
 
   public getContinent(): any {
     this.serviceArticle.getContinentList().subscribe(
@@ -48,7 +47,6 @@ export class HomeComponent implements OnInit {
     //appel les article par contients
     this.serviceArticle.getArticleByContinent(event).subscribe((data) => {
       this.listArticles = data;
-      this.ulrFiles();
     });
 
     //appel les pays qui va les placer dans le selecteur pays (onChange2)
@@ -72,7 +70,6 @@ export class HomeComponent implements OnInit {
 
     this.serviceArticle.getArticlePays(event).subscribe((data) => {
       this.listArticles = data;
-      this.ulrFiles();
     });
   }
 
@@ -87,7 +84,7 @@ export class HomeComponent implements OnInit {
     return this.serviceArticle.getArticles().subscribe((data) => {
       this.listArticles = data;
       console.log(this.listArticles);
-      this.ulrFiles();
+
       this.sortByDate();
       // afficher les articles du plus récent au plus ancien
     });
@@ -113,18 +110,5 @@ export class HomeComponent implements OnInit {
       }
       return 0;
     });
-  }
-
-  //fonction pour ajouter l'url au image
-
-  public ulrFiles() {
-    this.listArticles.forEach((element) => {
-      element.file = this.urlfiles + element.file;
-    });
-  }
-
-  ngOnInit(): void {
-    this.getContinent();
-    this.afficheArticle();
   }
 }

@@ -1,52 +1,46 @@
-
 #formulaireArticle {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
-  
+
+  margin-left: 29%;
+  margin-right: 29%;
 }
 
 .contenair_haut {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  text-align: center;
   flex-direction: column;
   border: rgb(255, 255, 255) solid 2px;
-  border-radius: 2%;
-  padding-left: 50px;
-  padding-right: 50px;
+  border-radius: 20px;
   background-color: #2d2d2d;
   opacity: 0.95;
+  width: 100%;
 }
 
 .titreForm {
   display: flex;
   justify-content: center;
   text-align: center;
-  text-align: center;
   font-size: 20px;
   color: #ffffff;
   font-family: "Roboto", sans-serif;
-  margin-top: 70px;
-  margin-bottom: -90px;
 }
-
-
 
 .select_destination {
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
-  justify-content: space-evenly;
+  width: 100%;
 }
 
 .continents {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 }
 
 .pays {
@@ -57,18 +51,16 @@
 }
 
 .selectitem {
-  padding: 3%;
   border-radius: 15px;
   text-align: left;
   font-size: 20px;
-  width: 250px;
-  margin: 150px;
+  width: 200px;
+  height: 50px;
 }
 
 .titre_picture {
   color: #ffffff;
   font-family: "Roboto", sans-serif;
-  margin-top: -70px;
 }
 
 .input-file {
@@ -79,7 +71,8 @@
 .image-select {
   display: flex;
   flex-direction: row;
-  margin-bottom: 150px;
+  flex-wrap: wrap;
+  margin : 20px;
 }
 
 .image {
@@ -90,8 +83,6 @@
   height: 80px;
   margin-left: 10px;
 }
-
-
 
 .content {
   display: flex;
@@ -104,21 +95,20 @@
   padding-right: 15%;
 }
 
-
-
 /* ///// partit text utilisateur /////*/
 
-.formulaire_content {
+.contenair_bas {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: solid 2px;
   border: rgb(255, 255, 255) solid 2px;
-  border-radius: 2%;
-  padding-left: 50px;
-  padding-right: 50px;
+  border-radius: 20px;
   background-color: #2d2d2d;
   opacity: 0.95;
+  width: 100%;
+  margin-top: 30px;
 }
 
 h4 {
@@ -127,24 +117,11 @@ h4 {
   font-family: "Roboto", sans-serif;
 }
 
-.input_text {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
- 
-  opacity: 0.95;
-  border-radius: 15px;
-  border: 2px solid rgb(255, 255, 255);
-  margin-top: 160px;
-  width: 900px;
-  height: 300px;
+.titre {
+  margin-bottom: 20px;
 }
-
-.col-xs-12{
-  display: flex;
-  justify-content: center;
-  text-align: center;
+.content_article {
+  height: 200px;
 }
 
 .styled-input {
@@ -152,12 +129,14 @@ h4 {
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  width: 493px;
-  margin: 1rem 0;
-  border-radius: 4px;
+  overflow-wrap: initial;
+  width: 530px;
+  margin: 1rem;
 }
 
-
+textarea{
+  resize: vertical;
+}
 
 .btn_valid {
   background-color: #000000;
@@ -166,7 +145,6 @@ h4 {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 18px;
   border-style: solid;
   border-width: 2px;
@@ -174,52 +152,226 @@ h4 {
   border-radius: 50px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 768px) {
-  
-  
+@media screen and (max-width: 1350px) and (min-width: 540px) {
+  #formulaireArticle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
 
   .contenair_haut {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    width: 440px;
+    height: auto;
+    margin-bottom: 100px;
+  }
+
+  .titreForm {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    width: 190px;
+    font-size: 10px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    margin-top: 30px;
   }
 
   .select_destination {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    width: auto;
-  }
-
-  .continents {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: auto;
-  }
-
-  .pays {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: auto;
   }
 
   .selectitem {
-    padding: 3%;
     border-radius: 15px;
     text-align: left;
-    font-size: 20px;
-    width: auto;
-    margin: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
   }
 
+  #pays {
+    font-size: 20px;
+    margin-top: 30px;
+    text-align: center;
+  }
 
+  #continent {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .image-select {
+    display: flex;
+   
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .image {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 5px;
+  }
+
+  /* ///// partit text utilisateur /////*/
+
+  .contenair_bas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 2px;
+    border: rgb(255, 255, 255) solid 2px;
+    border-radius: 20px;
+    background-color: #2d2d2d;
+    opacity: 0.95;
+    width: 440px;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .titre {
+    margin-bottom: 20px;
+  }
+  .content_article {
+    height: 220px;
+  }
+
+  .styled-input {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 360px;
+    margin: 1rem;
+  }
+}
+
+@media screen and (max-width: 540px) and (min-width: 0px) {
+  #formulaireArticle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .contenair_haut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 330px;
+    height: auto;
+    margin-bottom: 100px;
+  }
+
+  .titreForm {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    margin-top: 30px;
+  }
+
+  .select_destination {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .selectitem {
+    border-radius: 15px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+  }
+
+  #pays {
+    font-size: 20px;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  #continent {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .image-select {
+    display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin : 20px;
+  }
+
+  .image {
+    display: flex;
+    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+
+  /* ///// partit text utilisateur /////*/
+
+  .contenair_bas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 2px;
+    border: rgb(255, 255, 255) solid 2px;
+    border-radius: 20px;
+    background-color: #2d2d2d;
+    opacity: 0.95;
+    width: 330px;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .titre {
+    margin-bottom: 20px;
+  }
+  .content_article {
+    height: 200px;
+  }
+
+  .styled-input {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 300px;
+    margin: 1rem;
+  }
 }

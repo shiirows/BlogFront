@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model/Utilisateur';
 import { AuthentificationService } from '../common/AuthentificationService';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
     private service: AuthentificationService
   ) {}
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/';
+  public urlfiles: string = environment.apiUrlFile;
   public estConnecter: any[] = [];
   public isAdmin: boolean = false;
   public avatarUser: any;
@@ -53,8 +54,8 @@ export class NavbarComponent implements OnInit {
     }
 
     if (sessionStorage.getItem('url') == null ) {
-      sessionStorage.setItem('url', this.urlfiles + this.serviceToken.getUser().user.avatar);
- sessionStorage.setItem('urlCouverture', this.urlfiles + this.serviceToken.getUser().user.couverture);
+      sessionStorage.setItem('url', this.serviceToken.getUser().user.avatar);
+ sessionStorage.setItem('urlCouverture', this.serviceToken.getUser().user.couverture);
      
     }
     

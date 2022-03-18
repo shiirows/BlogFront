@@ -1,89 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { ArticleService } from '../common/articleService';
 import { AuthentificationService } from '../common/AuthentificationService';
 import { TokenService } from '../common/TokenService';
 
-
 @Component({
   selector: 'app-profils',
   templateUrl: './profils.component.html',
-  styleUrls: ['./profils.component.css']
+  styleUrls: ['./profils.component.css'],
 })
 export class ProfilsComponent implements OnInit {
-
   constructor(
-    private serviceToken : TokenService,
+    private serviceToken: TokenService,
     private serviceAuth: AuthentificationService,
     private service: ArticleService,
-    private route : Router,
-     ) { }
+    private route: Router
+  ) {}
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/'
-  public userCouverture  = this.serviceToken.getUser().user  ;
-  public user = [this.serviceToken.getUser().user]  ;
+  public urlfiles: string = environment.apiUrlFile;
 
-public avatarUser: String  ;
-public couvertureUser : String;
+  public user = this.serviceToken.getUser().user;
 
-public listArticles: any = [];
+  public avatarUser = sessionStorage.getItem('url');
+  public couvertureUser = sessionStorage.getItem('urlCouverture');
 
+  public listArticles: any = [];
 
-ngOnInit(): void {
+  ngOnInit(): void {
+    this.articleUser();
+    console.log(this.avatarUser);
+  }
 
-  this.afficheCouverture()
-  this.afficheImage()
-  this.articleUser()
-  
-  
-}
+  //----------------------------------fonction pour appeler tout les l'articles du l'utiliateur
 
-
-//------------------------------------ fonction pour afficher l'avatar et la couverture de l'utilisateur --------------------------------------------------
-
-public afficheImage() {
-  this.avatarUser = sessionStorage.getItem('url');
-}
-
-
-public afficheCouverture() {
-  this.couvertureUser = sessionStorage.getItem('urlCouverture');
-}
-
-//----------------------------------fonction pour appeler tout les l'articles du l'utiliateur
-
-public articleUser() {
-  this.service.getArticleByIdUser().subscribe(
-    (data) => {
+  public articleUser() {
+    this.service.getArticleByIdUser().subscribe((data) => {
       this.listArticles = data;
-      this.listArticles.forEach(element => {
-        element.file = this.urlfiles + element.file;
-      });
-      console.log(this.listArticles)
-    }
-  )
 
-}
+      console.log(this.listArticles);
+    });
+  }
 
+  // fonction pour afficher l'article selectionner par son id
 
-// fonction pour afficher l'article selectionner par son id
+  public sendId(id: number) {
+    this.route.navigate(['/article', id]);
+  }
 
-public sendId(id : number) {
+  //----------------------------------fonction pour suprimer l'article-------------------
 
-  this.route.navigate(['/article', id]);
-
-
-  
-}
-
-//----------------------------------fonction pour suprimer l'article-------------------
-
-public deleteArticle(id: number) {
-  this.service.deleteArticle(id).subscribe((data) => {
-    console.log(data + 'article supprimé');
- 
-  });
-  location.reload();
-}
-
+  public deleteArticle(id: number) {
+    this.service.deleteArticle(id).subscribe((data) => {
+      console.log(data + 'article supprimé');
+    });
+    location.reload();
+  }
 }

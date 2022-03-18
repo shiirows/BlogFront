@@ -33,11 +33,11 @@ export class InscriptionComponent implements OnInit {
       firstname : ['', [ Validators.maxLength(45), Validators.minLength(2)]],
       email: ['', [ Validators.email]],
       password: ['', [ Validators.minLength(8),Validators.maxLength(45)]],
-      password2: ['', [Validators.minLength(8),Validators.maxLength(45)]], 
+      passwordconfirm: ['', [Validators.minLength(8),Validators.maxLength(45)]], 
     },{
       validator: this.verificationMatch(
         'password',
-        'password2'
+        'passwordconfirm'
       )
     });
 
@@ -68,7 +68,7 @@ export class InscriptionComponent implements OnInit {
 }
 
   public onsubmit() { 
-    
+    alert('toto')
     const username: string = this.userForm.get('username').value;
 
     const name: string = this.userForm.get('name').value;

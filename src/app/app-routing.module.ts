@@ -13,8 +13,6 @@ import { ProfilsComponent } from './profils/profils.component';
 import { AuthGuard } from './core/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './core/admin.guard';
-import { CarouselComponent } from './carousel/carousel.component';
-
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +22,6 @@ export const ROUTES: Routes = [
   { path: 'contacte', component: ContacteComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'articleuser', component: ArticleUserComponent, canActivate: [AuthGuard] },
-  { path: 'carousel', component: CarouselComponent },
   { path: 'profil', component: ProfilsComponent , canActivate: [AuthGuard]},
   { path: 'activation', component: ActivationComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },

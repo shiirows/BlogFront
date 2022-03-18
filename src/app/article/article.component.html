@@ -1,30 +1,30 @@
-<div class="contenue" id="article" *ngFor="let item of afficheArticle">
+<div class="contenue" id="article" >
   <section>
     <div class="container">
       <hr id="one" />
-      <h1 class="tritre_principal">{{ item.pays.name }}</h1>
+      <h1 class="tritre_principal">{{ afficheArticle.pays.name }}</h1>
       <hr id="two" />
       <div class="carousel">
         <input
-          *ngFor="let item of imagearticle"
+        *ngFor="let picture of afficheArticle.files"
           type="radio"
           name="slides"
-          id="{{ item }}"
+          id="{{ picture }}"
         />
 
         <ul class="carousel__slides">
-          <li *ngFor="let item of imagearticle" class="carousel__slide">
+          <li *ngFor="let picture of afficheArticle.files" class="carousel__slide">
             <figure>
               <div>
-                <img class="carousel" [src]="item" alt="" />
+                <img class="carousel" src="{{urlfiles+picture}}" alt="" />
               </div>
             </figure>
           </li>
         </ul>
 
         <ul class="carousel__thumbnails">
-          <li *ngFor="let item of imagearticle" class="carousel">
-            <label for="{{ item }}"><img [src]="item" alt="" /></label>
+          <li *ngFor="let picture of afficheArticle.files" class="carousel">
+            <label for="{{ picture }}"><img src="{{urlfiles+picture}}" alt="" /></label>
           </li>
         </ul>
       </div>
@@ -33,16 +33,16 @@
 
   <div class="card">
     <div id="titre_secondaire">
-      <h2>{{ item.titre }}</h2>
+      <h2>{{ afficheArticle.titre }}</h2>
     </div>
 
     <div class="separator"></div>
-    <p>{{ item.content }}</p>
+    <p>{{ afficheArticle.content }}</p>
   </div>
 
   <div class="author">
-    <img [src]="item.avatar" />
-    <h3 class="name">{{ item.name }} {{ item.firstname }}</h3>
+    <img src="{{urlfiles+afficheArticle.avatar}}" />
+    <h3 class="name">{{ afficheArticle.name }} {{ afficheArticle.firstname }}</h3>
   </div>
 </div>
 
@@ -54,7 +54,7 @@
   <div class="row" *ngFor="let item of commentaire">
     <div class="col-md-6">
       <div class="contenair_avatar">
-        <img class="avatarcomments" [src]="item.avatar" />
+        <img class="avatarcomments" [src]="urlfiles+item.avatar" />
       </div>
 
       <div class="card_comment">

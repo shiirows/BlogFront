@@ -7,7 +7,7 @@
 
     <div class="avatar">
       <div class="avt" >
-      <img *ngIf="estConnecter != null" class="card-img"    [src]="avatarUser" alt="profil picture">
+      <img *ngIf="estConnecter != null" class="card-img"  src="{{urlfiles+avatarUser}}"   alt="profil picture">
       
     </div>
     <div>
@@ -60,10 +60,6 @@
 
     <li *ngIf="isAdmin == true" tabindex="0">
       <a class="titre" [routerLink]="['/admin']" >Admin</a>
-    </li>
-
-    <li tabindex="0" >
-      <a class="titre" [routerLink]="['/carousel']" >carousel</a>
     </li>
 
 </ul>

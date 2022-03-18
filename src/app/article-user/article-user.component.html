@@ -1,30 +1,31 @@
 <div id="formulaireArticle">
+
+
   <div class="contenair_haut">
+
     <div class="titreForm" >
       <h1>To start your article <hr> Select a continent then a country</h1>
     </div>
+
     <div class="select_destination">
 
-    <div class="continents" >
-
-      <select class="selectitem" (change)="onChange($event.target.value)">
+      
+      <select id="continent" class="selectitem" (change)="onChange($event.target.value)">
         <option class="text" value="0">continent</option>
         <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
       </select>
-  </div>
+
   
-  <div class="pays" > 
-    
-    <select class="selectitem" (change)="onChange2($event.target.value)">
-      
+
+    <select id="pays" class="selectitem" (change)="onChange2($event.target.value)">
       <option class="text" value="0">country</option>
       <option  *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
     </select>
-  </div>
+  
 
      </div>
 
-      <h2 class="titre_picture" >add your best photos,  maximum of pictures 10 </h2>
+      <h2 class="titre_picture" >add your best picture, maximum of pictures 10 </h2>
       
         <div>
           <input
@@ -45,29 +46,25 @@
 </div>
 
   <!-- Formulaire pour le titre et le contenue de l'article  -->
-  <div class="text_content">
-
-   
+  <div class="contenair_bas">
+<h4>Choisiser un titre pour votre article </h4>
     <form
       (ngSubmit)="artcileForm.valid && onValid()"
       [formGroup]="artcileForm"
       id="form"
-      class="topBefore"
+      class="article"
     >
-      
-       
         <div class="formulaire_content">
-          
-          
-            <h4>
-              Choisiser un titre pour votre article !
-            </h4>
+
+            
           
           <div class="row input-container">
-            <div class="col-xs-12">
+
+           
               <div class="styled-input wide">
                 <input
                   formControlName="titre"
+                  class="titre"
                   name="titre"
                   id="name"
                   required=""
@@ -79,9 +76,9 @@
                   }"
                 />
               </div>
-            </div>
+            
 
-            <div class="col-xs-12">
+           
               <div class="styled-input wide">
                 <textarea
                   formControlName="content"
@@ -97,7 +94,7 @@
                   }"
                 ></textarea>
               </div>
-            </div>
+            
 
             <div class="col-xs-12">
               <button class="btn_valid" type="submit" id="submit">SUBMIT</button>
