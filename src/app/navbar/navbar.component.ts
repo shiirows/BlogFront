@@ -2,7 +2,6 @@ import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
-import { Utilisateur } from '../model/Utilisateur';
 import { AuthentificationService } from '../common/AuthentificationService';
 import { environment } from 'src/environments/environment';
 

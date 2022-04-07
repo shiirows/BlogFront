@@ -14,6 +14,10 @@
       <input type="password" placeholder="password" formControlName="passwordUser" id="password" name="user_password" />
     </label>
     <p class="forgot-pass">Forgot password?</p>
+
+    <span class="error" *ngIf="erreur" >
+      <p>Invalid username or password</p>
+    </span>
     
     <button type="submit" class="submit">Sign In</button>
     <button type="button" (click)="navigateInscription()" class="signup-btn">
@@ -22,9 +26,6 @@
     
     </form>
 
-
-
-    
   </div>
   <div class="sub-cont">
     <div class="img" >

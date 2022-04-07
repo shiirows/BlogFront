@@ -9,33 +9,58 @@
 
     <label>
       <span>UserName</span>
-      <input type="text" formControlName="username" id="userName" name="userName" placeholder="Username" />
+      <span *ngIf="userForm.get('username')?.touched && userForm.get('username')?.errors" > 
+      <p class="errorform" >Please enter valid Username</p> 
+      </span>
+      <input type="text" formControlName="username" name="userName" placeholder="" />
     </label>
 
     <label>
       <span>Name</span>
-      <input type="text" formControlName="name" id="name" name="name" placeholder="Name" />
+      <span *ngIf="userForm.get('name')?.touched && userForm.get('name')?.errors" > 
+      <p class="errorform"  >Please enter valid Name</p> 
+      </span>
+      <input type="text" formControlName="name" name="name" placeholder="" />
     </label>
 
     <label>
       <span>FirstName</span>
-      <input type="text" formControlName="firstname" id="firstname" name="FirstName" placeholder="Firstname" />
+      <span *ngIf="userForm.get('firstname')?.touched && userForm.get('firstname')?.errors" > 
+      <p class="errorform"  >Please enter valid FirstName</p>
+      </span>
+      <input type="text" formControlName="firstname"  name="FirstName" placeholder="" />
     </label>
 
     <label>
+      
+     
       <span>Email</span>
-      <input type="text" formControlName="email" id="email" name="userName" placeholder="Email" />
+      <span *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors" > 
+      <p class="errorform">Please enter valid email</p> 
+      </span>
+      <input type="email"  formControlName="email" name="email" placeholder="" />
     </label>
 
     <label>
       <span>Password</span>
-      <input type="" formControlName="password" id="password" name="userName" placeholder="Password" />
+      <span *ngIf="userForm.get('password')?.touched && userForm.get('password')?.errors" > 
+      <p class="errorform" >Please enter valid password</p> 
+      </span>
+      <input type="password" formControlName="password"  name="password" placeholder="" />
     </label>
 
     <label>
       <span>Confirm password</span>
-      <input type="" placeholder="Confirm password" formControlName="passwordconfirm" id="password" name="user_password" />
+      <input type="password" placeholder="" formControlName="passwordconfirm"  name="user_password" />
     </label>
+
+    <span class="error"  >
+      <p>{{error}}</p>
+    </span>
+
+    <span class="error" *ngIf="passwordconfirm" >
+      <p>passwords must be identical  </p>
+    </span>
 
     <button type="submit" class="submit">Sign Up</button>
     <button type="button" (click)="navigateConnexion()" class="signin-btn">
@@ -62,3 +87,4 @@
     
   </div>
 </div>
+

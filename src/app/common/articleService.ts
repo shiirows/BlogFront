@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
 import { map, multicast } from 'rxjs/operators';
 import { Article } from '../model/Article';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class ArticleService {
 
   constructor(private http: HttpClient) {}
 
-  public urlApi: string = 'http://localhost:8080/api/article/';
+  public urlApi: string = environment.apiUrl + 'article/';
+
 
   public urlApiUpload: string = "http://localhost:8080/api/file/";
 
@@ -87,6 +89,22 @@ public getArticlePays(id : number): Observable<any> {
     return this.http.delete(this.urlApi + 'delete/' + id ,this.httpOptions);
     
   }
+
+  //Fonction qui permet d'ajouter en favoris un article
+  public addFavoris(id : number): Observable<any> {
+    return this.http.post(this.urlApi + 'addfavoris/' + id , this.httpOptions);
+  }
+
+  //Fonction qui permet de supprimer un article de la liste des favoris
+  public deleteFavoris(id: number): Observable<any> {
+    return this.http.delete(this.urlApi + 'deletefavoris/' + id , this.httpOptions);
+  }
+
+  //Fonction qui permet de récupérer les articles de la liste des favoris
+  public getArticleFavoris(): Observable<any> {
+    return this.http.get(this.urlApi + 'favoris' , this.httpOptions);
+    };
+
 
   //Fonction pour afficher la liste des pays d'un continent
   public getPays(id : number): Observable<any> {

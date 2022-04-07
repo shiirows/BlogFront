@@ -17,11 +17,18 @@ export class HomeComponent implements OnInit {
   public pays: any[] = []; //contien les données de l'article par pays
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
   public idcontinents: number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
-  // ou l'utilisateur selection tout les pays du continent
+                               // ou l'utilisateur selection tout les pays du continent
+
+
+
+// variable pour afficher le bouton en vert si l'article est en favoris
+  public like: boolean = false;
+ 
 
   ngOnInit(): void {
     this.getContinent();
     this.afficheArticle();
+    this.getFavoris()
   }
 
   // -------------------------------------------------- Appel des continents  --------------------------------------------------
@@ -111,4 +118,43 @@ export class HomeComponent implements OnInit {
       return 0;
     });
   }
+
+
+  // -------------------------------------------------- like --------------------------------------------------
+
+  //affiche le button en vert uniuqe si l'article est en favoris
+ 
+
+  //ajout en favoris
+  public addFavori(id: number) {
+
+    if (this.like == false) {
+      
+      this.serviceArticle.addFavoris(id).subscribe((data) => {
+        console.log(data);
+        this.like = true;
+      });
+    } else {
+      this.like = false;
+      this.serviceArticle.deleteFavoris(id).subscribe((data) => {
+        console.log(data);
+      });
+    }
+   
+  }
+
+  //afficher le bouton en vert si l'article est en favoris
+  public getFavoris() {
+    this.serviceArticle.getArticleFavoris().subscribe((data) => {
+      if (data != this.listArticles) {
+        this.like = false;
+      } else {
+        this.like = true;
+      }
+
+      
+    });
+  }
+
 }
+

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../common/TokenService';
 import { Router } from '@angular/router';
 import { User } from '../model/UpdateUser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gestion-profil',
@@ -19,7 +20,7 @@ export class GestionProfilComponent implements OnInit {
     private route: Router
   ) {}
 
-  public urlfiles: string = 'http://localhost:8080/api/file/filename/';
+  public urlfiles: string = environment.apiUrlFile;
   public user: any = [];
 
   public avatarUser: String;
@@ -57,8 +58,8 @@ export class GestionProfilComponent implements OnInit {
       (data) => {},
       (response) => {
         this.response = response.error.text;
-        console.log(this.response);
-        sessionStorage.setItem('url', this.urlfiles + this.response);
+        sessionStorage.setItem('url', this.response);
+        window.location.reload();
       
      
       }
@@ -72,9 +73,8 @@ export class GestionProfilComponent implements OnInit {
       (data) => {},
       (response) => {
         this.response = response.error.text;
-        console.log(this.response);
-        sessionStorage.setItem('urlCouverture', this.urlfiles + this.response);
-      
+        sessionStorage.setItem('urlCouverture',  this.response);
+        window.location.reload();
      
       }
     );

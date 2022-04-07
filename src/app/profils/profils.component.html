@@ -1,56 +1,54 @@
+<div class="Main-card">
+  <div
+    class="card-head"
+    [style.background-image]="'url(' + urlfiles + couvertureUser + ')'"
+  >
+    <img id="card-img" src="{{ urlfiles + avatarUser }}" alt="profil picture" />
+    <h1 class="name">{{ user.name }} {{ user.firstname }}</h1>
+  </div>
 
-    <div class="Main-card"   >
+  <li class="icon-customers">
+    <a class="bouton" [routerLink]="['/profilGestion']"
+      >Mettre a jour mon profil</a
+    >
+  </li>
 
-      <div  class="card-head" [style.background-image]="'url(' + urlfiles+ couvertureUser + ')'" >
-        <img   id="card-img"    src="{{urlfiles+avatarUser}}" alt="profil picture">    
-        <h1  class="name" >{{user.name}} {{user.firstname}} </h1>
-      </div>
+  <div class="summery">
+    <div class="about">
+      <h2>à propos de moi même</h2>
+      <p>{{ user.description }}</p>
+    </div>
+  </div>
 
-      <li class="icon-customers">
-            <a class="bouton"  [routerLink]="['/profilGestion']" >Mettre a jour mon profil</a>
-          </li>
+  <!-- Article de l'utilisateur-->
+  <div>
+    <div class="titre">
+      <h1>Mes articles</h1>
+    </div>
+  </div>
 
-      <div class="summery">
-        
-        <div  class="about">
-            <h2>à propos de moi même</h2>
-            <p>{{user.description}}</p>
+  <div class="contentCard">
+    <div class="cardContainer" *ngFor="let item of listArticles">
+      <div class="card">
+        <div class="side front">
+          <div
+            [style.background-image]="'url(' + urlfiles + item.file + ')'"
+            class="img img1"
+          ></div>
+          <div class="info">
+            <h2>{{ item.pays.name }}</h2>
+            <p>{{ item.titre }}</p>
+
+            <p></p>
           </div>
-
-       
-      </div>
-
-<!-- Article de l'utilisateur-->
-      <div>
-          <div class="titre" >
-          <h1>Mes articles</h1>
-          </div>
-
-      </div>
-
-      <div class="contentCard"   >
-        <div  class="cardContainer" *ngFor="let item of listArticles"  >
-          <div  class="card">
-            
-            <div class="side front">
-            
-              <div [style.background-image]="'url('+ urlfiles+item.file+ ')'" class="img img1"></div>
-              <div class="info">
-                
-                <h2>   {{item.pays.name}}</h2>
-                <p>{{item.titre}} </p>
-                
-                <p></p>
-      
-      
-              </div>
-            <button (click)="sendId(item.id)" class="btn btn-primary">Voir plus</button>
-              <button (click)="deleteArticle(item.id)" class="btn btn-primary">suprimer</button>
-      
-            </div>
-          </div>
-          
+          <button (click)="sendId(item.id)" class="btn btn-primary">
+            Voir plus
+          </button>
+          <button (click)="deleteArticle(item.id)" class="btn btn-primary">
+            suprimer
+          </button>
         </div>
       </div>
-
-      </div>
+    </div>
+  </div>
+</div>
