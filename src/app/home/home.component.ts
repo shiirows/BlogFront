@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   public urlfiles: string = environment.apiUrlFile;
   public listArticles: any[]; // contien tout les articles
+  public listArticlesFavoris: any[];
   public continents: any[]; // contien les article par continent
   public pays: any[] = []; //contien les données de l'article par pays
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
@@ -22,13 +23,15 @@ export class HomeComponent implements OnInit {
 
 
 // variable pour afficher le bouton en vert si l'article est en favoris
-  public like: boolean = false;
+  public like = false;
  
 
   ngOnInit(): void {
+    
     this.getContinent();
     this.afficheArticle();
     this.getFavoris()
+   
   }
 
   // -------------------------------------------------- Appel des continents  --------------------------------------------------
@@ -97,6 +100,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public getFavoris() {
+    this.serviceArticle.getArticleFavoris().subscribe((data) => {
+      this.listArticlesFavoris = data;
+      console.log(this.listArticlesFavoris);
+
+      this.favorisList()
+
+      
+    });
+  }
+
+
+
+
+
   //fonction pour trier les articles par ordre de creation
   public sortByDate() {
     this.listArticles.sort((a, b) => {
@@ -122,8 +140,7 @@ export class HomeComponent implements OnInit {
 
   // -------------------------------------------------- like --------------------------------------------------
 
-  //affiche le button en vert uniuqe si l'article est en favoris
- 
+
 
   //ajout en favoris
   public addFavori(id: number) {
@@ -143,18 +160,20 @@ export class HomeComponent implements OnInit {
    
   }
 
-  //afficher le bouton en vert si l'article est en favoris
-  public getFavoris() {
-    this.serviceArticle.getArticleFavoris().subscribe((data) => {
-      if (data != this.listArticles) {
-        this.like = false;
-      } else {
+
+  public favorisList(){
+    
+  this.listArticlesFavoris.forEach(element => {
+    this.listArticles.forEach(element2 => {
+      if(element.id == element2.id){
         this.like = true;
       }
 
-      
     });
+  });
+
   }
+
 
 }
 

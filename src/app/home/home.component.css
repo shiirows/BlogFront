@@ -348,6 +348,10 @@ button:focus {
   }
 }
 
-.greenheart{
+.greenheart {
   color: green;
+}
+
+.whiteheart {
+  color: white;
 }

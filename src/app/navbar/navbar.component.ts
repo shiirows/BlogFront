@@ -61,8 +61,19 @@ export class NavbarComponent implements OnInit {
     this.avatarUser = sessionStorage.getItem('url');
   }
 
+  // FONCTION DECONNEXION SERVICE
+  
+  
+
   // FONCTION POUR EFFACE LE  STORAGE ET SE DECONNECTER
   public effacerStorage() {
+
+    this.service.deconnexion().subscribe(
+      (data) => {
+       
+      }
+    );
+
     this.avatarUser = [];
     window.sessionStorage.clear();
     this.estConnecter = null;

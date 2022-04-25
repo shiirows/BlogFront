@@ -72,7 +72,7 @@ public getArticlePays(id : number): Observable<any> {
 
    //Fonction qui permet de récupérer les article de l'utilisateur
    public getArticleByIdUser(): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'articleuser' ,  this.httpOptions );
+    const obs: Observable<any> = this.http.get<Article>(this.urlApi + 'articleuser' ,  this.httpOptions );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -102,7 +102,7 @@ public getArticlePays(id : number): Observable<any> {
 
   //Fonction qui permet de récupérer les articles de la liste des favoris
   public getArticleFavoris(): Observable<any> {
-    return this.http.get(this.urlApi + 'favoris' , this.httpOptions);
+    return this.http.get<Article>(this.urlApi + 'favoris' , this.httpOptions);
     };
 
 

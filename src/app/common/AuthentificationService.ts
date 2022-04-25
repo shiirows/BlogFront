@@ -21,6 +21,8 @@ export class AuthentificationService {
   //LES DIFFERENTS URL DU BACK
   public urlApi: string = 'http://localhost:8080/api/auth/';
 
+  public urlApiUser: string = 'http://localhost:8080/api/user/';
+
   public urlApiUpload: string = 'http://localhost:8080/api/file/';
 
   public urlApiActivation: string = 'http://localhost:8080/api/auth/active';
@@ -57,27 +59,27 @@ export class AuthentificationService {
 
   //METHODE POUR LES DECONNEXION
   public deconnexion(): Observable<any> {
-    return this.http.get(this.urlApi + 'deconnexion');
+    return this.http.get(this.urlApi + 'signout');
   }
 
   //METHODE POUR LES MISE A JOUR DU PROFIL
 
   public update(userUpdate: User): Observable<any> {
-    return this.http.post(this.urlApi + 'update', userUpdate, this.httpOptions);
+    return this.http.post(this.urlApiUser + 'update', userUpdate, this.httpOptions);
   }
 
   //METHODE POUR LES MISE A JOUR DE L'AVATAR
   public updateAvatarUser(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    return this.http.post(this.urlApi + 'avatar', formData);
+    return this.http.post(this.urlApiUser + 'avatar', formData);
   }
 
   //METHODE POUR LES MISE A JOUR DE LA COUVERTURE
   public updateCouvertureUser(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    return this.http.post(this.urlApi + 'couverture', formData);
+    return this.http.post(this.urlApiUser + 'couverture', formData);
   }
 
   // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
