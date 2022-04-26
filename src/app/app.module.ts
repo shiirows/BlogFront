@@ -17,6 +17,7 @@ import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
 import { ProfilsComponent } from './profils/profils.component';
 import { AdminComponent } from './admin/admin.component';
+import { RecoveryComponent } from './recovery/recovery.component';
 
 
 
@@ -43,6 +44,7 @@ import { AdminComponent } from './admin/admin.component';
     ArticleComponent,
     ProfilsComponent,
     AdminComponent,
+    RecoveryComponent,
   
 
   ],

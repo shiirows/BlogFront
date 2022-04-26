@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 import { ArticleService } from '../common/articleService';
+import { CompressImageService } from '../common/compress-image.service';
 import { TokenService } from '../common/TokenService';
 import { CreationArticle } from '../model/creationArticle';
 import { Utilisateur } from '../model/Utilisateur';
@@ -17,7 +19,8 @@ export class ArticleUserComponent implements OnInit {
     private serviceArticle: ArticleService,
     private formB: FormBuilder,
     private route: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private compressImage: CompressImageService
   ) {}
 
   public selectedFiles: FileList;
@@ -34,6 +37,14 @@ export class ArticleUserComponent implements OnInit {
   public idNewarticle: number;
 
   //------------------ Les Selecteur de pays et de continents --------------------------
+  ngOnInit(): void {
+    this.getContinent(); // on fait appel a la fonction pour récupérer les continents
+    this.selectedFiles; // on initialise la liste des image au démarage de la page  pour éviter qu'il se remette a zero
+    this.initForm(); // on initialise le formulaire
+  
+    
+  }
+
 
   onChange(event) {
     this.continentsId = event;
@@ -47,6 +58,7 @@ export class ArticleUserComponent implements OnInit {
   //fonction pour récuperer les image du formulaire
 
   handleFileInput(event) {
+    
     this.urls = [];
     this.selectedFiles = event.target.files;
     let files = event.target.files;
@@ -55,20 +67,43 @@ export class ArticleUserComponent implements OnInit {
         let reader = new FileReader();
         reader.onload = (e: any) => {
           this.urls.push(e.target.result);
+          
+          
         };
         reader.readAsDataURL(file);
+        this.size()
       }
     }
   }
 
-  ngOnInit(): void {
-    this.getContinent(); // on fait appel a la fonction pour récupérer les continents
-    this.selectedFiles; // on initialise la liste des image au démarage de la page  pour éviter qu'il se remette a zero
-    this.initForm(); // on initialise le formulaire
+ public test (){
+  for (let i = 0; i < this.selectedFiles.length; i++) {
+    console.log(this.selectedFiles[i].size);
   }
+ }
 
-  //fonction qui permet d'appeler les continent par un id
-  // l'id continents appel par la suite la list des pays lier a l'id
+
+
+
+
+  public size(){
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      console.log(this.selectedFiles[i].size);
+    
+
+    console.log(`Image size before compressed: ${this.selectedFiles[i].size} bytes.`)
+    this.compressImage.compress(this.selectedFiles[i])
+      .pipe(take(1))
+      .subscribe(compressedImage => {
+       
+        
+        console.log(`Image size after compressed: ${compressedImage.size} bytes.`)
+       
+
+        // now you can do upload the compressed image 
+      })
+    }
+  }
 
   //Fonction pour récupérer les pays
   public getPaysId(): void {
@@ -132,6 +167,7 @@ export class ArticleUserComponent implements OnInit {
       pays,
       continent
     );
+    this.size()
     this.serviceArticle
       .fileArticle(article, this.selectedFiles)
       .subscribe((data) => {
