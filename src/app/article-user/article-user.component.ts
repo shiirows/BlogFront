@@ -24,6 +24,7 @@ export class ArticleUserComponent implements OnInit {
   ) {}
 
   public selectedFiles: FileList;
+  public compresse: File[] = [];
   public currentFile: any;
   public urls = new Array<String>();
   public artcileForm: any;
@@ -41,10 +42,7 @@ export class ArticleUserComponent implements OnInit {
     this.getContinent(); // on fait appel a la fonction pour récupérer les continents
     this.selectedFiles; // on initialise la liste des image au démarage de la page  pour éviter qu'il se remette a zero
     this.initForm(); // on initialise le formulaire
-  
-    
   }
-
 
   onChange(event) {
     this.continentsId = event;
@@ -58,7 +56,6 @@ export class ArticleUserComponent implements OnInit {
   //fonction pour récuperer les image du formulaire
 
   handleFileInput(event) {
-    
     this.urls = [];
     this.selectedFiles = event.target.files;
     let files = event.target.files;
@@ -67,42 +64,40 @@ export class ArticleUserComponent implements OnInit {
         let reader = new FileReader();
         reader.onload = (e: any) => {
           this.urls.push(e.target.result);
-          
-          
         };
+
         reader.readAsDataURL(file);
-        this.size()
       }
     }
+    this.size();
   }
 
- public test (){
-  for (let i = 0; i < this.selectedFiles.length; i++) {
-    console.log(this.selectedFiles[i].size);
-  }
- }
-
-
-
-
-
-  public size(){
+  // on récupere la liste des image du formulaire et on les compress avec la fonction compressImage
+  // on ajoute la liste des image compressé dans la variable compresse pour pouvoir les envoyer au service
+  public size() {
     for (let i = 0; i < this.selectedFiles.length; i++) {
-      console.log(this.selectedFiles[i].size);
-    
+      if (this.selectedFiles[i].size < 500000) {
+        // si l'image est inférieur à 500ko on l'injecte directement dans la variable compresse
+        this.compresse.push(this.selectedFiles[i]);
+      } else {
+        //  console.log(`Image size before compressed: ${this.selectedFiles[i].size} bytes.`);
+        this.compressImage
+          .compress(this.selectedFiles[i])
+          .pipe(take(1))
+          .subscribe((compressedImage) => {
+            // console.log(`Image size after compressed: ${compressedImage.size} bytes.` );
 
-    console.log(`Image size before compressed: ${this.selectedFiles[i].size} bytes.`)
-    this.compressImage.compress(this.selectedFiles[i])
-      .pipe(take(1))
-      .subscribe(compressedImage => {
-       
-        
-        console.log(`Image size after compressed: ${compressedImage.size} bytes.`)
-       
+            // fonction pour affiché les image compressé dans une nouvelle page web
+            /*  var blob = new Blob([compressedImage], { type: 'image/jpeg' });
+            var url = window.URL.createObjectURL(blob);
+            window.open(url);*/
 
-        // now you can do upload the compressed image 
-      })
+            this.compresse.push(compressedImage);
+            // now you can do upload the compressed image
+          });
+      }
     }
+    console.log(this.compresse);
   }
 
   //Fonction pour récupérer les pays
@@ -167,9 +162,8 @@ export class ArticleUserComponent implements OnInit {
       pays,
       continent
     );
-    this.size()
     this.serviceArticle
-      .fileArticle(article, this.selectedFiles)
+      .fileArticle(article, this.compresse)
       .subscribe((data) => {
         this.currentFile = data;
         console.log(data);

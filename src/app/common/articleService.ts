@@ -136,7 +136,7 @@ public getArticlePays(id : number): Observable<any> {
 
 
 //Fonction pour envoyer l'article en formdata
- public fileArticle( article: CreationArticle , file : FileList): Observable<any> {
+ public fileArticle( article: CreationArticle , file : File[]): Observable<any> {
   
   const formData = new FormData();
   for (let i = 0; i < file.length; i++) {
