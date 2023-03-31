@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticleUserComponent } from './article-user/article-user.component';
-import { ArticleService } from './common/articleService';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';

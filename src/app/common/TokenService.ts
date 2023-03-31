@@ -39,6 +39,7 @@ export class TokenService {
   getUser(): any {
     // on recupère le user enregistré
     const user = window.sessionStorage.getItem(USER_KEY);
+    
     // s'il existe
     if (user) {
       // on le renvoi, mais sachant qu'on avait convertit le JSON en String

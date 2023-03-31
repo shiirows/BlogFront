@@ -25,16 +25,16 @@ export class ConnexionComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    if (this.tokenService.getUser().user != null) {
+    if (this.tokenService.getUser().userInfo != null) {
       this.route.navigate(['']);
     }
   }
 
   public initForm() {
     this.userForm = this.formB.group({
-      userName: ['alexandre', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.minLength(3)]],
       passwordUser: [
-        '123456789',
+        '',
         [
           Validators.required,
           Validators.minLength(4),
@@ -45,20 +45,22 @@ export class ConnexionComponent implements OnInit {
   }
 
   public onsubmit() {
-    let username: string = this.userForm.get('userName').value;
+    let email: string = this.userForm.get('email').value;
     let password: string = this.userForm.get('passwordUser').value;
 
     // APPEL AU SERVICE POUR FAIRE APPAEL AU BACK POUR VERIFIER L'UTILISATEUR
-    this.service.signin(username, password).subscribe(
+    this.service.signin(email, password).subscribe(
       (param: any) => {
         this.tokenService.saveUser(param);
         //ENREGISTREMENT DU TOKEN DANS LE STORAGE
 
         this.tokenService.saveToken(param.accessToken);
+        console.log(this.tokenService.getUser().user);
 
         this.roles = this.tokenService.getUser().roles;
 
         window.location.reload();
+        
       },
       (error) => {
         this.erreur = true;

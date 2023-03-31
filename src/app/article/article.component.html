@@ -1,93 +1,44 @@
-<div class="contenue" id="article" >
-  <section>
-    <div class="container">
-      <hr id="one" />
-      <h1 class="tritre_principal">{{ afficheArticle.pays.name }}</h1>
-      <hr id="two" />
-      <div class="carousel">
-        <input
-        *ngFor="let picture of afficheArticle.files"
-          type="radio"
-          name="slides"
-          id="{{ picture }}"
-        />
-
-        <ul class="carousel__slides">
-          <li *ngFor="let picture of afficheArticle.files" class="carousel__slide">
-            <figure>
-              <div>
-                <img class="carousel" src="{{urlfiles+picture}}" alt="" />
-              </div>
-            </figure>
-          </li>
-        </ul>
-
-        <ul class="carousel__thumbnails">
-          <li *ngFor="let picture of afficheArticle.files" class="carousel">
-            <label for="{{ picture }}"><img src="{{urlfiles+picture}}" alt="" /></label>
-          </li>
-        </ul>
+<div class="article">
+  <h1 class="title">  {{ afficheArticle.titre }}</h1>
+  <h2 class="country"> {{afficheArticle.pays.name}} </h2>
+  <div class="photos">
+    <div class="row">
+      <div class="column" *ngFor="let picture of afficheArticle.files" >
+        <img id="myImage" src="{{urlfiles+picture}}"  alt="photo 1">
       </div>
     </div>
-  </section>
-
-  <div class="card">
-    <div id="titre_secondaire">
-      <h2>{{ afficheArticle.titre }}</h2>
-    </div>
-
-    <div class="separator"></div>
-    <p>{{ afficheArticle.content }}</p>
   </div>
-
-  <div class="author">
-    <img src="{{urlfiles+afficheArticle.avatar}}" />
-    <h3 class="name">{{ afficheArticle.name }} {{ afficheArticle.firstname }}</h3>
-  </div>
+  <p class="content"> {{afficheArticle.content}} </p>
+  <div class="height"> {{afficheArticle.firstname}} {{afficheArticle.lastname}}  </div>
 </div>
 
-<!-- commentaire de l'article  -->
-
-<div class="container_coment">
-  <h1 class="comment_area">Comment area</h1>
-
-  <div class="row" *ngFor="let item of commentaire">
-    <div class="col-md-6">
-      <div class="contenair_avatar">
-        <img class="avatarcomments" [src]="urlfiles+item.avatar" />
+<div class="comments-container">
+  <div class="comment-form">
+    <h3>Ajouter un commentaire</h3>
+    <form (ngSubmit)="onValid()">
+      <div>
+        <label for="commentaire">Commentaire :</label>
+        <textarea name="commentaire" [(ngModel)]="commentaire" required></textarea>
       </div>
-
-      <div class="card_comment">
-        <div class="card-user">
-          <h5 class="comment-user">{{ item.name }} {{ item.firstname }}</h5>
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+  <div class="comment-list">
+    <div class="comment" *ngFor="let item of commentArticle">
+      <div class="comment-header">
+        <div class="comment-avatar">
+          <img src="{{urlfiles+item.avatar}}" alt="Profile Picture">
+         
+        </div>
+        <div class="comment-info">
+          <h4>{{item.lastname}} {{item.firstname}}</h4>
         </div>
 
-        <div class="comment_content">
-          <p>{{ item.comment }}</p>
-        </div>
+      </div>
+      <div class="comment-body">
+        <p class="comment-user">{{item.comment}}</p>
+        <p class="comment-date">25/10/2023</p>
       </div>
     </div>
-  </div>
-
-  <!--ecrire un commantaire-->
-  <div class="form_comment">
-    <form
-      *ngIf="estConnecter == true"
-      (ngSubmit)="commentForm.valid && onValid()"
-      [formGroup]="commentForm"
-    >
-      <div class="form-group">
-        <label class="comment-titre">Write your comment</label>
-        <textarea
-          formControlName="commentaire"
-          id="content"
-          name="content"
-          required=""
-          rows="4"
-          type="text"
-        ></textarea>
-      </div>
-      <button class="comment_btn" type="submit">Envoyer</button>
-    </form>
   </div>
 </div>

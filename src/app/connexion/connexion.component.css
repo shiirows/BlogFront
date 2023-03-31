@@ -1,5 +1,3 @@
-
-
 *,
 *:before,
 *:after {
@@ -7,7 +5,6 @@
   margin: 0;
   padding: 0;
 }
-
 
 input,
 button {
@@ -17,8 +14,6 @@ button {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-
-
 .cont {
   overflow: hidden;
   position: relative;
@@ -26,12 +21,13 @@ button {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  
   margin-top: 250px;
   background: rgb(255, 255, 255);
-  border-radius: 40px;
+  border-radius: 35px;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   opacity: 0.95;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+  border: solid 1px #ccc;
 }
 
 .form {
@@ -39,9 +35,7 @@ button {
   flex-direction: column;
   width: 600px;
   height: 100%;
- 
   padding: 50px 30px 0;
-
 }
 
 .sub-cont {
@@ -52,7 +46,7 @@ button {
   width: 900px;
   height: 100%;
   padding-left: 260px;
-  background: rgb(61, 60, 60);
+  background: #e4d3b2;
   transition: transform 1.2s ease-in-out;
 }
 .cont.s--signup .sub-cont {
@@ -87,11 +81,10 @@ button {
   top: 0;
   width: 900px;
   height: 100%;
-  
+
   background-size: cover;
   transition: transform 1.2s ease-in-out;
 }
-
 
 .img__text {
   z-index: 2;
@@ -101,7 +94,7 @@ button {
   width: 100%;
   padding: 0 20px;
   text-align: center;
-  color: #fff;
+  color: rgb(0, 0, 0);
   transition: transform 1.2s ease-in-out;
 }
 .img__text h2 {
@@ -128,23 +121,14 @@ button {
   width: 100px;
   height: 36px;
   margin: 0 auto;
-  background: transparent;
-  color: #fff;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   font-size: 15px;
   cursor: pointer;
-}
-.img__btn:after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #fff;
   border-radius: 30px;
 }
+
 .img__btn span {
   position: absolute;
   left: 0;
@@ -210,7 +194,6 @@ input {
 
 .signup-btn {
   display: none;
-  
 }
 
 .error {
@@ -222,61 +205,53 @@ input {
 }
 
 @media screen and (max-width: 1200px) and (min-width: 750px) {
-  
   .cont {
     width: 70%;
     height: 450px;
     margin-top: 170px;
     padding-top: 50px;
-    
   }
-  
+
   .form {
     width: auto;
     height: 400px;
     padding: 0;
   }
-  
+
   .signup-btn {
     display: flex;
     justify-content: center;
     border: 2px solid #d3dae9;
     color: #8fa1c7;
   }
-  
+
   .sub-cont {
     display: none;
   }
-  
-  }
-
-
-
+}
 
 @media screen and (max-width: 750px) and (min-width: 200px) {
-  
-.cont {
-  width: 100%;
-  height: 450px;
-  margin-top: 170px;
-  padding-top: 50px;
-}
+  .cont {
+    width: 100%;
+    height: 450px;
+    margin-top: 170px;
+    padding-top: 50px;
+  }
 
-.form {
-  width: auto;
-  height: 400px;
-  padding: 0;
-}
+  .form {
+    width: auto;
+    height: 400px;
+    padding: 0;
+  }
 
-.signup-btn {
-  display: flex;
-  justify-content: center;
-  border: 2px solid #d3dae9;
-  color: #8fa1c7;
-}
+  .signup-btn {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
 
-.sub-cont {
-  display: none;
-}
-
+  .sub-cont {
+    display: none;
+  }
 }

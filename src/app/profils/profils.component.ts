@@ -29,7 +29,6 @@ export class ProfilsComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleUser();
-    console.log(this.avatarUser);
   }
 
   //----------------------------------fonction pour appeler tout les l'articles du l'utiliateur
@@ -37,7 +36,6 @@ export class ProfilsComponent implements OnInit {
   public articleUser() {
     this.service.getArticleByIdUser().subscribe((data) => {
       this.listArticles = data;
-
       console.log(this.listArticles);
     });
   }

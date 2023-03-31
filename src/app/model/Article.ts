@@ -4,7 +4,7 @@ export class Article {
     public content: string;
     public createdate: number;
     public files : string;
-    public name : string;
+    public lastname : string;
     public firstname : string;
     public avatar : string;
     public continents : any;
@@ -12,14 +12,14 @@ export class Article {
     
 
     constructor( id: number, titre: string, content: string, createdate: number, files : string,
-              name : string, firstname : string, avatar : string, continents : any, pays : any) {
+        lastname : string, firstname : string, avatar : string, continents : any, pays : any) {
 
         this.id = id;
         this.titre = titre;
         this.content = content;
         this.createdate = createdate;
         this.files = files;
-        this.name = name;
+        this.lastname = lastname;
         this.firstname = firstname;
         this.avatar = avatar;
         this.continents = continents;
@@ -51,7 +51,7 @@ export class Article {
     }
 
     public getName() {
-        return this.name;
+        return this.lastname;
     }
 
     public getFirstname() {
@@ -86,8 +86,8 @@ export class Article {
         this.files = files;
     }
 
-    public setName(name: string) {
-        this.name = name;
+    public setName(lastname: string) {
+        this.lastname = lastname;
     }
 
     public setFirstname(firstname: string) {

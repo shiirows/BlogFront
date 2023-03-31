@@ -5,15 +5,15 @@ export class commentaire {
     public comment: string;
     public date: Date;
     public avatar: string;
-    public name: string;
+    public lastname: string;
     public firstname: string;
     
-    constructor(id: number, comment: string, date: Date,   avatar: string, name: string, firstname: string) {
+    constructor(id: number, comment: string, date: Date,   avatar: string, lastname: string, firstname: string) {
         this.id = id;
         this.comment = comment;
         this.date = date;
         this.avatar = avatar;
-        this.name = name;
+        this.lastname = lastname;
         this.firstname = firstname;
     }
 
@@ -52,11 +52,11 @@ export class commentaire {
     }
 
     public getName(): string {
-        return this.name;
+        return this.lastname;
     }
 
-    public setName(name: string): void {
-        this.name = name;
+    public setName(lastname: string): void {
+        this.lastname = lastname;
     }
 
     public getFirstname(): string {

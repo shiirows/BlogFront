@@ -29,14 +29,12 @@ export class ArticleService {
 
 
   //Fonction qui permet de créer un article
-  public createArticle(article: CreationArticle): Observable<any> {
-    return this.http.post(this.urlApi + 'create', article, this.httpOptions);
-  }
+
 
   //Fonction qui permet de récupérer les article
 
   public getArticles(): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'views/');
+    const obs: Observable<any> = this.http.get(this.urlApi );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -66,13 +64,13 @@ public getArticlePays(id : number): Observable<any> {
   //Fonction qui permet de récupérer un article par son id
   
   public getArticleById(id: number): Observable<any> {
-   return this.http.get<Article>(this.urlApi + 'view/' + id );
+   return this.http.get<Article>(this.urlApi + id );
   
   }
 
    //Fonction qui permet de récupérer les article de l'utilisateur
    public getArticleByIdUser(): Observable<any> {
-    const obs: Observable<any> = this.http.get<Article>(this.urlApi + 'articleuser' ,  this.httpOptions );
+    const obs: Observable<any> = this.http.get<Article>(this.urlApi + 'user/' ,  this.httpOptions );
     const traitement = (param: any) => {
       return param as any;
     };
@@ -86,7 +84,7 @@ public getArticlePays(id : number): Observable<any> {
 
   //Fonction qui permet de supprimer un article
   public deleteArticle(id: number): Observable<any> { 
-    return this.http.delete(this.urlApi + 'delete/' + id ,this.httpOptions);
+    return this.http.delete(this.urlApi + id ,this.httpOptions);
     
   }
 
@@ -148,7 +146,7 @@ public getArticlePays(id : number): Observable<any> {
   formData.append('titre', article.titre);
   formData.append('content', article.content);
 
-  return this.http.post(this.urlApi + 'create' , formData  )
+  return this.http.post(this.urlApi , formData   )
 
 }
 

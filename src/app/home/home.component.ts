@@ -19,9 +19,6 @@ export class HomeComponent implements OnInit {
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
   public idcontinents: number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
                                // ou l'utilisateur selection tout les pays du continent
-
-
-
 // variable pour afficher le bouton en vert si l'article est en favoris
   public like = false;
  

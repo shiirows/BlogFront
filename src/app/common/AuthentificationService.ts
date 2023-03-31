@@ -49,10 +49,10 @@ export class AuthentificationService {
   }
 
   //METHODE POUR LES CONNEXION
-  public signin(username: string, password: string): Observable<any> {
+  public signin(email: string, password: string): Observable<any> {
     return this.http.post(
       this.urlApi + 'signin',
-      { username, password },
+      { email, password },
       this.httpOptions
     );
   }

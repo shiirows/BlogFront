@@ -1,72 +1,130 @@
+<!---<header>
+<nav class="menu" tabindex="0" style="opacity: 0.9">
+  <div class="smartphone-menu-trigger"></div>
 
-  <nav class="menu" tabindex="0" style=" opacity: 0.9;" >
-    
-    <div  class="smartphone-menu-trigger">
-   
-    </div>
-
-    <div class="avatar">
-      <div class="avt" >
-      <img *ngIf="estConnecter != null" class="card-img"  src="{{urlfiles+avatarUser}}"   alt="profil picture">
-      
+  <div class="avatar">
+    <div class="avt">
+      <img
+        *ngIf="estConnecter != null"
+        class="card-img"
+        src="{{ urlfiles + avatarUser }}"
+        alt="profil picture"
+      />
     </div>
     <div>
-      <img *ngIf="estConnecter == null"  class="card-img"  src="assets/image/pictureprofil.png" alt="profil picture">
+      <img
+        *ngIf="estConnecter == null"
+        class="card-img"
+        src="assets/image/pictureprofil.png"
+        alt="profil picture"
+      />
     </div>
 
     <div *ngFor="let item of estConnecter">
-      <p class="name" > {{item.name}} {{item.firstname}} </p>
-      </div>
-      <!--- afficher le nom -->
-
-      
-
+      <p class="name">{{ item.name }} {{ item.firstname }}</p>
     </div>
+    
+  </div>
 
-
-    <ul>
-
-      <li tabindex="0" >
-        <a class="titre"  [routerLink]="['']" >Home</a>
-      </li>
-
-      <li *ngIf="estConnecter != null" tabindex="0" >
-        <a class="titre"  [routerLink]="['/articleuser']" >Share a trip</a>
-      </li>
-
-
-      <li *ngIf="estConnecter != null" tabindex="0">
-        <a class="titre"  [routerLink]="['/profil']" >Profil</a>
-      </li>
-      
-
-      <li *ngIf="estConnecter == null" tabindex="0" >
-        <a href="#0" class="titre"[routerLink]="['/connexion']" >Sign-in</a>
-        
-      </li>
-
-      <li *ngIf="estConnecter == null" tabindex="0" >
-        <a href="#0" class="titre"[routerLink]="['/inscription']" >Sign-up</a>
-      </li>
-
-      <li *ngIf="estConnecter != null" tabindex="0" >
-        <a  class="titre" (click)="effacerStorage()"
-           >Logout</a>
+  <ul>
+    <li tabindex="0">
+      <a class="titre" [routerLink]="['']">Home</a>
     </li>
 
-    <li tabindex="0" >
-      <a class="titre" [routerLink]="['/contacte']" >Contact</a>
+    <li *ngIf="estConnecter != null" tabindex="0">
+      <a class="titre" [routerLink]="['/articleuser']">Share a trip</a>
+    </li>
+
+    <li *ngIf="estConnecter != null" tabindex="0">
+      <a class="titre" [routerLink]="['/profil']">Profil</a>
+    </li>
+
+    <li *ngIf="estConnecter == null" tabindex="0">
+      <a href="#0" class="titre" [routerLink]="['/connexion']">Sign-in</a>
+    </li>
+
+    <li *ngIf="estConnecter == null" tabindex="0">
+      <a href="#0" class="titre" [routerLink]="['/inscription']">Sign-up</a>
+    </li>
+
+    <li *ngIf="estConnecter != null" tabindex="0">
+      <a class="titre" (click)="effacerStorage()">Logout</a>
+    </li>
+
+    <li tabindex="0">
+      <a class="titre" [routerLink]="['/contacte']">Contact</a>
     </li>
 
     <li *ngIf="isAdmin == true" tabindex="0">
-      <a class="titre" [routerLink]="['/admin']" >Admin</a>
+      <a class="titre" [routerLink]="['/admin']">Admin</a>
     </li>
+  </ul>
+</nav>
+</header>   -->
 
-</ul>
 
+<header>
+  <nav class="navbar">
+    
+   
+    <div class="navbar-logo">
+      <a class="blog-logo" [routerLink]="['']">Blog Trotter</a>
+    </div>
+    <ul class="navbar-links">
+      <li *ngIf="estConnecter != null" tabindex="0">
+        <a [routerLink]="['/articleuser']">Share a trip</a>
+      </li>
+      <li><a href="/about">A propos</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div *ngIf="estConnecter != null" class="navbar-user">
+      <div class="navbar-user-info">
+        <img
+          class="navbar-user-avatar"
+          src="{{ urlfiles + avatarUser }}"
+          alt="Avatar"
+        />
+        <ul class="navbar-links" *ngFor="let item of estConnecter">
+          <li><a class="navbar-user-name" href="/profil">{{ item.lastname }} {{ item.firstname }}</a></li>
+        </ul>
+      </div>
+      <div class="navbar-user-actions">
+        <a href="#0" (click)="effacerStorage()" class="navbar-auth-button">Logout</a>
+
+        <a href="#0" [routerLink]="['/admin']" class="navbar-auth-button">Admin</a>
+
+        </div>
+ </div>
+
+    <div *ngIf="estConnecter == null" class="navbar-auth">
+      <a href="#0" [routerLink]="['/inscription']" class="navbar-auth-button"
+        >Inscription</a
+      >
+      <a href="#0" [routerLink]="['/connexion']" class="navbar-auth-button"
+        >Connexion</a
+      >
+    </div>
+    <div class="smartphone-menu-trigger">
+      <a href="#" class="burger">
+        <div class="bar bun-top"></div>
+        <div class="bar lettuce"></div>
+        <div class="bar mustard"></div>
+        <div class="bar ketchup"></div>
+        <div class="bar patty"></div>
+        <div class="bar bun-bot"></div>
+      </a>
+    </div>
+    <div id="nav-menu" class="menu">
+      <ul class="nav-menu-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/about">A propos</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li *ngIf="estConnecter == null"><a href="#0" [routerLink]="['/inscription']">Inscription</a></li>
+        <li *ngIf="estConnecter == null"><a href="#0" [routerLink]="['/connexion']">Connexion</a></li>
+        <li *ngIf="estConnecter != null"><a href="#0" [routerLink]="['/profil']">{{ estConnecter[0].lastname }} {{ estConnecter[0].firstname }}</a></li>
+        <li *ngIf="estConnecter != null"><a href="#0" (click)="effacerStorage()">Logout</a></li>
+        <li *ngIf="estConnecter != null"><a href="#0" [routerLink]="['/admin']">Admin</a></li>
+      </ul>
+    </div>
   </nav>
-  
-  
-
-
-  
+</header>

@@ -21,14 +21,6 @@ import { RecoveryComponent } from './recovery/recovery.component';
 
 
 
-
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

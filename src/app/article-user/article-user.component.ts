@@ -19,7 +19,6 @@ export class ArticleUserComponent implements OnInit {
     private serviceArticle: ArticleService,
     private formB: FormBuilder,
     private route: Router,
-    private tokenService: TokenService,
     private compressImage: CompressImageService
   ) {}
 
@@ -76,7 +75,7 @@ export class ArticleUserComponent implements OnInit {
   // on ajoute la liste des image compressé dans la variable compresse pour pouvoir les envoyer au service
   public size() {
     for (let i = 0; i < this.selectedFiles.length; i++) {
-      if (this.selectedFiles[i].size < 500000) {
+      if (this.selectedFiles[i].size < 1700000) {
         // si l'image est inférieur à 500ko on l'injecte directement dans la variable compresse
         this.compresse.push(this.selectedFiles[i]);
       } else {
