@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ArticleService } from './../common/articleService';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { PaysService } from '../common/PaysService';
+import { ContinentService } from '../common/ContinentService';
 
 @Component({
   selector: 'app-home',
@@ -9,39 +11,50 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private serviceArticle: ArticleService, private route: Router) {}
+  constructor(
+    private serviceArticle: ArticleService,
+    private route: Router,
+    private servicePays: PaysService,
+    private continentService: ContinentService,
+
+  ) {}
 
   public urlfiles: string = environment.apiUrlFile;
   public listArticles: any[]; // contien tout les articles
   public listArticlesFavoris: any[];
   public continents: any[]; // contien les article par continent
-  public pays: any[] = []; //contien les données de l'article par pays
+  public pays: any[] = []; //contien la liste des pays
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
   public idcontinents: number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
-                               // ou l'utilisateur selection tout les pays du continent
-// variable pour afficher le bouton en vert si l'article est en favoris
+  // ou l'utilisateur selection tout les pays du continent
+  // variable pour afficher le bouton en vert si l'article est en favoris
   public like = false;
- 
+
+  public selectedContinent: string;
+  public selectedPays: string;
+  public selectedRegion: string;
 
   ngOnInit(): void {
-    
     this.getContinent();
     this.afficheArticle();
-    this.getFavoris()
-   
+    this.getFavoris();
+   // this.getChartData();
   }
 
   // -------------------------------------------------- Appel des continents  --------------------------------------------------
 
   public getContinent(): any {
-    this.serviceArticle.getContinentList().subscribe(
+    this.continentService.getContinentList().subscribe(
       (data) => {
         this.continents = data;
+        console.log(this.continents);
       },
       (error) => {
         console.log(error);
       }
+      
     );
+
   }
 
   // -------------------------------------------------- affichage des pays par le select continents et des article lier au continents--------
@@ -57,15 +70,18 @@ export class HomeComponent implements OnInit {
     });
 
     //appel les pays qui va les placer dans le selecteur pays (onChange2)
-    this.serviceArticle.getPays(event).subscribe(
+    this.servicePays.getPays(event).subscribe(
       (data) => {
         this.pays = data;
         this.mySortingFunction();
+console.log(this.pays)
+
       },
       (error) => {
         console.log(error);
       }
     );
+
   }
 
   // -------------------------------------------------- affichage des articles par id pays--------------------------------------------------
@@ -102,15 +118,9 @@ export class HomeComponent implements OnInit {
       this.listArticlesFavoris = data;
       console.log(this.listArticlesFavoris);
 
-      this.favorisList()
-
-      
+      this.favorisList();
     });
   }
-
-
-
-
 
   //fonction pour trier les articles par ordre de creation
   public sortByDate() {
@@ -134,16 +144,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
   // -------------------------------------------------- like --------------------------------------------------
-
-
 
   //ajout en favoris
   public addFavori(id: number) {
-
     if (this.like == false) {
-      
       this.serviceArticle.addFavoris(id).subscribe((data) => {
         console.log(data);
         this.like = true;
@@ -154,23 +159,44 @@ export class HomeComponent implements OnInit {
         console.log(data);
       });
     }
-   
   }
 
+  public favorisList() {
+    this.listArticlesFavoris.forEach((element) => {
+      this.listArticles.forEach((element2) => {
+        if (element.id == element2.id) {
+          this.like = true;
+        }
+      });
+    });
+  }
 
-  public favorisList(){
+  // recuperer les donnés du component chart.component.ts
+  public onContinentSelected(continent: string) {
+    this.selectedContinent = continent;
     
-  this.listArticlesFavoris.forEach(element => {
-    this.listArticles.forEach(element2 => {
-      if(element.id == element2.id){
-        this.like = true;
-      }
+    // Faire quelque chose d'autre ici si nécessaire
+  }
+
+  public onPaysSelected(pays: string) {
+    this.selectedPays = pays;
+    console.log(this.selectedPays);
+    this.serviceArticle.getArticlePaysName(pays).subscribe((data) => {
+     
+      this.listArticles = data;
+      console.log(this.listArticles);
+
+      this.sortByDate();
 
     });
-  });
-
+    
+    // Faire quelque chose d'autre ici si nécessaire
   }
 
+  public onRegionSelected(region: string) {
+    this.selectedRegion = region;
+    console.log(this.selectedRegion);
+    // Faire quelque chose d'autre ici si nécessaire
+  }
 
 }
-

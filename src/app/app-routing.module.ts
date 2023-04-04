@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticleUserComponent } from './article-user/article-user.component';
+import { ArticleUserComponent } from './ShareATrip/ShareATrip.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -20,7 +20,7 @@ export const ROUTES: Routes = [
   { path: 'inscription', component: InscriptionComponent }, 
   { path: 'contacte', component: ContacteComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'articleuser', component: ArticleUserComponent, canActivate: [AuthGuard] },
+  { path: 'ShareATrip', component: ArticleUserComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilsComponent , canActivate: [AuthGuard]},
   { path: 'activation', component: ActivationComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },

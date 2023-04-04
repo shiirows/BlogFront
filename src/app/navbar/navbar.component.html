@@ -1,78 +1,11 @@
-<!---<header>
-<nav class="menu" tabindex="0" style="opacity: 0.9">
-  <div class="smartphone-menu-trigger"></div>
-
-  <div class="avatar">
-    <div class="avt">
-      <img
-        *ngIf="estConnecter != null"
-        class="card-img"
-        src="{{ urlfiles + avatarUser }}"
-        alt="profil picture"
-      />
-    </div>
-    <div>
-      <img
-        *ngIf="estConnecter == null"
-        class="card-img"
-        src="assets/image/pictureprofil.png"
-        alt="profil picture"
-      />
-    </div>
-
-    <div *ngFor="let item of estConnecter">
-      <p class="name">{{ item.name }} {{ item.firstname }}</p>
-    </div>
-    
-  </div>
-
-  <ul>
-    <li tabindex="0">
-      <a class="titre" [routerLink]="['']">Home</a>
-    </li>
-
-    <li *ngIf="estConnecter != null" tabindex="0">
-      <a class="titre" [routerLink]="['/articleuser']">Share a trip</a>
-    </li>
-
-    <li *ngIf="estConnecter != null" tabindex="0">
-      <a class="titre" [routerLink]="['/profil']">Profil</a>
-    </li>
-
-    <li *ngIf="estConnecter == null" tabindex="0">
-      <a href="#0" class="titre" [routerLink]="['/connexion']">Sign-in</a>
-    </li>
-
-    <li *ngIf="estConnecter == null" tabindex="0">
-      <a href="#0" class="titre" [routerLink]="['/inscription']">Sign-up</a>
-    </li>
-
-    <li *ngIf="estConnecter != null" tabindex="0">
-      <a class="titre" (click)="effacerStorage()">Logout</a>
-    </li>
-
-    <li tabindex="0">
-      <a class="titre" [routerLink]="['/contacte']">Contact</a>
-    </li>
-
-    <li *ngIf="isAdmin == true" tabindex="0">
-      <a class="titre" [routerLink]="['/admin']">Admin</a>
-    </li>
-  </ul>
-</nav>
-</header>   -->
-
-
 <header>
-  <nav class="navbar">
-    
-   
+  <nav class="navbar">   
     <div class="navbar-logo">
       <a class="blog-logo" [routerLink]="['']">Blog Trotter</a>
     </div>
     <ul class="navbar-links">
       <li *ngIf="estConnecter != null" tabindex="0">
-        <a [routerLink]="['/articleuser']">Share a trip</a>
+        <a [routerLink]="['/ShareATrip']">Share a trip</a>
       </li>
       <li><a href="/about">A propos</a></li>
       <li><a href="/contact">Contact</a></li>

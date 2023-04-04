@@ -1,0 +1,157 @@
+<!--<div id="formulaireArticle">
+
+
+  <div class="contenair_haut">
+
+    <div class="titreForm" >
+      <h1>To start your article <hr> Select a continent then a country</h1>
+    </div>
+
+    <div class="select_destination">
+
+      
+      <select id="continent" class="selectitem" (change)="onChange($event.target.value)">
+        <option class="text" value="0">continent</option>
+        <option *ngFor="let category of continentsList" class="text" [value]="category.id">{{category.name}}</option>
+      </select>
+
+  
+
+    <select id="pays" class="selectitem" (change)="onChange2($event.target.value)">
+      <option class="text" value="0">country</option>
+      <option  *ngFor="let subcategory of paysList" class="text" [value]="subcategory.id">{{subcategory.name }}</option>
+    </select>
+  
+
+     </div>
+
+      <h2 class="titre_picture" >add your best picture, maximum of pictures 10 </h2>
+      
+        <div>
+          <input
+            class="input-file"
+            accept=".jpg,.png,.PNG,.webp,.svg"
+            type="file"
+            id="file1"
+            name="file"
+            multiple="multiple"
+           
+            (change)="handleFileInput($event)"
+          />
+        </div>
+        
+        <div class="image-select" > 
+          <img class="image"*ngFor="let image of urls" [src]="image" alt="" width="110" />
+        </div>
+</div>
+ Formulaire pour le titre et le contenue de l'article  
+  <div class="contenair_bas">
+<h4>Choose a title for your article</h4>
+    <form
+      (ngSubmit)="artcileForm.valid && onValid()"
+      [formGroup]="artcileForm"
+      id="form"
+      class="article"
+    >
+        <div class="formulaire_content">
+
+            
+          
+          <div class="row input-container">
+
+           
+              <div class="styled-input wide">
+                <input
+                  formControlName="titre"
+                  class="titre"
+                  name="titre"
+                  id="name"
+                  required=""
+                  type="text"
+                  [ngClass]="{
+                    'is-invalid':
+                      artcileForm.get('titre').touched &&
+                      artcileForm.get('titre').errors
+                  }"
+                />
+              </div>
+            
+
+           
+              <div class="styled-input wide">
+                <textarea
+                  formControlName="content"
+                 class="content_article"
+                  name="content"
+                  required=""
+                  rows="10"
+                  type="text"
+                  [ngClass]="{
+                    'is-invalid':
+                      artcileForm.get('content').touched &&
+                      artcileForm.get('content').errors
+                  }"
+                ></textarea>
+              </div>
+            
+
+            <div class="col-xs-12">
+             
+              <button class="btn_valid" type="submit" id="submit">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+     
+    </form>
+  </div>
+</div> -->
+
+<div class="container">
+  <h1>To start your article</h1>
+  <h2>Select a continent then a country</h2>
+  <div class="select-container">
+    <div class="select-wrapper"  [ngClass]="{'selected': continentSelected}">
+      <select id="continent-select" class="select" (change)="onChange($event.target.value)">
+        <option value="0" disabled selected>Continent</option>
+        <option *ngFor="let category of continentsList" [value]="category.id">{{category.name}}</option>
+      </select>
+    </div>
+
+    <div class="select-wrapper"  [class.selected]="countrySelected" >
+      <select id="country-select" class="select" (change)="onChange2($event.target.value)">
+        <option value="0" disabled selected>Country</option>
+        <option *ngFor="let subcategory of paysList" [value]="subcategory.id">{{subcategory.name }}</option>
+      </select>
+    </div>
+    <div class="select-wrapper" [class.selected]="regionSelected">
+      <select id="city-select" class="select">
+        <option value="" disabled selected>City</option>
+        
+        
+      </select>
+    </div>
+  </div>
+  <div class="upload-container">
+    <label for="file-upload" class="upload-label">Select up to 10 pictures</label>
+    <input type="file" id="file-upload" name="file" accept=".jpg,.png,.PNG,.webp,.svg" multiple (change)="onFileSelected($event)">
+  </div>
+  
+  <div *ngIf="selectedFiles.length > 0" class="preview-container">
+    <div *ngFor="let file of selectedFiles" class="preview-item">
+      <img [src]="file.url" alt="Preview" class="preview-image">
+      <button class="delete-button" (click)="removeFile(file)">X</button>
+    </div>
+  </div>
+  
+  
+  <div class="form-container">
+    <form>
+      <label for="title-input">Title:</label>
+      <input type="text" id="title-input" name="title-input" placeholder="Enter a title">
+      <label for="text-input">Text:</label>
+      <textarea id="text-input" name="text-input" placeholder="Enter some text"></textarea>
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
+

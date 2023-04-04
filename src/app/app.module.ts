@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ArticleUserComponent } from './article-user/article-user.component';
+import { ArticleUserComponent } from './ShareATrip/ShareATrip.component';
 import { HomeComponent } from './home/home.component';
 import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
 import { LogInterceptor } from './LogInterceptor';
@@ -18,6 +18,7 @@ import { ArticleComponent } from './article/article.component';
 import { ProfilsComponent } from './profils/profils.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecoveryComponent } from './recovery/recovery.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 
@@ -37,6 +38,7 @@ import { RecoveryComponent } from './recovery/recovery.component';
     ProfilsComponent,
     AdminComponent,
     RecoveryComponent,
+    ChartComponent,
   
 
   ],
@@ -46,7 +48,6 @@ import { RecoveryComponent } from './recovery/recovery.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    
     
     
   ],

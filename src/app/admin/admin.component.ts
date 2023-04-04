@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { AdminService } from '../common/AdminService';
 import { ArticleService } from '../common/articleService';
+import { PaysService } from '../common/PaysService';
+import { ContinentService } from '../common/ContinentService';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +18,9 @@ import { ArticleService } from '../common/articleService';
 export class AdminComponent implements OnInit {
   constructor(
     private serviceArticle: ArticleService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private servicePays: PaysService,
+    private continentService: ContinentService
   ) {}
 
   public continentsList: any[];
@@ -33,7 +37,7 @@ export class AdminComponent implements OnInit {
 
   // -------------------------------------------------- appel de nos continents pour les placer dans le select --------------------------------------------------
   public getContinent(): any {
-    this.serviceArticle.getContinentList().subscribe(
+    this.continentService.getContinentList().subscribe(
       (data) => {
         this.continentsList = data;
       },
@@ -69,10 +73,10 @@ export class AdminComponent implements OnInit {
 
   public onChange(event: any) {
     this.continentsId = event;
-    this.serviceArticle.getPays(event).subscribe(
+    this.servicePays.getPays(event).subscribe(
       (data) => {
         this.paysList = data;
-        this.mySortingFunction()
+        this.mySortingFunction();
       },
       (error) => {
         console.log(error);
@@ -84,7 +88,7 @@ export class AdminComponent implements OnInit {
 
   public onSubmit() {
     const pays: string = this.paysForm.get('pays').value;
-    this.adminService.createPays(pays, this.continentsId).subscribe(
+    this.servicePays.createPays(pays, this.continentsId).subscribe(
       (data) => {
         console.log(data);
       },
@@ -101,7 +105,7 @@ export class AdminComponent implements OnInit {
   public onSubmit2() {
     const pays: string = this.paysForm.get('pays').value;
     console.log(this.paysid + ' ' + pays);
-    this.adminService.updatePays(pays, this.paysid).subscribe(
+    this.servicePays.updatePays(pays, this.paysid).subscribe(
       (data) => {
         console.log(data);
       },
@@ -119,7 +123,7 @@ export class AdminComponent implements OnInit {
   }
 
   public supr() {
-    this.adminService.deletePays(this.paysid).subscribe(
+    this.servicePays.deletePays(this.paysid).subscribe(
       (data) => {
         console.log(data);
       },
@@ -130,24 +134,21 @@ export class AdminComponent implements OnInit {
     location.reload();
   }
 
+  //trier par ordre alphabetique
 
-//trier par ordre alphabetique
+  public mySortingFunction() {
+    this.paysList.sort(function (a, b) {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
 
-public mySortingFunction() {
-  this.paysList.sort(function (a, b) {
-    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1;
-    }
+      if (nameA > nameB) {
+        return 1;
+      }
 
-    if (nameA > nameB) {
-      return 1;
-    }
-
-    return 0;
-  });
-}
-
-
+      return 0;
+    });
+  }
 }

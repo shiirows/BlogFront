@@ -24,12 +24,13 @@ export class ArticleService {
 
 
   public urlApiUpload: string = "http://localhost:8080/api/file/";
+  public urlApiContinent: string = environment.apiUrl + 'continents/';
 
+  //appel les article by paysName
+public getArticlePaysName(names : String): Observable<any> {
 
-
-
-  //Fonction qui permet de créer un article
-
+  return this.http.post(this.urlApi+ "pays/", { name: names }, this.httpOptions);
+    };
 
   //Fonction qui permet de récupérer les article
 
@@ -85,7 +86,6 @@ public getArticlePays(id : number): Observable<any> {
   //Fonction qui permet de supprimer un article
   public deleteArticle(id: number): Observable<any> { 
     return this.http.delete(this.urlApi + id ,this.httpOptions);
-    
   }
 
   //Fonction qui permet d'ajouter en favoris un article
@@ -103,36 +103,6 @@ public getArticlePays(id : number): Observable<any> {
     return this.http.get<Article>(this.urlApi + 'favoris' , this.httpOptions);
     };
 
-
-  //Fonction pour afficher la liste des pays d'un continent
-  public getPays(id : number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'pays/' + id , this.httpOptions);
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
-  }
-
-  //Fonction pour afficher le continent souhaiter par son id
-  public getContinent(id: number): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi + 'continents/' + id , this.httpOptions);
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
-  }
-
- 
-  // cette fonction permet de récupérer tout les continents
-
-  public getContinentList(): Observable<any> { 
-    return this.http.get(this.urlApi + 'continents/' , this.httpOptions);
-  }
-
-
-
-
-
 //Fonction pour envoyer l'article en formdata
  public fileArticle( article: CreationArticle , file : File[]): Observable<any> {
   
@@ -140,16 +110,12 @@ public getArticlePays(id : number): Observable<any> {
   for (let i = 0; i < file.length; i++) {
     formData.append('file', file[i]);
   }
-
   formData.append('pays', article.pays.toString());
   formData.append('continents', article.continents.toString());
   formData.append('titre', article.titre);
   formData.append('content', article.content);
-
   return this.http.post(this.urlApi , formData   )
-
 }
-
 
 // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
 

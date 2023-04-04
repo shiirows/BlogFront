@@ -18,33 +18,13 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  public urlApi: string = 'http://localhost:8080/api/admin/pays/';
-
- //Fonction pour créer un pays
-
-    public createPays(name : String, id: number): Observable<any> {
-        return this.http.post(this.urlApi + 'createpays/'+ id  ,{name}  , this.httpOptions);
-        }
+  public urlApi: string = 'http://localhost:8080/api/pays/';
+  public urlApi2: string = 'http://localhost:8080/api/regions/';
 
 
-//Fonction pour mettre a jour un pays
-        public updatePays(name : String, id: number): Observable<any> {
-          console.log(name, id)
-          return this.http.post(this.urlApi + 'updatepays/'+ id  ,{name}  , this.httpOptions);
-          }
 
-//Fonction pour supprimer un pays
-          public deletePays(id: number): Observable<any> {
-            console.log(id)
-            return this.http.delete(this.urlApi + 'deletepays/'+ id    , this.httpOptions);
-            }
-  
- 
-
-
-  
-
-
+//Fonction pour ajouter une region au pays par le nom du pays
+            
 
 
 }
