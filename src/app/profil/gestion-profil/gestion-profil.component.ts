@@ -127,8 +127,6 @@ export class GestionProfilComponent implements OnInit {
     this.couverture = sessionStorage.getItem('urlCouverture');
   }
 
-
-
   public intiForm() {
     this.form = this.formB.group({
       description: ['', [Validators.required]]
