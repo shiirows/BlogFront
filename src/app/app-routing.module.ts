@@ -4,29 +4,32 @@ import { ArticleUserComponent } from './ShareATrip/ShareATrip.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
-import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
+import { GestionProfilComponent } from './profil/gestion-profil/gestion-profil.component';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
-import { ProfilsComponent } from './profils/profils.component';
+import { NavComponent } from './profil/nav/nav.component';
 import { AuthGuard } from './core/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './core/admin.guard';
+import { ItemCardComponent } from './profil/item-card/item-card.component';
+import { ProfilComponent } from './profil/profil/profil.component';
+
+
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'profilGestion', component: GestionProfilComponent, canActivate: [AuthGuard] },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent }, 
-  { path: 'contacte', component: ContacteComponent },
+  { path: 'contact', component: ContacteComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'ShareATrip', component: ArticleUserComponent, canActivate: [AuthGuard] },
-  { path: 'profil', component: ProfilsComponent , canActivate: [AuthGuard]},
+  { path: 'profil', component: ProfilComponent , canActivate: [AuthGuard], children: [
+      { path: '', outlet: 'profil', component: ItemCardComponent, canActivate: [AuthGuard] },
+      { path: 'profilSetting', outlet: 'profil', component: GestionProfilComponent},
+    ]},
   { path: 'activation', component: ActivationComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
-
-    
-
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] }
 ];
 
 @NgModule({

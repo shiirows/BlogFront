@@ -1,0 +1,33 @@
+<div class="profile-container">
+  <!-- Cover photo -->
+  <div class="cover-photo">
+    <img class="img" src="{{ urlfiles + couvertureUser }}" alt="Cover photo" />
+  </div>
+
+  <!-- Profile photo -->
+  <div class="profile-photo">
+    <img class="img" src="{{ urlfiles + avatarUser }}" alt="Profile photo" />
+  </div>
+
+  <!-- User name -->
+  <h1 class="user-name"></h1>
+
+  <!-- User bio -->
+  <p class="user-bio">{{ user.lastname }} {{ user.firstname }}</p>
+  <p class="user-bio">{{user.description}}</p>
+
+  <!-- Navigation tabs -->
+  <ul class="nav-tabs">
+    <li><a [routerLink]="['/profil']">my travels</a></li>
+    <li><a [routerLink]="[{ outlets: { profil: 'profilSetting' } }]">Gestion de profil</a>
+    </li>
+    <li><a href="#">Photos</a></li>
+    <li><a href="#">More</a></li>
+  </ul>
+
+<!-- Main content -->
+</div>
+<div class="bar"></div>
+
+
+

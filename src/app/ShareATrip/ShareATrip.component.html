@@ -124,10 +124,9 @@
       </select>
     </div>
     <div class="select-wrapper" [class.selected]="regionSelected">
-      <select id="city-select" class="select">
-        <option value="" disabled selected>City</option>
-        
-        
+      <select id="region-select" class="select" (change)="onChange3($event.target.value)">
+        <option value="0" disabled selected>Region</option>
+        <option *ngFor="let subcategory of regionList" [value]="subcategory.id">{{subcategory.name }}</option>
       </select>
     </div>
   </div>
@@ -137,19 +136,20 @@
   </div>
   
   <div *ngIf="selectedFiles.length > 0" class="preview-container">
-    <div *ngFor="let file of selectedFiles" class="preview-item">
-      <img [src]="file.url" alt="Preview" class="preview-image">
-      <button class="delete-button" (click)="removeFile(file)">X</button>
+    <div *ngFor="let url of urls; let i = index" class="preview-item">
+      <img [src]="url" alt="Preview" class="preview-image">
+      <button class="delete-button" (click)="removeFile(i)">X</button>
     </div>
   </div>
   
   
   <div class="form-container">
-    <form>
+    <form (ngSubmit)="artcileForm.valid && onValid()"
+    [formGroup]="artcileForm" >
       <label for="title-input">Title:</label>
-      <input type="text" id="title-input" name="title-input" placeholder="Enter a title">
+      <input formControlName="titre" type="text" id="title-input" name="title-input" placeholder="Enter a title">
       <label for="text-input">Text:</label>
-      <textarea id="text-input" name="text-input" placeholder="Enter some text"></textarea>
+      <textarea formControlName="content" id="text-input" name="text-input" placeholder="Enter some text"></textarea>
       <button type="submit" id="submit-btn">Submit</button>
     </form>
   </div>

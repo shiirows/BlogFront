@@ -18,14 +18,12 @@
           alt="Avatar"
         />
         <ul class="navbar-links" *ngFor="let item of estConnecter">
-          <li><a class="navbar-user-name" href="/profil">{{ item.lastname }} {{ item.firstname }}</a></li>
+          <li><a class="navbar-user-name" routerLink="/profil">{{ item.lastname }} {{ item.firstname }}</a></li>
         </ul>
       </div>
       <div class="navbar-user-actions">
+        <a *ngIf="isAdmin" href="#0" [routerLink]="['/admin']" class="navbar-auth-button">Admin</a>
         <a href="#0" (click)="effacerStorage()" class="navbar-auth-button">Logout</a>
-
-        <a href="#0" [routerLink]="['/admin']" class="navbar-auth-button">Admin</a>
-
         </div>
  </div>
 
@@ -54,10 +52,11 @@
         <li><a href="/contact">Contact</a></li>
         <li *ngIf="estConnecter == null"><a href="#0" [routerLink]="['/inscription']">Inscription</a></li>
         <li *ngIf="estConnecter == null"><a href="#0" [routerLink]="['/connexion']">Connexion</a></li>
-        <li *ngIf="estConnecter != null"><a href="#0" [routerLink]="['/profil']">{{ estConnecter[0].lastname }} {{ estConnecter[0].firstname }}</a></li>
+        <li *ngIf="estConnecter != null"><a href="#0" [routerLink]="['/profil']">{{ estConnecter.lastname }} {{ estConnecter.firstname }}</a></li>
         <li *ngIf="estConnecter != null"><a href="#0" (click)="effacerStorage()">Logout</a></li>
         <li *ngIf="estConnecter != null"><a href="#0" [routerLink]="['/admin']">Admin</a></li>
       </ul>
     </div>
   </nav>
 </header>
+

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { ArticleService } from '../common/articleService';
-import { AuthentificationService } from '../common/AuthentificationService';
-import { TokenService } from '../common/TokenService';
+import { ArticleService } from '../../common/articleService';
+import { AuthentificationService } from '../../common/AuthentificationService';
+import { TokenService } from '../../common/TokenService';
+import { Article } from '../../model/Article';
 
 @Component({
-  selector: 'app-profils',
-  templateUrl: './profils.component.html',
-  styleUrls: ['./profils.component.css'],
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css'],
 })
-export class ProfilsComponent implements OnInit {
+export class NavComponent implements OnInit {
   constructor(
     private serviceToken: TokenService,
     private serviceAuth: AuthentificationService,
@@ -20,12 +21,12 @@ export class ProfilsComponent implements OnInit {
 
   public urlfiles: string = environment.apiUrlFile;
 
-  public user = this.serviceToken.getUser().user;
+  public user = this.serviceToken.getUser().userInfo;
 
   public avatarUser = sessionStorage.getItem('url');
   public couvertureUser = sessionStorage.getItem('urlCouverture');
 
-  public listArticles: any = [];
+  public listArticles: Article[];
 
   ngOnInit(): void {
     this.articleUser();
@@ -36,7 +37,6 @@ export class ProfilsComponent implements OnInit {
   public articleUser() {
     this.service.getArticleByIdUser().subscribe((data) => {
       this.listArticles = data;
-      console.log(this.listArticles);
     });
   }
 
@@ -50,7 +50,6 @@ export class ProfilsComponent implements OnInit {
 
   public deleteArticle(id: number) {
     this.service.deleteArticle(id).subscribe((data) => {
-      console.log(data + 'article supprimé');
     });
     location.reload();
   }

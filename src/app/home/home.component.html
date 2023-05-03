@@ -7,8 +7,8 @@
 <div class="container">
  
 
-
   <div class="selecteur">
+
     <div class="continents">
       <select class="selectitem" (change)="onChange($event.target.value)">
         <option class="text" value="0">select a continent</option>
@@ -34,8 +34,20 @@
         </option>
       </select>
     </div>
-  </div>
 
+    <div class="pays">
+      <select class="selectitem" (change)="onChange3($event.target.value)">
+        <option class="text" value="0">select a region</option>
+        <option
+          *ngFor="let subcategory of regions"
+          class="text"
+          [value]="subcategory.id"
+        >
+          {{ subcategory.name }}
+        </option>
+      </select>
+    </div>
+  </div>
   <div class="contentCard">
     <div class="cardContainer" *ngFor="let item of listArticles">
       <div class="card">
@@ -54,12 +66,17 @@
           <button (click)="sendId(item.id)" class="btn btn-primary">
             See more
           </button>
-          <button for="(item.id)" [ngClass]="{greenheart: like, whiteheart : di}"  (click)="addFavori(item.id)" class="btn btn-primary">
+          <button *ngIf="userConnecter != null"  for="(item.id)" [ngClass]="{'greenheart': item.favoris == true }"  (click)="addFavori(item.id)" class="btn btn-primary">
            ♥ 
           </button>
         </div>
       </div>
     </div>
   </div>
+  <div  *ngIf="listArticles.length == 0" class="empty-article">
+    <p>Aucun article disponible pour le moment 😎</p>
+    <button class="create-article-button">Créer un article</button>
+  </div>
+  
 </div>
 

@@ -1,0 +1,32 @@
+<div class="form-container">
+  <h2>Changer mes informations</h2>
+  <form (ngSubmit)="form.valid && onsubmit()" [formGroup]="form">
+
+    <div class="input-area">
+      <label for="bio">Modifier votre bio :</label>
+      <textarea formControlName="description" id="bio" 
+                name="description" 
+                placeholder="{{user.description}}"
+                maxlength="300"
+                ></textarea>
+       <input type="submit" value="Enregistrer" >
+    </div>
+    <div class="input-group">
+      <label for="profile-photo">Changer la photo de profil :</label>
+      <div class="set-input">
+        <input type="file" id="profile-photo" accept=".jpg,.png,.PNG,.webp,.svg" (change)="onFileProfileSelected($event)" name="profile-photo">
+        <input type="submit" value="Enregistrer" class="input-file" (click)="submitProfile()">
+      </div>
+      
+    </div>
+    <div class="input-group" style="margin-top: 10px;">
+      <label for="cover-photo">Changer la couverture :</label>
+    <div class="set-input">
+      <input type="file" id="cover-photo"  type="file" id="file-upload" accept=".jpg,.png,.PNG,.webp,.svg" (change)="onFileCoverSelected($event)" name="cover-photo">
+      <input type="submit" value="Enregistrer" class="input-file" (click)="submitCover()" >
+    </div>
+    </div>
+  </form>
+
+  
+</div>

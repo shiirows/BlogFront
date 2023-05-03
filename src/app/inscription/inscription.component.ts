@@ -25,6 +25,11 @@ export class InscriptionComponent implements OnInit {
   public erreur: boolean = false;
   public passwordconfirm : boolean = false;
 
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
   public initForm() {
     this.userForm = this.formB.group(
       {
@@ -32,7 +37,7 @@ export class InscriptionComponent implements OnInit {
           '',
           [Validators.maxLength(45), Validators.minLength(3)],
         ],
-        name: ['', [Validators.maxLength(45), Validators.minLength(2)]],
+        lastname: ['', [Validators.maxLength(45), Validators.minLength(2)]],
         firstname: [
           '',
           [Validators.maxLength(45), Validators.minLength(2)],
@@ -53,9 +58,6 @@ export class InscriptionComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
   // custom validator to check that two fields match
   public verificationMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
@@ -81,7 +83,7 @@ export class InscriptionComponent implements OnInit {
   public onsubmit() {
     const username: string = this.userForm.get('username').value;
 
-    const name: string = this.userForm.get('name').value;
+    const lastname: string = this.userForm.get('lastname').value;
 
     const firstname: string = this.userForm.get('firstname').value;
 
@@ -89,15 +91,15 @@ export class InscriptionComponent implements OnInit {
 
     const password: string = this.userForm.get('password').value;
 
-    let userr: UtilisateurInscription = new UtilisateurInscription(
-      name,
+    let user: UtilisateurInscription = new UtilisateurInscription(
+      lastname,
       firstname,
       username,
       password,
       email
     );
 
-    this.service.signup(userr).subscribe(
+    this.service.signup(user).subscribe(
       // ne pas rediriger en cas d'erreur
       (data) => {
         this.route.navigate(['/connexion']);

@@ -15,50 +15,42 @@ export class ArticleService {
       'Content-Type': 'application/json',
     }),
   };
-
   
-
   constructor(private http: HttpClient) {}
-
   public urlApi: string = environment.apiUrl + 'article/';
-
-
   public urlApiUpload: string = "http://localhost:8080/api/file/";
   public urlApiContinent: string = environment.apiUrl + 'continents/';
 
   //appel les article by paysName
 public getArticlePaysName(names : String): Observable<any> {
-
   return this.http.post(this.urlApi+ "pays/", { name: names }, this.httpOptions);
+    };
+
+  //appel les article by regionName
+public getArticleRegionName(names : String): Observable<any> {
+  return this.http.post(this.urlApi+ "region/", { name: names }, this.httpOptions);
     };
 
   //Fonction qui permet de récupérer les article
 
-  public getArticles(): Observable<any> {
-    const obs: Observable<any> = this.http.get(this.urlApi );
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
+  public getArticles(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.urlApi);
   }
 
   //Fonction pour afficher une liste d'article par continent
 public getArticleByContinent(id : number): Observable<any> {
-  const obs: Observable<any> = this.http.get(this.urlApi + 'articlecontinents/' + id , this.httpOptions);
-  const traitement = (param: any) => {
-    return param as any;
-  };
-  return obs.pipe(map(traitement));
+  return this.http.get<Article>(this.urlApi + 'continent/' + id , this.httpOptions);
 }
 
 
   //Fonction pour afficher la liste des article d'un pays
 public getArticlePays(id : number): Observable<any> {
-  const obs: Observable<any> = this.http.get(this.urlApi + 'articlepays/' + id , this.httpOptions);
-  const traitement = (param: any) => {
-    return param as any;
-  };
-  return obs.pipe(map(traitement));
+ return this.http.get<Article>(this.urlApi + 'pays/' + id , this.httpOptions);
+}
+
+  //Fonction pour afficher la liste des article d'une region
+public getArticleRegion(id : number): Observable<any> {
+  return this.http.get<Article>(this.urlApi + 'region/' + id , this.httpOptions);
 }
 
 
@@ -71,11 +63,7 @@ public getArticlePays(id : number): Observable<any> {
 
    //Fonction qui permet de récupérer les article de l'utilisateur
    public getArticleByIdUser(): Observable<any> {
-    const obs: Observable<any> = this.http.get<Article>(this.urlApi + 'user/' ,  this.httpOptions );
-    const traitement = (param: any) => {
-      return param as any;
-    };
-    return obs.pipe(map(traitement));
+   return this.http.get<Article>(this.urlApi + 'user' );
   }
 
   //Fonction qui permet de modifier un article
@@ -85,27 +73,14 @@ public getArticlePays(id : number): Observable<any> {
 
   //Fonction qui permet de supprimer un article
   public deleteArticle(id: number): Observable<any> { 
+    console.log(id);
     return this.http.delete(this.urlApi + id ,this.httpOptions);
   }
 
-  //Fonction qui permet d'ajouter en favoris un article
-  public addFavoris(id : number): Observable<any> {
-    return this.http.post(this.urlApi + 'addfavoris/' + id , this.httpOptions);
-  }
-
-  //Fonction qui permet de supprimer un article de la liste des favoris
-  public deleteFavoris(id: number): Observable<any> {
-    return this.http.delete(this.urlApi + 'deletefavoris/' + id , this.httpOptions);
-  }
-
-  //Fonction qui permet de récupérer les articles de la liste des favoris
-  public getArticleFavoris(): Observable<any> {
-    return this.http.get<Article>(this.urlApi + 'favoris' , this.httpOptions);
-    };
-
 //Fonction pour envoyer l'article en formdata
  public fileArticle( article: CreationArticle , file : File[]): Observable<any> {
-  
+  console.log(article);
+  console.log(file);
   const formData = new FormData();
   for (let i = 0; i < file.length; i++) {
     formData.append('file', file[i]);
@@ -114,6 +89,8 @@ public getArticlePays(id : number): Observable<any> {
   formData.append('continents', article.continents.toString());
   formData.append('titre', article.titre);
   formData.append('content', article.content);
+  formData.append('region', article.region.toString());
+  console.log(formData);
   return this.http.post(this.urlApi , formData   )
 }
 

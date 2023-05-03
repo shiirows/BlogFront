@@ -10,15 +10,17 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ArticleUserComponent } from './ShareATrip/ShareATrip.component';
 import { HomeComponent } from './home/home.component';
-import { GestionProfilComponent } from './gestion-profil/gestion-profil.component';
+import { GestionProfilComponent } from './profil/gestion-profil/gestion-profil.component';
 import { LogInterceptor } from './LogInterceptor';
 import { ContacteComponent } from './contacte/contacte.component';
 import { ActivationComponent } from './activation/activation.component';
 import { ArticleComponent } from './article/article.component';
-import { ProfilsComponent } from './profils/profils.component';
+import { NavComponent } from './profil/nav/nav.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { ChartComponent } from './chart/chart.component';
+import { ItemCardComponent } from './profil/item-card/item-card.component';
+import { ProfilComponent } from './profil/profil/profil.component';
 
 
 
@@ -35,10 +37,12 @@ import { ChartComponent } from './chart/chart.component';
     ContacteComponent,
     ActivationComponent,
     ArticleComponent,
-    ProfilsComponent,
+    NavComponent,
     AdminComponent,
     RecoveryComponent,
     ChartComponent,
+    ItemCardComponent,
+    ProfilComponent,
   
 
   ],
@@ -47,8 +51,7 @@ import { ChartComponent } from './chart/chart.component';
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
-    
+    FormsModule    
     
   ],
   providers: [

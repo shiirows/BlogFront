@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { PaysService } from '../common/PaysService';
 import { ContinentService } from '../common/ContinentService';
+import { RegionService } from '../common/RegionService';
+import { TokenService } from '../common/TokenService';
+import { ArticleFavorisService } from '../common/ArticleFavoris';
+import { Article } from '../model/Article';
 
 @Component({
   selector: 'app-home',
@@ -16,19 +20,24 @@ export class HomeComponent implements OnInit {
     private route: Router,
     private servicePays: PaysService,
     private continentService: ContinentService,
-
+    private serviceRegion: RegionService,
+    private tokenService: TokenService,
+    private ArticleFavorisService: ArticleFavorisService
   ) {}
 
   public urlfiles: string = environment.apiUrlFile;
-  public listArticles: any[]; // contien tout les articles
-  public listArticlesFavoris: any[];
+  public userConnecter: any = this.tokenService.getUser().userInfo;
+  public listArticles: Article[] = []; // contien tout les articles
+  public listArticlesFavoris: Article[] = []; // contien tout les articles en favoris
   public continents: any[]; // contien les article par continent
   public pays: any[] = []; //contien la liste des pays
+  public regions: any[] = []; //contien la liste des regions
   public idpays: number; // on stock l'id du pays dans une variable pour la reutiliser
   public idcontinents: number; // on stock l'id du continent dans une variable pour la reutiliser dans la fonction onChange2 au cas
+  public idregion: number; // on stock l'id de la region dans une variable pour la reutiliser dans la fonction onChange3 au cas
   // ou l'utilisateur selection tout les pays du continent
   // variable pour afficher le bouton en vert si l'article est en favoris
-  public like = false;
+  public likeArticle: boolean = false;
 
   public selectedContinent: string;
   public selectedPays: string;
@@ -38,25 +47,20 @@ export class HomeComponent implements OnInit {
     this.getContinent();
     this.afficheArticle();
     this.getFavoris();
-   // this.getChartData();
+    // this.getChartData();
   }
 
   // -------------------------------------------------- Appel des continents  --------------------------------------------------
-
   public getContinent(): any {
     this.continentService.getContinentList().subscribe(
       (data) => {
         this.continents = data;
-        console.log(this.continents);
       },
       (error) => {
         console.log(error);
       }
-      
     );
-
   }
-
   // -------------------------------------------------- affichage des pays par le select continents et des article lier au continents--------
 
   public onChange(event: number) {
@@ -74,14 +78,11 @@ export class HomeComponent implements OnInit {
       (data) => {
         this.pays = data;
         this.mySortingFunction();
-console.log(this.pays)
-
       },
       (error) => {
         console.log(error);
       }
     );
-
   }
 
   // -------------------------------------------------- affichage des articles par id pays--------------------------------------------------
@@ -94,6 +95,28 @@ console.log(this.pays)
     this.serviceArticle.getArticlePays(event).subscribe((data) => {
       this.listArticles = data;
     });
+
+    this.serviceRegion.getRegionByPays(event).subscribe(
+      (data) => {
+        this.regions = data;
+        this.mySortingFunction();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  // -------------------------------------------------- affichage des articles par id region--------------------------------------------------
+
+  public onChange3(event: number) {
+    if (event == 0) {
+      this.onChange2(this.idpays);
+    }
+
+    this.serviceArticle.getArticleRegion(event).subscribe((data) => {
+      this.listArticles = data;
+    });
   }
 
   //FONCTION QUI PERMET D'ENVOYER L'ID DANS LA ROUTE ARTICLE
@@ -103,23 +126,70 @@ console.log(this.pays)
   }
 
   // -------------------------------------------------- affichage de tout les articles --------------------------------------------------
-  public afficheArticle(): any {
-    return this.serviceArticle.getArticles().subscribe((data) => {
-      this.listArticles = data;
-      console.log(this.listArticles);
+  //ajout en favoris
+  public addFavori(id: number) {
+    const article = this.listArticles.find((a) => a.id === id); // recherche de l'article correspondant à l'ID
+    if (!article) return; // vérification si l'article existe
 
-      this.sortByDate();
-      // afficher les articles du plus récent au plus ancien
-    });
+    if (!article.favoris) {
+      console.log(article.id + ' ' + id + 'add');
+      this.ArticleFavorisService.addFavoris(id).subscribe((data) => {
+        console.log(data);
+        article.favoris = true; // mise à jour de la propriété favoris de l'article
+      });
+    } else {
+      console.log(article.id + ' ' + id + 'delete');
+      this.ArticleFavorisService.deleteFavoris(id).subscribe((data) => {
+        console.log(data);
+        article.favoris = false; // mise à jour de la propriété favoris de l'article
+      });
+    }
   }
 
-  public getFavoris() {
-    this.serviceArticle.getArticleFavoris().subscribe((data) => {
-      this.listArticlesFavoris = data;
-      console.log(this.listArticlesFavoris);
+  public afficheArticle(): any {
+    return this.serviceArticle
+      .getArticles()
+      .subscribe((articles: Article[]) => {
+        for (let i = 0; i < articles.length; i++) {
+          articles[i].favoris = false;
+        }
+        this.listArticles = articles;
+        console.log(this.listArticles);
 
-      this.favorisList();
-    });
+        this.sortByDate();
+        // afficher les articles du plus récent au plus ancien
+      });
+  }
+
+  // --------------------------------------------------articles favoris --------------------------------------------------
+  public getFavoris() {
+    const token = this.tokenService.getUser().userInfo;
+
+    if (token) {
+      this.ArticleFavorisService.getArticleFavoris().subscribe(
+        (articles: Article[]) => {
+          this.listArticlesFavoris = articles;
+          if (this.listArticlesFavoris.length > 0) {
+            this.favorisList();
+            console.log(this.listArticlesFavoris);
+          }
+        }
+      );
+    }
+  }
+
+  public favorisList() {
+    for (let i = 0; i < this.listArticles.length; i++) {
+      this.likeArticle = false; // initialisation de likeArticle à false
+      for (let j = 0; j < this.listArticlesFavoris.length; j++) {
+        if (this.listArticles[i].id === this.listArticlesFavoris[j].id) {
+          this.likeArticle = true;
+          break; // sortie de la boucle dès qu'un article favori est trouvé
+        }
+      }
+      this.listArticles[i].favoris = this.likeArticle; // ajout d'une propriété isFavorite à l'article pour afficher la classe CSS
+    }
+    console.log(this.listArticles);
   }
 
   //fonction pour trier les articles par ordre de creation
@@ -127,6 +197,7 @@ console.log(this.pays)
     this.listArticles.sort((a, b) => {
       return b.id - a.id;
     });
+    this.favorisList();
   }
 
   // fonction pour trier les pays par ordre alphabetique
@@ -144,59 +215,27 @@ console.log(this.pays)
     });
   }
 
-  // -------------------------------------------------- like --------------------------------------------------
-
-  //ajout en favoris
-  public addFavori(id: number) {
-    if (this.like == false) {
-      this.serviceArticle.addFavoris(id).subscribe((data) => {
-        console.log(data);
-        this.like = true;
-      });
-    } else {
-      this.like = false;
-      this.serviceArticle.deleteFavoris(id).subscribe((data) => {
-        console.log(data);
-      });
-    }
-  }
-
-  public favorisList() {
-    this.listArticlesFavoris.forEach((element) => {
-      this.listArticles.forEach((element2) => {
-        if (element.id == element2.id) {
-          this.like = true;
-        }
-      });
-    });
-  }
-
   // recuperer les donnés du component chart.component.ts
   public onContinentSelected(continent: string) {
     this.selectedContinent = continent;
-    
-    // Faire quelque chose d'autre ici si nécessaire
   }
 
   public onPaysSelected(pays: string) {
     this.selectedPays = pays;
-    console.log(this.selectedPays);
+    console.log(pays);
     this.serviceArticle.getArticlePaysName(pays).subscribe((data) => {
-     
       this.listArticles = data;
-      console.log(this.listArticles);
 
       this.sortByDate();
-
     });
-    
-    // Faire quelque chose d'autre ici si nécessaire
+
   }
 
   public onRegionSelected(region: string) {
     this.selectedRegion = region;
-    console.log(this.selectedRegion);
-    // Faire quelque chose d'autre ici si nécessaire
+    this.serviceArticle.getArticleRegionName(region).subscribe((data) => {
+      this.listArticles = data;
+      // Faire quelque chose d'autre ici si nécessaire
+    });
   }
-
 }

@@ -20,18 +20,22 @@ export class RegionService {
 
   public urlApi: string = environment.apiUrl + 'regions/';
 
+  //Fonction qui permet d'ajouter une region à un pays
   public addRegionToPays(region : String, pays: String): Observable<any> {
     return this.http.post(this.urlApi, {region, pays} , this.httpOptions);
     }
 
+    //Fonction qui permet de récupérer toute les regions
   public getRegionList(id: number): Observable<any> {
     return this.http.get(this.urlApi + id , this.httpOptions);
   }
 
+  //Fonction qui permet de récupérer toute les regions par pays
   public getRegionByPays(id: number): Observable<any> {
     return this.http.get(this.urlApi + id , this.httpOptions);
   }
 
+  //Fonction qui permet de modifier une region
   public updateRegion(name : String, id: number): Observable<any> {
     return this.http.put(this.urlApi + id ,{name}  , this.httpOptions);
     }

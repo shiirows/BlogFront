@@ -9,10 +9,12 @@ export class Article {
     public avatar : string;
     public continents : any;
     public pays : any;
+    // ajout la valeur false par défaut
+    public favoris : boolean = false;
     
 
     constructor( id: number, titre: string, content: string, createdate: number, files : string,
-        lastname : string, firstname : string, avatar : string, continents : any, pays : any) {
+        lastname : string, firstname : string, avatar : string, continents : any, pays : any, favoris : boolean) {
 
         this.id = id;
         this.titre = titre;
@@ -24,6 +26,7 @@ export class Article {
         this.avatar = avatar;
         this.continents = continents;
         this.pays = pays;
+        this.favoris = favoris;
     }
 
  public getAvatar() {
@@ -66,6 +69,10 @@ export class Article {
         return this.pays;
     }
 
+    public getFavoris() {
+        return this.favoris;
+    }
+
     public setId(id: number) {
         this.id = id;
     }
@@ -104,6 +111,10 @@ export class Article {
 
     public setAvatar(avatar: string) {
         this.avatar = avatar;
+    }
+
+    public setFavoris(favoris: boolean) {
+        this.favoris = favoris;
     }
 
 

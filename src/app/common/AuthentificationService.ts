@@ -29,6 +29,7 @@ export class AuthentificationService {
 
   //METHODE POUR LES INSCRIPTION
   public signup(utilisateur: UtilisateurInscription): Observable<any> {
+    console.log(utilisateur);
     return this.http.post(
       this.urlApi + 'signup',
       utilisateur,
@@ -60,26 +61,6 @@ export class AuthentificationService {
   //METHODE POUR LES DECONNEXION
   public deconnexion(): Observable<any> {
     return this.http.get(this.urlApi + 'signout');
-  }
-
-  //METHODE POUR LES MISE A JOUR DU PROFIL
-
-  public update(userUpdate: User): Observable<any> {
-    return this.http.post(this.urlApiUser + 'update', userUpdate, this.httpOptions);
-  }
-
-  //METHODE POUR LES MISE A JOUR DE L'AVATAR
-  public updateAvatarUser(file: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.post(this.urlApiUser + 'avatar', formData);
-  }
-
-  //METHODE POUR LES MISE A JOUR DE LA COUVERTURE
-  public updateCouvertureUser(file: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.post(this.urlApiUser + 'couverture', formData);
   }
 
   // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
