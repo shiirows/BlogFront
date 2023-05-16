@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080/api/',
-  apiUrlFile: 'http://localhost:8080/api/file/filename/'
+  apiUrl: 'https://blog-trotter-backend.herokuapp.com/api/',
+  apiUrlFile: 'https://blog-trotter-backend.herokuapp.com/api/file/filename/'
 };

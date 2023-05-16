@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
 import { map, observeOn } from 'rxjs/operators';
 import { commentaire } from '../model/Comment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,19 +17,16 @@ export class CommentService {
   };
   constructor(private http: HttpClient) {}
 
-  public urlApiComment: string = 'http://localhost:8080/api/comments/';
+  public urlApi: string = environment.apiUrl + 'comments/';
 
   //Fonction qui permet de creer un commentaire
   public createComment(id: number, comment: string): Observable<any> {
-    return this.http.post(
-      this.urlApiComment + 'create/' + id,
-      { comment },
-      this.httpOptions
+    return this.http.post(this.urlApi + 'create/' + id,{ comment },this.httpOptions
     );
   }
 
   //Fonction qui permet de récupérer les commentaires d'un article
   public getComments(id: number): Observable<any> {
-    return this.http.get<commentaire>(this.urlApiComment + id);
+    return this.http.get<commentaire>(this.urlApi + id);
   }
 }

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreationArticle } from './../model/creationArticle';
-import { map, multicast } from 'rxjs/operators';
 import { Article } from '../model/Article';
 import { environment } from 'src/environments/environment';
 
@@ -16,9 +15,10 @@ export class ArticleService {
     }),
   };
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
   public urlApi: string = environment.apiUrl + 'article/';
-  public urlApiUpload: string = "http://localhost:8080/api/file/";
+  public urlApiUpload: string = environment.apiUrl + 'file/';
   public urlApiContinent: string = environment.apiUrl + 'continents/';
 
   //appel les article by paysName
@@ -95,17 +95,6 @@ public getArticleRegion(id : number): Observable<any> {
 }
 
 // METHODE POUR AFFICHER L'AVATAR OU AUTRE IMAGE
-
-public getPicture(filename : String[]): Observable<any> {  
-return this.http.get(this.urlApiUpload + "filename/" + filename ,  { responseType: 'blob', observe: 'response' });
-
-}
-
-// METHODE POUR ENVOYER UN COMMMENTAIRE
-
-public addCommentaire( id : number, commentaire : string) : Observable<any> {
-  return this.http.post(this.urlApi + 'commentaire' , commentaire , this.httpOptions);
-}
 
 
 

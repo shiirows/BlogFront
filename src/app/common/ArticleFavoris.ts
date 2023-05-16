@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreationArticle } from './../model/creationArticle';
-import { map, multicast } from 'rxjs/operators';
 import { Article } from '../model/Article';
 import { environment } from 'src/environments/environment';
 
@@ -11,6 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ArticleFavorisService {
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Utilisateur } from '../model/Utilisateur';
-import { User } from '../model/UpdateUser';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class UserInfoService {
 
   //LES DIFFERENTS URL DU BACK
 
-  public urlApi: string = 'http://localhost:8080/api/user/info/';
+  public urlApi: string = environment.apiUrl + 'user/info/';
 
   //METHODE POUR LES MISE A JOUR DU PROFIL
 
