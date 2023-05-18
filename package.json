@@ -1,13 +1,10 @@
 {
   "name": "blog-front",
   "version": "0.0.0",
-  "engines": {
-    "node": "16.16.0"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-path=dist/blogFront",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -31,7 +28,6 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular/cli": "^11.2.19",
     "@angular-devkit/build-angular": "~0.1102.6",
     "@angular/compiler-cli": "~11.2.7",
     "@types/jasmine": "~3.6.0",
