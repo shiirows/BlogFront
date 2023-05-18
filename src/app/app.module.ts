@@ -21,6 +21,7 @@ import { RecoveryComponent } from './recovery/recovery.component';
 import { ChartComponent } from './chart/chart.component';
 import { ItemCardComponent } from './profil/item-card/item-card.component';
 import { ProfilComponent } from './profil/profil/profil.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -43,6 +44,7 @@ import { ProfilComponent } from './profil/profil/profil.component';
     ChartComponent,
     ItemCardComponent,
     ProfilComponent,
+    NotFoundComponent,
   
 
   ],

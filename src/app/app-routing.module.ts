@@ -14,11 +14,12 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './core/admin.guard';
 import { ItemCardComponent } from './profil/item-card/item-card.component';
 import { ProfilComponent } from './profil/profil/profil.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 export const ROUTES: Routes = [
-  { path: '', component: HomeComponent },
+  
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent }, 
   { path: 'contact', component: ContacteComponent },
@@ -29,7 +30,9 @@ export const ROUTES: Routes = [
       { path: 'profilSetting', outlet: 'profil', component: GestionProfilComponent},
     ]},
   { path: 'activation', component: ActivationComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: '', component: HomeComponent },
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
