@@ -59,7 +59,6 @@ export class ConnexionComponent implements OnInit {
 
         this.roles = this.tokenService.getUser().roles;
         
-        this.route.navigate(['']);
         window.location.reload();
       },
       (error) => {
