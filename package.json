@@ -2,7 +2,8 @@
   "name": "blog-front",
   "version": "0.0.0",
   "engines": {
-    "node": "16.16.0"
+    "node": "16.16.0",
+    "@angular/cli": "11.2.19"
   },
   "scripts": {
     "ng": "ng",
