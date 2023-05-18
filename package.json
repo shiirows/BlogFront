@@ -2,14 +2,12 @@
   "name": "blog-front",
   "version": "0.0.0",
   "engines": {
-    "node": "16.16.0",
-    "@angular/cli": "11.2.19"
+    "node": "16.16.0"
   },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-path=dist/dist/blogFront",
-    "heroku-postbuild": "npm install",
+    "build": "ng build --prod --output-path=dist/blogFront",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -17,6 +15,7 @@
   "private": true,
   "dependencies": {
     "@amcharts/amcharts5": "^5.3.9",
+    "@angular/cli": "^11.2.19",
     "@amcharts/amcharts5-geodata": "^5.1.0",
     "@angular/animations": "~11.2.7",
     "@angular/common": "~11.2.7",
@@ -32,8 +31,8 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.6",
     "@angular/cli": "^11.2.19",
+    "@angular-devkit/build-angular": "~0.1102.6",
     "@angular/compiler-cli": "~11.2.7",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
